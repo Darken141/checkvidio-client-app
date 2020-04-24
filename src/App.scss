@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Poiret+One&display=swap');
+@import './styles/variables';
+
+*,
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	background-color: $background;
+}
+
+body {
+	font-size: 1.3rem;
+	color: $font-white;
+	line-height: 1.5;
+	min-height: 100vh;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.logo {
+	font-weight: lighter;
+	color: $primary;
+	font-family: "Poiret One";
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
+	color: $font-white;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		color: lighten($font-white, 15);
+	}
+}
