@@ -1,0 +1,124 @@
+@import '../../styles/variables';
+
+#dashboard {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 50px 1fr 50px;
+	height: 100vh;
+	grid-template-areas: "header" "main" "footer";
+
+	&__header {
+		grid-area: header;
+		background-color: $component-background;
+
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 1rem;
+
+		position: relative;
+		z-index: 9;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, .35);
+
+		.menu-items {
+			display: flex;
+
+			.menu-icon,
+			.user-menu-icon {
+				cursor: pointer;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 2rem;
+				padding: .5rem;
+				transition: all 0.2s ease-in;
+
+				&:hover {
+					color: $primary;
+				}
+			}
+		}
+	}
+
+	&__main {
+		grid-area: main;
+		padding: 1rem;
+
+		h1 {
+			text-transform: uppercase;
+			opacity: .6;
+		}
+	}
+
+	&__aside {
+		padding: 1rem;
+		grid-area: aside;
+		position: fixed;
+		height: 100%;
+		width: 245px;
+		background-color: $component-background;
+		transform: translateX(-245px);
+		transition: all 0.6s ease-in-out;
+		z-index: 10;
+
+		&.active {
+			transform: translateX(0);
+			box-shadow: 10px 0 10px rgba(0, 0, 0, .35);
+		}
+
+		.close-icon {
+			cursor: pointer;
+			position: absolute;
+			right: 1rem;
+			top: 1rem;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: $background;
+			font-size: 2rem;
+			padding: .5rem;
+			transition: all 0.2s ease-in;
+
+			&:hover {
+				color: $primary;
+			}
+		}
+	}
+
+	&__footer {
+		grid-area: footer;
+
+		background-color: $component-background;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1rem;
+	}
+}
+
+@media only screen and (min-width: 46.875em) {
+	#dashboard {
+		grid-template-columns: 245px 1fr;
+		grid-template-areas: "header header" "aside main" "aside footer";
+
+		&__header {
+			z-index: 11;
+			.menu-items {
+				.menu-icon {
+					display: none;
+				}
+			}
+		}
+
+		&__aside {
+			position: relative;
+			transform: translateX(0);
+			box-shadow: 10px 0 10px rgba(0, 0, 0, .35);
+
+			.close-icon {
+				display: none;
+			}
+		}
+	}
+}
