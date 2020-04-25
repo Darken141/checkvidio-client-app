@@ -1,0 +1,42 @@
+@import '../../../../styles/variables';
+
+.overviewcard {
+	max-width: 30rem;
+	margin: 0 auto;
+	margin-bottom: 4rem;
+
+	&__body {
+		padding: 1.5rem 1rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: $component-background;
+
+		h2 {
+			font-weight: lighter;
+			opacity: .83;
+		}
+
+		.overviewcard-icons {
+			display: flex;
+
+			.mail-icon,
+			.edit-icon,
+			.delete-icon {
+				cursor: pointer;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				border-radius: 50%;
+				padding: .5rem;
+				font-size: 2rem;
+				transition: all 0.2s ease-in;
+
+				&:hover {
+					color: $primary;
+				}
+			}
+		}
+	}
+}

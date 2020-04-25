@@ -88,3 +88,30 @@
 		padding: 1rem;
 	}
 }
+
+@media only screen and (min-width: 40em) {
+	#video-page {
+		font-size: 1.4rem;
+
+		&__aside {
+			width: 40rem;
+			margin: 0 auto;
+		}
+	}
+}
+
+@media only screen and (min-width: 64.063em) {
+	#video-page {
+		grid-template-columns: 1fr 320px;
+		grid-template-rows: 50px 1fr 50px;
+		grid-template-areas: "header header" "main aside" "footer footer";
+
+		&__aside {
+			width: unset;
+			margin: unset;
+		}
+
+		&__main {
+		}
+	}
+}

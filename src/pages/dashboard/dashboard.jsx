@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-import { FaBars, FaUserCircle, FaTimes } from 'react-icons/fa';
+import AsideNavBar from './components/aside-navbar/aside-navbar';
+import { FaBars, FaUserCircle, FaTimes, FaPlus, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { IoIosMail } from 'react-icons/io';
+import { Link } from 'react-router-dom';
+import VideoPlayer from '../video/components/video-player/video-player';
+import Overviewcard from './components/project-overview/overviewcard';
 
 import './dashboard.styles.scss';
 
@@ -24,14 +29,26 @@ const Dashboard = () => {
 				</div>
 			</header>
 			<aside id="dashboard__aside" className={toggleAside ? 'active' : ''}>
-				ASIDE
+				<AsideNavBar />
 				<div className="close-icon" onClick={() => setToggleAside(false)}>
 					<FaTimes />
 				</div>
 			</aside>
 			<main id="dashboard__main">
 				<section id="projects">
-					<h1>Projects</h1>
+					<div className="projects__header">
+						<h1>Projects</h1>
+						<div className="plus-icon">
+							<Link to="/">
+								<FaPlus />
+							</Link>
+						</div>
+					</div>
+
+					<Overviewcard />
+					<Overviewcard />
+					<Overviewcard />
+					<Overviewcard />
 				</section>
 			</main>
 			<footer id="dashboard__footer">

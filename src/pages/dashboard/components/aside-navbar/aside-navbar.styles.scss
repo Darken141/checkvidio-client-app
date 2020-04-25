@@ -1,0 +1,20 @@
+.aside-navbar {
+	margin-top: 5rem;
+
+	h2 {
+		cursor: default;
+		font-weight: lighter;
+		margin-bottom: 1rem;
+		opacity: .6;
+	}
+
+	.aside-nav {
+		list-style: none;
+		margin-left: 2rem;
+
+		&__item {
+			font-size: 1.6rem;
+			padding: .5rem;
+		}
+	}
+}
