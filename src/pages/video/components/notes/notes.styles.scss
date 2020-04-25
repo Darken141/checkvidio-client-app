@@ -1,0 +1,62 @@
+@import '../../../../styles/variables';
+
+.note-container {
+	position: relative;
+	margin: 1rem 0;
+	background-color: $background;
+	min-height: 15rem;
+
+	&__label {
+		cursor: default;
+		font-weight: lighter;
+		margin-bottom: .5rem;
+		opacity: .83;
+		margin-left: 1rem;
+	}
+
+	.no-notes {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 0.6;
+	}
+
+	.note {
+		background-color: $component-background;
+		margin-bottom: 1rem;
+		padding: 1rem;
+
+		&__header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			// margin-bottom: 1rem;
+
+			p {
+				color: rgba($font-white, .6);
+
+				.time {
+					color: $font-white;
+				}
+			}
+
+			.delete-icon {
+				cursor: pointer;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 12px;
+				color: $red;
+			}
+		}
+
+		&__body {
+			color: rgba($font-white, .83);
+
+			p {
+				white-space: pre-line;
+			}
+		}
+	}
+}

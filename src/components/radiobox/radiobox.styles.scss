@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+
+.custom-radiobox {
+	display: flex;
+	align-items: center;
+	position: relative;
+
+	&__radiobox {
+		visibility: hidden;
+		position: absolute;
+		margin-right: .5rem;
+	}
+
+	&__label {
+		cursor: pointer;
+		border-radius: 10px;
+
+		padding: .5rem 1rem;
+		background-color: $background;
+		transition: all 0.2s ease;
+
+		&:hover {
+			color: $white;
+		}
+	}
+}
+
+.active {
+	.custom-radiobox__label {
+		color: $primary;
+	}
+}

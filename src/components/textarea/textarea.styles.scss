@@ -1,0 +1,22 @@
+@import '../../styles/variables';
+
+.custom-textarea {
+	&__label {
+		font-weight: lighter;
+		opacity: .83;
+		display: block;
+		margin-bottom: .5rem;
+	}
+
+	&__textarea {
+		color: $font-white;
+		resize: none;
+		width: 100%;
+		background-color: $background;
+		border: none;
+		padding: 1rem;
+		border-radius: 10px;
+		box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, .15);
+		margin-bottom: 1rem;
+	}
+}

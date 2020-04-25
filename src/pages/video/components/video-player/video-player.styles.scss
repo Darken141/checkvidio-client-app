@@ -1,0 +1,19 @@
+.player-wrapper {
+	position: relative;
+	padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+
+	.video-glass {
+		// background-color: rgba(red, .5);
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: 7rem;
+		z-index: 1;
+	}
+}
+.react-player {
+	position: absolute;
+	top: 0;
+	left: 0;
+}

@@ -1,0 +1,52 @@
+@import '../../../../styles/variables';
+
+.custom-time-input {
+	display: flex;
+	align-items: center;
+	// background-color: rgba($background, 0.5);
+	background-color: $background;
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+
+	input[type=number] {
+		-moz-appearance: textfield;
+	}
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	// input::placeholder {
+	// 	// color: $font-white;
+	// }
+
+	&__input {
+		font-size: inherit;
+		font-family: inherit;
+		display: block;
+		width: 23px;
+		padding: .5rem 0 .2rem 0.2rem;
+		margin: 0 .5rem;
+		background-color: $background;
+		border: none;
+		color: $font-white;
+		border-bottom: 1px solid $font-white;
+		transition: border 0.2s ease-in;
+
+		&:focus {
+			outline: none;
+			border-bottom: 1px solid $primary;
+		}
+	}
+
+	&__label {
+		color: rgba($font-white, 0.6);
+		display: block;
+	}
+
+	span {
+		display: block;
+		margin: 0 .5rem;
+	}
+}
