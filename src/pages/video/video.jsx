@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NoteForm from './components/note-form/note-form';
+import { default as NoteForm } from './components/note-form/note-form.container';
 import { default as Notes } from './components/notes/notes.container';
 import VideoPlayer from './components/video-player/video-player';
 import { FaQuestionCircle } from 'react-icons/fa';

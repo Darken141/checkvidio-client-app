@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { useParams } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import Spinner from '../../../../components/spinner/spinner.component';
 
 // "5ea5d1915176cd0018406642"
 
-const GET_PROJECT_NOTES = gql`
+export const GET_PROJECT_NOTES = gql`
 	query GetProjectNotes($id: ID) {
 		getProjectNotes(id: $id) {
 			_id
@@ -20,16 +20,27 @@ const GET_PROJECT_NOTES = gql`
 	}
 `;
 
-// const DELETE_NOTE =
+const DELETE_NOTE = gql`
+	mutation DeleteNote($id: ID) {
+		deleteNote(id: $id) {
+			_id
+			time
+			note
+			isDone
+			projectId
+		}
+	}
+`;
 
 const NotesContainer = () => {
 	const { id } = useParams();
 	const { data, loading, error } = useQuery(GET_PROJECT_NOTES, { variables: { id } });
+	const [ deleteNote, props ] = useMutation(DELETE_NOTE);
 
 	if (loading) return <Spinner />;
 	if (error) return <div>Nieco sa pokazilo...</div>;
 	if (data) {
-		return <Notes notes={data.getProjectNotes} />;
+		return <Notes notes={data.getProjectNotes} deleteNote={deleteNote} delNoteProps={props} />;
 	}
 };
 

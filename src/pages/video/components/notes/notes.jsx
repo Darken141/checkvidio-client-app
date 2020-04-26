@@ -5,13 +5,13 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 import './notes.styles.scss';
 
-const Notes = ({ notes }) => {
+const Notes = ({ notes, deleteNote }) => {
 	console.log(notes);
 	return (
 		<div className="note-container">
 			<label className="note-container__label">Vaše poznámky:</label>
 			{notes.length === 0 ? <span className="no-notes">Ziadne poznámky</span> : null}
-			{notes.map(({ _id, time, note, projectID }) => (
+			{notes.map(({ _id, time, note, projectId }) => (
 				<div key={_id} className="note">
 					<div className="note__header">
 						<p>
@@ -22,7 +22,12 @@ const Notes = ({ notes }) => {
 								<Duration className="time" seconds={time} />
 							)}
 						</p>
-						<div className="delete-icon">
+						{console.log(projectId)}
+						<div
+							className="delete-icon"
+							onClick={() =>
+								deleteNote({ variables: { id: _id }, refetchQueries: [ 'GetProjectNotes' ] })}
+						>
 							<FaTrashAlt />
 						</div>
 					</div>

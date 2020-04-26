@@ -16,7 +16,7 @@ const CustomTextarea = (data) => {
 				value={value}
 				placeholder={placeholder}
 				onChange={onChange}
-				onKeyPress={(e) => handlePressKey(e)}
+				// onKeyPress={(e) => handlePressKey(e)}
 				required
 			/>
 		</div>

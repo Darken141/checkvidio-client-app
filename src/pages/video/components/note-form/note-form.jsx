@@ -4,12 +4,16 @@ import CustomRadiobox from '../../../../components/radiobox/radiobox';
 import CustomTextarea from '../../../../components/textarea/textarea';
 import TimeInput from '../time-input/time-input';
 import Duration from '../../../../utils/duration';
+import { useParams } from 'react-router-dom';
 
 import { IoMdSend } from 'react-icons/io';
 
+import { GET_PROJECT_NOTES } from '../notes/notes.container';
+
 import './note-form.styles.scss';
 
-const NoteForm = () => {
+const NoteForm = ({ addNote }) => {
+	const { id } = useParams();
 	const [ option, setOption ] = useState('actual');
 	const [ note, setNote ] = useState('');
 	const [ min, setMin ] = useState('');
@@ -40,8 +44,13 @@ const NoteForm = () => {
 		}
 	];
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		addNote({ variables: { time: playedSeconds, note, projectId: id }, refetchQueries: [ 'GetProjectNotes' ] });
+	};
+
 	return (
-		<form className="note-form">
+		<form className="note-form" onSubmit={(e) => handleSubmit(e)}>
 			<label className="note-form__label">Zvolte čas:</label>
 			<div className="note-form__radioboxes">
 				{radioboxes.map(({ id, ...props }) => <CustomRadiobox key={id} option={option} {...props} />)}

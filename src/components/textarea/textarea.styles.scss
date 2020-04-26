@@ -1,6 +1,8 @@
 @import '../../styles/variables';
 
 .custom-textarea {
+	padding: 1rem;
+
 	&__label {
 		font-weight: lighter;
 		opacity: .83;
@@ -9,6 +11,7 @@
 	}
 
 	&__textarea {
+		display: block;
 		color: $font-white;
 		resize: none;
 		width: 100%;
@@ -18,5 +21,18 @@
 		border-radius: 10px;
 		box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, .15);
 		margin-bottom: 1rem;
+	}
+}
+
+@media only screen and (min-width: 40em) {
+	.custom-textarea {
+		margin-bottom: 1rem;
+
+		&__label {
+			margin-bottom: 1rem;
+		}
+		&__textarea {
+			padding: 2rem;
+		}
 	}
 }
