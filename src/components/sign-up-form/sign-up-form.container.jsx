@@ -9,7 +9,7 @@ import Spinner from '../spinner/spinner.component';
 const ADD_USER = gql`
 	mutation AddUser($email: String, $pwd: String, $productionName: String) {
 		addUser(email: $email, pwd: $pwd, productionName: $productionName) {
-			_id
+			token
 		}
 	}
 `;
@@ -20,6 +20,8 @@ const SignUpContainer = () => {
 	if (loading) return <Spinner />;
 	if (error) return <div>{error}</div>;
 	if (data) {
+		const { addUser: { token } } = data;
+		localStorage.setItem('token', token);
 		return (
 			<div className="success-sign-up">
 				<h2>Účet bol vytvorený</h2>

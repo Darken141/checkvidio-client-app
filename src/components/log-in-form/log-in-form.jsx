@@ -4,12 +4,17 @@ import CustomInput from '../input/input';
 
 import './log-in-form.styles.scss';
 
-const LogInForm = () => {
+const LogInForm = ({ handleLogin }) => {
 	const [ email, setEmail ] = useState('');
 	const [ pwd, setPwd ] = useState('');
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		handleLogin({ variables: { email, pwd } });
+	};
+
 	return (
-		<form className="form">
+		<form className="form" onSubmit={(e) => handleSubmit(e)}>
 			<h3>Prihlásiť sa</h3>
 			<CustomInput
 				id="email"

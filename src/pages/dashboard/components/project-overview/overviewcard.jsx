@@ -6,13 +6,13 @@ import { IoIosMail } from 'react-icons/io';
 
 import './overviewcard.styles.scss';
 
-const Overviewcard = () => {
+const Overviewcard = ({ name, videoUrl }) => {
 	return (
 		<div className="overviewcard">
-			<VideoPlayer />
+			<VideoPlayer url={videoUrl} />
 			<div className="overviewcard__body">
 				<div>
-					<h2>Video name</h2>
+					<h2>{name}</h2>
 				</div>
 				<div className="overviewcard-icons">
 					<div className="mail-icon">

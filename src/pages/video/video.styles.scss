@@ -40,6 +40,9 @@
 		padding: 1rem;
 
 		.video-container {
+			max-width: 114rem;
+			margin: 0 auto;
+
 			h2 {
 				margin: 1rem 0;
 				font-weight: lighter;
@@ -52,6 +55,7 @@
 
 				details {
 					summary {
+						outline: none;
 						cursor: pointer;
 						opacity: .6;
 						transition: all 0.2s ease-in;
@@ -60,13 +64,10 @@
 							opacity: 1;
 						}
 					}
-					p {
-						opacity: .83;
+					.desc {
+						margin: 2rem 2rem 5rem;
+						white-space: pre-line;
 						line-height: 1.6;
-
-						&:not(:last-child) {
-							margin: 1rem 0;
-						}
 					}
 				}
 			}
@@ -91,27 +92,36 @@
 
 @media only screen and (min-width: 40em) {
 	#video-page {
-		font-size: 1.4rem;
-
-		&__aside {
-			width: 40rem;
-			margin: 0 auto;
-		}
+		font-size: 1.6rem;
+		grid-template-rows: 60px auto 1fr 50px;
 	}
 }
 
 @media only screen and (min-width: 64.063em) {
 	#video-page {
-		grid-template-columns: 1fr 320px;
-		grid-template-rows: 50px 1fr 50px;
+		font-size: 1.6rem;
+
+		grid-template-columns: 1fr 450px;
+		grid-template-rows: 70px 1fr 50px;
 		grid-template-areas: "header header" "main aside" "footer footer";
 
+		&__header {
+			padding: 1rem 3rem;
+		}
+
 		&__aside {
-			width: unset;
+			// width: unset;
 			margin: unset;
+			// margin-right: 5rem;
 		}
 
 		&__main {
+			margin-left: 5rem;
+			margin-bottom: 5rem;
+		}
+
+		&__footer {
+			padding: 1rem 3rem;
 		}
 	}
 }

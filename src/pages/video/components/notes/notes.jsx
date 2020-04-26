@@ -5,9 +5,8 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 import './notes.styles.scss';
 
-const Notes = () => {
-	const notes = [];
-
+const Notes = ({ notes }) => {
+	console.log(notes);
 	return (
 		<div className="note-container">
 			<label className="note-container__label">Vaše poznámky:</label>

@@ -3,7 +3,7 @@ import React from 'react';
 import './time-input.styles.scss';
 
 const TimeInput = (data) => {
-	const { name, type, min, sec, placeholder, handleMinChange, handleSecChange } = data;
+	const { name, type, min, sec, handleMinChange, handleSecChange } = data;
 	return (
 		<div className="custom-time-input">
 			<input

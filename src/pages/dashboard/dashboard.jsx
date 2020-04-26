@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 
+import { Route, useRouteMatch, Switch, Redirect } from 'react-router-dom';
 import AsideNavBar from './components/aside-navbar/aside-navbar';
-import { FaBars, FaUserCircle, FaTimes, FaPlus, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
-import { IoIosMail } from 'react-icons/io';
-import { Link } from 'react-router-dom';
-import VideoPlayer from '../video/components/video-player/video-player';
-import Overviewcard from './components/project-overview/overviewcard';
+import { FaBars, FaUserCircle, FaTimes } from 'react-icons/fa';
+import Projects from './routes/projects';
+import { default as CreateProject } from './routes/create-project/create-project.container';
+
+import { useApolloClient } from '@apollo/react-hooks';
 
 import './dashboard.styles.scss';
 
-const Dashboard = () => {
+const Dashboard = ({ projects }) => {
+	const client = useApolloClient();
+	const match = useRouteMatch();
 	const [ toggleAside, setToggleAside ] = useState(false);
+	console.log(projects);
 
 	return (
 		<div id="dashboard">
@@ -23,7 +27,13 @@ const Dashboard = () => {
 						<FaBars />
 					</div>
 
-					<div className="user-menu-icon">
+					<div
+						className="user-menu-icon"
+						onClick={() => {
+							localStorage.removeItem('token');
+							client.writeData({ data: { user: null } });
+						}}
+					>
 						<FaUserCircle />
 					</div>
 				</div>
@@ -35,21 +45,15 @@ const Dashboard = () => {
 				</div>
 			</aside>
 			<main id="dashboard__main">
-				<section id="projects">
-					<div className="projects__header">
-						<h1>Projects</h1>
-						<div className="plus-icon">
-							<Link to="/">
-								<FaPlus />
-							</Link>
-						</div>
-					</div>
-
-					<Overviewcard />
-					<Overviewcard />
-					<Overviewcard />
-					<Overviewcard />
-				</section>
+				<Switch>
+					<Route path={`${match.path}/create-project`}>
+						<CreateProject />
+					</Route>
+					<Route path={`${match.path}`}>
+						<Projects projects={projects} />
+					</Route>
+					<Redirect to="/dashboard" />
+				</Switch>
 			</main>
 			<footer id="dashboard__footer">
 				<div>CODERKIN</div>

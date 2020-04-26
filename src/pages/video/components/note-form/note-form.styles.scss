@@ -2,13 +2,16 @@
 
 .note-form {
 	background-color: $component-background;
-	padding: 1rem;
+	padding: 2rem;
 
 	&__label {
 		display: block;
 		font-weight: lighter;
 		margin-bottom: .5rem;
 		opacity: 0.83;
+		@media only screen and (min-width: 40em) {
+			margin-bottom: 1rem;
+		}
 	}
 
 	&__radioboxes {
