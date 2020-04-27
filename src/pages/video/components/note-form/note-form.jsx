@@ -8,8 +8,6 @@ import { useParams } from 'react-router-dom';
 
 import { IoMdSend } from 'react-icons/io';
 
-import { GET_PROJECT_NOTES } from '../notes/notes.container';
-
 import './note-form.styles.scss';
 
 const NoteForm = ({ addNote }) => {

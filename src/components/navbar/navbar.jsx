@@ -6,7 +6,11 @@ const Navbar = ({ children }) => {
 	return (
 		<header className="navbar">
 			<div className="navbar__logo">
-				<h1 className="logo">CheckVid.io</h1>
+				<h1>
+					<a href="/" className="logo">
+						CheckVid.io
+					</a>
+				</h1>
 			</div>
 
 			<nav className="navbar__nav">

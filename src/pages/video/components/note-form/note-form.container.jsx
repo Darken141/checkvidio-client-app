@@ -19,7 +19,7 @@ const ADD_NOTE = gql`
 `;
 
 const NoteFormContainer = () => {
-	const [ addNote, { data, loading, error } ] = useMutation(ADD_NOTE);
+	const [ addNote, { loading, error } ] = useMutation(ADD_NOTE);
 
 	if (loading) return <Spinner />;
 	if (error) return <div>Nieco sa pokazilo...</div>;

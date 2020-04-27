@@ -1,0 +1,32 @@
+@import '../../../../styles/variables';
+
+#project-page {
+	h1 {
+		font-weight: lighter;
+		opacity: .83;
+		margin-bottom: 2rem;
+	}
+
+	.project-header {
+		background-color: $component-background;
+		padding: 2rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 2rem;
+	}
+
+	.project-body {
+		background-color: $component-background;
+		padding: 2rem;
+		margin-bottom: 2rem;
+
+		h2 {
+			margin-bottom: 1rem;
+		}
+
+		p {
+			white-space: pre-line;
+		}
+	}
+}

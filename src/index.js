@@ -38,7 +38,9 @@ const client = new ApolloClient({
 
 client.writeData({
 	data: {
-		user: null
+		user: null,
+		asideHidden: true,
+		userMenuHidden: true
 	}
 });
 

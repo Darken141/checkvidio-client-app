@@ -3,7 +3,7 @@ import React from 'react';
 import './textarea.styles.scss';
 
 const CustomTextarea = (data) => {
-	const { name, label, rows, value, placeholder, onChange, handlePressKey } = data;
+	const { name, label, rows, value, placeholder, onChange } = data;
 	return (
 		<div className="custom-textarea">
 			<label className="custom-textarea__label" htmlFor={name}>

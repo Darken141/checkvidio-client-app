@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import Dashboard from './dashboard';
 import Spinner from '../../components/spinner/spinner.component';

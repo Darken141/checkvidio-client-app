@@ -10,7 +10,7 @@ const SignIn = () => {
 		<div id="sign-in">
 			<Navbar>
 				<Link className="nav__item-link" to="/sign-up">
-					Sign up
+					Registrovať
 				</Link>
 			</Navbar>
 

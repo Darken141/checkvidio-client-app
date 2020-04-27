@@ -11,7 +11,7 @@ const SignUp = () => {
 		<div id="sign-up">
 			<Navbar>
 				<Link className="nav__item-link" to="/login">
-					Login
+					Prihlásiť sa
 				</Link>
 			</Navbar>
 

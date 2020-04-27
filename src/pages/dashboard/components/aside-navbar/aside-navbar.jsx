@@ -1,24 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { FaTimes } from 'react-icons/fa';
+
 import './aside-navbar.styles.scss';
 
-const AsideNavBar = () => {
+const AsideNavBar = ({ projects, hideAside, asideHidden }) => {
 	return (
-		<nav className="aside-navbar">
-			<h2>Projects</h2>
+		<aside id="dashboard__aside" className={asideHidden ? '' : 'active'}>
+			<h2>
+				<Link to="/">Projekty</Link>
+			</h2>
 			<ul className="aside-nav">
-				<li className="aside-nav__item">
-					<Link to="/">Project 1</Link>
-				</li>
-				<li className="aside-nav__item">
-					<Link to="/">Project 2</Link>
-				</li>
-				<li className="aside-nav__item">
-					<Link to="/">Project 3</Link>
-				</li>
+				{projects.map(({ _id, name }) => (
+					<li key={_id} className="aside-nav__item">
+						<Link to={`/dashboard/project/${_id}`}>{name}</Link>
+					</li>
+				))}
+
+				{projects.length === 0 ? (
+					<Link to="/dashboard/create-project" className="add-btn">
+						Pridat projekt
+					</Link>
+				) : null}
 			</ul>
-		</nav>
+
+			<div className="close-icon" onClick={hideAside}>
+				<FaTimes />
+			</div>
+		</aside>
 	);
 };
 

@@ -9,35 +9,6 @@
 
 	&__header {
 		grid-area: header;
-		background-color: $component-background;
-
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0 1rem;
-
-		position: relative;
-		z-index: 9;
-		box-shadow: 0 2px 10px rgba(0, 0, 0, .35);
-
-		.menu-items {
-			display: flex;
-
-			.menu-icon,
-			.user-menu-icon {
-				cursor: pointer;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				font-size: 2rem;
-				padding: .5rem;
-				transition: all 0.2s ease-in;
-
-				&:hover {
-					color: $primary;
-				}
-			}
-		}
 	}
 
 	&__main {
@@ -45,25 +16,24 @@
 		padding: 1rem;
 
 		#projects {
-			.projects__header {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				background-color: $component-background;
-				padding: 2rem;
-				margin-bottom: 2rem;
+			h1 {
+				font-weight: lighter;
+				text-transform: uppercase;
+				opacity: .6;
+				margin-bottom: 1rem;
+			}
 
-				h1 {
-					font-weight: lighter;
-					text-transform: uppercase;
-					opacity: .6;
-				}
+			.projects-container {
+				display: flex;
+				flex-wrap: wrap;
 			}
 		}
 
 		#create-project {
 			background-color: $component-background;
-			padding: 2rem;
+			padding: 2rem 3rem;
+			max-width: 60rem;
+			margin: 0 auto;
 
 			h1 {
 				font-weight: lighter;
@@ -75,38 +45,19 @@
 	}
 
 	&__aside {
-		padding: 1rem 2rem;
 		grid-area: aside;
 		position: fixed;
-		height: 100%;
-		width: 245px;
 		background-color: $component-background;
 		transform: translateX(-245px);
-		transition: all .8s ease-out;
+		width: 245px;
+		height: 100%;
 		z-index: 10;
+		transition: all .8s ease-out;
+		padding: 1.5rem 2rem;
 
 		&.active {
 			transform: translateX(0);
 			box-shadow: 10px 0 10px rgba(0, 0, 0, .35);
-		}
-
-		.close-icon {
-			cursor: pointer;
-			position: absolute;
-			right: 1rem;
-			top: 1rem;
-			border-radius: 50%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background-color: $background;
-			font-size: 2rem;
-			padding: .5rem;
-			transition: all 0.2s ease-in;
-
-			&:hover {
-				color: $primary;
-			}
 		}
 	}
 
@@ -144,18 +95,5 @@
 				display: none;
 			}
 		}
-	}
-}
-
-.plus-icon {
-	a {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: black;
-		padding: .8rem;
-		background-color: $green;
-		border-radius: 50%;
-		font-size: 2rem;
 	}
 }

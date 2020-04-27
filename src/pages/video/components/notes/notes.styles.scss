@@ -7,11 +7,11 @@
 	min-height: 15rem;
 
 	&__label {
+		display: block;
 		cursor: default;
 		font-weight: lighter;
-		margin-bottom: .5rem;
+		margin-bottom: 1rem;
 		opacity: .83;
-		margin-left: 1rem;
 	}
 
 	.no-notes {

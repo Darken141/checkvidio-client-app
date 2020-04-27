@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 import SignUpForm from './sign-up-form';
@@ -16,12 +16,14 @@ const ADD_USER = gql`
 
 const SignUpContainer = () => {
 	const [ addUser, { data, loading, error } ] = useMutation(ADD_USER);
+	const client = useApolloClient();
 
 	if (loading) return <Spinner />;
 	if (error) return <div>{error}</div>;
 	if (data) {
 		const { addUser: { token } } = data;
-		localStorage.setItem('token', token);
+		client.writeData({ data: { user: token } });
+
 		return (
 			<div className="success-sign-up">
 				<h2>Účet bol vytvorený</h2>

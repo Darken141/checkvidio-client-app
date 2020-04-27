@@ -12,7 +12,10 @@ const CreateProject = ({ addProject }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		addProject({ variables: { name, desc, videoName, videoUrl, clientEmail } });
+		addProject({
+			variables: { name, desc, videoName, videoUrl, clientEmail },
+			refetchQueries: [ 'GetUserProjects' ]
+		});
 	};
 
 	return (

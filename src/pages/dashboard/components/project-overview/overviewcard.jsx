@@ -1,27 +1,36 @@
 import React from 'react';
 
 import VideoPlayer from '../../../video/components/video-player/video-player';
-import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
-import { IoIosMail } from 'react-icons/io';
+import { FaRegTrashAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import './overviewcard.styles.scss';
 
-const Overviewcard = ({ name, videoUrl }) => {
+const Overviewcard = ({ name, videoUrl, deleteProject, id }) => {
+	const handleDeleteProject = () => {
+		let r = window.confirm('Chcete odstranit tento projekt?');
+		if (r) {
+			deleteProject({ variables: { id }, refetchQueries: [ 'GetUserProjects' ] });
+		}
+	};
+
 	return (
 		<div className="overviewcard">
 			<VideoPlayer url={videoUrl} />
 			<div className="overviewcard__body">
 				<div>
-					<h2>{name}</h2>
+					<h2>
+						<Link to={`/dashboard/project/${id}`}>{name}</Link>
+					</h2>
 				</div>
 				<div className="overviewcard-icons">
-					<div className="mail-icon">
+					{/*<div className="mail-icon">
 						<IoIosMail />
 					</div>
 					<div className="edit-icon">
 						<FaRegEdit />
-					</div>
-					<div className="delete-icon">
+	</div>*/}
+					<div className="delete-icon" onClick={handleDeleteProject}>
 						<FaRegTrashAlt />
 					</div>
 				</div>

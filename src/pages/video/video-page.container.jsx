@@ -1,24 +1,11 @@
 import React from 'react';
 
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { GET_PROJECT } from '../../graphql/queries';
 import { useParams } from 'react-router-dom';
 
 import VideoPage from './video';
 import Spinner from '../../components/spinner/spinner.component';
-
-const GET_PROJECT = gql`
-	query GetProject($id: ID) {
-		getProject(id: $id) {
-			name
-			desc
-			videoName
-			videoUrl
-			clientEmail
-			createdAt
-		}
-	}
-`;
 
 const VideoPageContainer = () => {
 	const { id } = useParams();
