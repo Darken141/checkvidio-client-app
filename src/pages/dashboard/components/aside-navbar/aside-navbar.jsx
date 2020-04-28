@@ -6,6 +6,14 @@ import { FaTimes } from 'react-icons/fa';
 import './aside-navbar.styles.scss';
 
 const AsideNavBar = ({ projects, hideAside, asideHidden }) => {
+	const handleNameLength = (string) => {
+		if (string.length >= 25) {
+			const shortString = string.slice(0, 22);
+			return `${shortString}...`;
+		}
+		return string;
+	};
+
 	return (
 		<aside id="dashboard__aside" className={asideHidden ? '' : 'active'}>
 			<h2>
@@ -14,7 +22,7 @@ const AsideNavBar = ({ projects, hideAside, asideHidden }) => {
 			<ul className="aside-nav">
 				{projects.map(({ _id, name }) => (
 					<li key={_id} className="aside-nav__item">
-						<Link to={`/dashboard/project/${_id}`}>{name}</Link>
+						<Link to={`/dashboard/project/${_id}`}>{handleNameLength(name)}</Link>
 					</li>
 				))}
 

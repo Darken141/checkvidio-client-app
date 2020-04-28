@@ -1,0 +1,20 @@
+@import '../../styles/variables';
+
+#confirm-email {
+	background-color: $component-background;
+	padding: 2rem;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	h1 {
+		font-weight: lighter;
+	}
+
+	a {
+		color: $primary;
+		font-size: 1.6rem;
+	}
+}

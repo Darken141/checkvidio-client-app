@@ -1,6 +1,7 @@
 @import '../../../../styles/variables';
 
 #dashboard__header {
+	position: relative;
 	background-color: $component-background;
 
 	display: flex;
@@ -55,5 +56,26 @@
 				display: none;
 			}
 		}
+	}
+
+	.user-dropdown {
+		position: absolute;
+		background-color: $component-background;
+		padding: 2rem;
+		right: 1rem;
+		top: 5rem;
+		display: none;
+
+		ul {
+			list-style: none;
+			li {
+				cursor: pointer;
+				margin-bottom: .5rem;
+			}
+		}
+	}
+
+	.active {
+		display: block;
 	}
 }

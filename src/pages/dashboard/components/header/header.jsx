@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { useApolloClient, useQuery } from '@apollo/react-hooks';
@@ -17,6 +17,8 @@ const GET_ASIDE_HIDDEN = gql`
 const Header = () => {
 	const client = useApolloClient();
 	const { data: { asideHidden } } = useQuery(GET_ASIDE_HIDDEN);
+
+	const [ dropdownHidden, setDropdownHidden ] = useState(true);
 
 	return (
 		<header id="dashboard__header">
@@ -40,16 +42,26 @@ const Header = () => {
 					<FaBars />
 				</div>
 
-				<div
-					className="user-menu-icon"
-					onClick={() => {
-						localStorage.removeItem('token');
-						client.writeData({ data: { user: null } });
-					}}
-				>
+				<div className="user-menu-icon" onClick={() => setDropdownHidden(!dropdownHidden)}>
 					<FaUserCircle />
 				</div>
 			</nav>
+
+			<div className={dropdownHidden ? 'user-dropdown' : 'user-dropdown active'}>
+				<ul>
+					<li>
+						<Link to="/dashboard/profile">Profil</Link>
+					</li>
+					<li
+						onClick={() => {
+							localStorage.removeItem('token');
+							client.writeData({ data: { user: null } });
+						}}
+					>
+						Odhlásiť sa
+					</li>
+				</ul>
+			</div>
 		</header>
 	);
 };

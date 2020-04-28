@@ -7,8 +7,28 @@ export const GET_PROJECT = gql`
 			desc
 			videoName
 			videoUrl
-			clientEmail
+			createdAt
+			createdBy
+		}
+	}
+`;
+
+export const DELETE_PROJECT = gql`
+	mutation DeleteProject($id: ID) {
+		deleteProject(id: $id) {
+			_id
+			name
+			desc
+			videoName
+			videoUrl
+			createdBy
 			createdAt
 		}
+	}
+`;
+
+export const GET_PLAYED_SECONDS = gql`
+	{
+		playedSeconds @client
 	}
 `;

@@ -8,12 +8,11 @@ const CreateProject = ({ addProject }) => {
 	const [ desc, setDesc ] = useState('');
 	const [ videoName, setVideoName ] = useState('');
 	const [ videoUrl, setVideoUrl ] = useState('');
-	const [ clientEmail, setClientEmail ] = useState('');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		addProject({
-			variables: { name, desc, videoName, videoUrl, clientEmail },
+			variables: { name, desc, videoName, videoUrl },
 			refetchQueries: [ 'GetUserProjects' ]
 		});
 	};
@@ -49,16 +48,6 @@ const CreateProject = ({ addProject }) => {
 					value={videoUrl}
 					handleChange={(e) => setVideoUrl(e.target.value)}
 				/>
-				<CustomInput
-					id="client-email"
-					label="E-mail vašeho klienta:"
-					name={clientEmail}
-					type="email"
-					placeholder="client@email.com"
-					value={clientEmail}
-					handleChange={(e) => setClientEmail(e.target.value)}
-				/>
-
 				<CustomTextarea
 					label="Popis k videu:"
 					name="desc"

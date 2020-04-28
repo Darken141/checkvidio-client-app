@@ -4,10 +4,10 @@
 	display: grid;
 
 	grid-template-columns: 1fr;
-	grid-template-rows: 50px auto 1fr 50px;
+	grid-template-rows: 50px auto 1fr auto;
 	grid-template-areas: "header" "main" "aside" "footer";
 
-	height: 100vh;
+	min-height: 100vh;
 
 	&__header {
 		grid-area: header;
@@ -82,10 +82,27 @@
 	&__footer {
 		grid-area: footer;
 		background-color: $component-background;
+		padding: 1rem;
 
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+		.row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			.icons {
+				display: flex;
+
+				.facebook-icon,
+				.instagram-icon {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size: 3rem;
+					color: $primary;
+					padding: .5rem;
+				}
+			}
+		}
 		padding: 1rem;
 	}
 }
@@ -102,7 +119,7 @@
 		font-size: 1.6rem;
 
 		grid-template-columns: 1fr 450px;
-		grid-template-rows: 70px 1fr 50px;
+		grid-template-rows: 70px 1fr auto;
 		grid-template-areas: "header header" "main aside" "footer footer";
 
 		&__header {

@@ -24,12 +24,6 @@ const Overviewcard = ({ name, videoUrl, deleteProject, id }) => {
 					</h2>
 				</div>
 				<div className="overviewcard-icons">
-					{/*<div className="mail-icon">
-						<IoIosMail />
-					</div>
-					<div className="edit-icon">
-						<FaRegEdit />
-	</div>*/}
 					<div className="delete-icon" onClick={handleDeleteProject}>
 						<FaRegTrashAlt />
 					</div>

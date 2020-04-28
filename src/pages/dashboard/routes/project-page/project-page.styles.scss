@@ -1,6 +1,9 @@
 @import '../../../../styles/variables';
 
 #project-page {
+	max-width: 60rem;
+	margin: 0 auto;
+
 	h1 {
 		font-weight: lighter;
 		opacity: .83;
@@ -10,10 +13,57 @@
 	.project-header {
 		background-color: $component-background;
 		padding: 2rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
 		margin-bottom: 2rem;
+	}
+
+	.project-options {
+		display: flex;
+		justify-content: space-evenly;
+		margin-bottom: 2rem;
+
+		.icon {
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 3rem;
+			background-color: $component-background;
+			padding: 2rem;
+			border-radius: 10px;
+			transition: all 0.2s ease-in;
+
+			&:not(:last-child) {
+				margin-right: 1rem;
+			}
+		}
+
+		.send-email:hover {
+			color: $green;
+		}
+
+		.edit-project:hover {
+			color: $primary;
+		}
+
+		.delete-project:hover {
+			color: $red;
+		}
+	}
+
+	.project-url {
+		background-color: $component-background;
+		margin-bottom: 2rem;
+		padding: 2rem;
+		text-align: center;
+
+		// p {
+		// 	width: 100%;
+		// }
+
+		span {
+			cursor: pointer;
+			color: $primary;
+		}
 	}
 
 	.project-body {

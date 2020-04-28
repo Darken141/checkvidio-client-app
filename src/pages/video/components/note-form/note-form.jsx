@@ -5,7 +5,8 @@ import CustomTextarea from '../../../../components/textarea/textarea';
 import TimeInput from '../time-input/time-input';
 import Duration from '../../../../utils/duration';
 import { useParams } from 'react-router-dom';
-
+import { GET_PLAYED_SECONDS } from '../../../../graphql/queries';
+import { useQuery } from '@apollo/react-hooks';
 import { IoMdSend } from 'react-icons/io';
 
 import './note-form.styles.scss';
@@ -16,7 +17,7 @@ const NoteForm = ({ addNote }) => {
 	const [ note, setNote ] = useState('');
 	const [ min, setMin ] = useState('');
 	const [ sec, setSec ] = useState('');
-	const playedSeconds = 0;
+	const { data: { playedSeconds } } = useQuery(GET_PLAYED_SECONDS);
 
 	const radioboxes = [
 		{
@@ -44,7 +45,24 @@ const NoteForm = ({ addNote }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		addNote({ variables: { time: playedSeconds, note, projectId: id }, refetchQueries: [ 'GetProjectNotes' ] });
+		if (option === 'actual') {
+			addNote({ variables: { time: playedSeconds, note, projectId: id }, refetchQueries: [ 'GetProjectNotes' ] });
+		}
+		if (option === 'notime') {
+			addNote({ variables: { time: 0, note, projectId: id }, refetchQueries: [ 'GetProjectNotes' ] });
+		}
+		if (option === 'custom') {
+			addNote({
+				variables: { time: handleCustomTime(min, sec), note, projectId: id },
+				refetchQueries: [ 'GetProjectNotes' ]
+			});
+		}
+	};
+
+	const handleCustomTime = (min, sec) => {
+		let time = Number(min) * 60;
+		time = time + Number(sec);
+		return time;
 	};
 
 	return (

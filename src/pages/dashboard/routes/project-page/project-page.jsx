@@ -1,41 +1,138 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { useQuery } from '@apollo/react-hooks';
-import { GET_PROJECT } from '../../../../graphql/queries';
-import { useParams } from 'react-router-dom';
-import { FaEnvelope } from 'react-icons/fa';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import { GET_PROJECT, DELETE_PROJECT } from '../../../../graphql/queries';
+import { useParams, useHistory } from 'react-router-dom';
+import { FaEnvelope, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { IoIosMail } from 'react-icons/io';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
+import EmailForm from '../../../../components/email-form/email-form';
+import CustomInput from '../../../../components/input/input';
+import CustomTextarea from '../../../../components/textarea/textarea';
 
 import Spinner from '../../../../components/spinner/spinner.component';
 
 import './project-page.styles.scss';
 
 const ProjectPage = () => {
+	const history = useHistory();
 	const { id } = useParams();
 	const { data, loading, error } = useQuery(GET_PROJECT, { variables: { id } });
+	const [ deleteProject ] = useMutation(DELETE_PROJECT);
+	const url = `https://www.app.checkvid.io/video/${id}`;
+	const [ name, setName ] = useState('');
+	const [ desc, setDesc ] = useState('');
+	const [ videoName, setVideoName ] = useState('');
+	const [ videoUrl, setVideoUrl ] = useState('');
+	const [ toggleEmailForm, setToggleEmailForm ] = useState(false);
+
+	const handleDeleteProject = () => {
+		let r = window.confirm('Chcete odstranit tento projekt?');
+		if (r) {
+			deleteProject({ variables: { id }, refetchQueries: [ 'GetUserProjects' ] });
+			history.push('/');
+		}
+	};
+
+	useEffect(
+		() => {
+			if (data) {
+				setName(data.getProject.name);
+				setDesc(data.getProject.desc);
+				setVideoName(data.getProject.videoName);
+				setVideoUrl(data.getProject.videoUrl);
+				console.log('hop');
+			}
+		},
+		[ data ]
+	);
+
+	useEffect(
+		() => {
+			return () => {
+				console.log('unmount');
+			};
+		},
+		[ id ]
+	);
 
 	if (loading) return <Spinner />;
 	if (error) return <div>Nieco sa pokazilo...</div>;
 	if (data) {
-		const { name, createdAt, videoName, desc } = data.getProject;
-
 		return (
 			<section id="project-page">
-				<h1>Project info</h1>
 				<div className="project-header">
-					<h2>{name}</h2>
-					<p>{createdAt}</p>
+					<CustomInput
+						id="name"
+						label="Názov projektu:"
+						name={name}
+						type="text"
+						placeholder="Videoklip - R. Novák"
+						value={name}
+						handleChange={(e) => setName(e.target.value)}
+					/>
 				</div>
 
 				<div className="project-options">
-					<div className="send-email">
-						<FaEnvelope />
+					<div className="send-email icon" onClick={() => setToggleEmailForm(!toggleEmailForm)}>
+						<IoIosMail />
+					</div>
+					{/*<div className="edit-project icon">
+						<FaRegEdit />
+		</div>*/}
+					<div className="delete-project icon" onClick={handleDeleteProject}>
+						<FaRegTrashAlt />
 					</div>
 				</div>
 
-				<div className="project-body">
-					<h2>{videoName}</h2>
-					<p>{desc}</p>
+				<div className="project-url">
+					<CustomInput
+						id="url"
+						label="Video odkaz"
+						name="url"
+						type="text"
+						placeholder=""
+						value={url}
+						handleChange={() => {}}
+					/>
+					<CopyToClipboard text={url} onCopy={() => alert('Odkaz skopirovany')}>
+						<span>Kopirovat odkaz</span>
+					</CopyToClipboard>
 				</div>
+
+				<div className="project-body">
+					<CustomInput
+						id="video-url"
+						label="Video URL:"
+						name={videoUrl}
+						type="text"
+						placeholder="https://youtu.be/Hg77Rp-ykHE"
+						value={videoUrl}
+						handleChange={(e) => setVideoUrl(e.target.value)}
+					/>
+					<CustomInput
+						id="video-name"
+						label="Názov videa:"
+						name={videoName}
+						type="type"
+						placeholder="render_00"
+						value={videoName}
+						handleChange={(e) => setVideoName(e.target.value)}
+					/>
+					<CustomTextarea
+						label="Popis videa:"
+						name="desc"
+						rows="12"
+						value={desc}
+						placeholder="Video je v naprostom poriadku!"
+						onChange={(e) => setDesc(e.target.value)}
+						// handlePressKey={handlePressKey}
+					/>
+					<button className="custom-btn">Uložiť zmeny</button>
+				</div>
+
+				{toggleEmailForm ? <EmailForm setToggleEmailForm={setToggleEmailForm} projectId={id} /> : null}
 			</section>
 		);
 	}

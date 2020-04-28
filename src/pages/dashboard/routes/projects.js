@@ -4,7 +4,7 @@ import { default as Overviewcard } from '../components/project-overview/overview
 const Projects = ({ projects }) => {
 	return (
 		<section id="projects">
-			<h1 className="heading">Projects</h1>
+			<h1 className="heading">Projekty</h1>
 
 			<div className="projects-container">
 				{projects.map(({ _id, name, videoUrl }) => (

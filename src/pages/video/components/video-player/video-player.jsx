@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 
+import { useApolloClient } from '@apollo/react-hooks';
+
 import './video-player.styles.scss';
 
 const VideoPlayer = ({ url }) => {
+	const client = useApolloClient();
 	const [ togglePlaying, setTogglePlaying ] = useState(false);
+
+	const handleProgress = (state) => {
+		client.writeData({ data: { playedSeconds: state.playedSeconds } });
+	};
 
 	return (
 		<div className="player-wrapper">
@@ -17,7 +24,7 @@ const VideoPlayer = ({ url }) => {
 				playing={togglePlaying}
 				controls={true}
 				onStart={() => console.log('onStart')}
-				// onProgress={(state) => handleProgress(state)}
+				onProgress={(state) => handleProgress(state)}
 				config={{
 					youtube: {
 						playerVars: {

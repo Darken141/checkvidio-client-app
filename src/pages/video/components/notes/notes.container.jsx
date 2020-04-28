@@ -40,7 +40,7 @@ const NotesContainer = () => {
 	if (loading) return <Spinner />;
 	if (error) return <div>Nieco sa pokazilo...</div>;
 	if (data) {
-		return <Notes notes={data.getProjectNotes} deleteNote={deleteNote} delNoteProps={props} />;
+		return <Notes notes={data.getProjectNotes} deleteNote={deleteNote} loading={props.loading} />;
 	}
 };
 

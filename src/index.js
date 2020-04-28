@@ -40,7 +40,9 @@ client.writeData({
 	data: {
 		user: null,
 		asideHidden: true,
-		userMenuHidden: true
+		userMenuHidden: true,
+		playedSeconds: 0,
+		initialNotes: 0
 	}
 });
 

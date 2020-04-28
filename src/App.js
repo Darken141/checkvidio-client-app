@@ -5,6 +5,7 @@ import SignIn from './pages/sign-in/sign-in';
 import SignUp from './pages/sign-up/sign-up';
 import { default as Dashboard } from './pages/dashboard/dashboard.container';
 import { default as VideoPage } from './pages/video/video-page.container';
+import ConfirmEmail from './pages/confirm-email/confirm-email';
 
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
@@ -43,6 +44,9 @@ const App = () => {
 					{user ? <Redirect to="/dashboard" /> : <SignUp />}
 				</Route>
 				<Route path="/dashboard">{user ? <Dashboard /> : <Redirect to="/login" />}</Route>
+				<Route path="/email/:id">
+					<ConfirmEmail />
+				</Route>
 				{!user ? <Redirect from="*" to="/login" /> : <Redirect to="/dashboard" />}
 			</Switch>
 		</BrowserRouter>

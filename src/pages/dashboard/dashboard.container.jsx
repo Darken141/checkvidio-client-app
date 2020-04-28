@@ -13,7 +13,6 @@ const GET_USER_PROJECTS = gql`
 			desc
 			videoName
 			videoUrl
-			clientEmail
 			createdAt
 		}
 	}

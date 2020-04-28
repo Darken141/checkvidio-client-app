@@ -3,7 +3,7 @@ import React from 'react';
 import { default as NoteForm } from './components/note-form/note-form.container';
 import { default as Notes } from './components/notes/notes.container';
 import VideoPlayer from './components/video-player/video-player';
-import { FaQuestionCircle } from 'react-icons/fa';
+import { FaQuestionCircle, FaFacebookSquare, FaInstagram } from 'react-icons/fa';
 
 import './video.styles.scss';
 
@@ -40,7 +40,19 @@ const VideoPage = ({ project }) => {
 				<Notes />
 			</aside>
 
-			<footer id="video-page__footer">FOOTER</footer>
+			<footer id="video-page__footer">
+				<div className="row">
+					<div className="col">&copy; CODERKIN</div>
+					<div className="col icons">
+						<div className="facebook-icon">
+							<FaFacebookSquare />
+						</div>
+						<div className="instagram-icon">
+							<FaInstagram />
+						</div>
+					</div>
+				</div>
+			</footer>
 		</div>
 	);
 };

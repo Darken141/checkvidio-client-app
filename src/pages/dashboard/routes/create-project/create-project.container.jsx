@@ -7,14 +7,13 @@ import CreateProject from './create-project';
 import Spinner from '../../../../components/spinner/spinner.component';
 
 const ADD_PROJECT = gql`
-	mutation AddProject($name: String, $desc: String, $videoName: String, $videoUrl: String, $clientEmail: String) {
-		addProject(name: $name, desc: $desc, videoName: $videoName, videoUrl: $videoUrl, clientEmail: $clientEmail) {
+	mutation AddProject($name: String, $desc: String, $videoName: String, $videoUrl: String) {
+		addProject(name: $name, desc: $desc, videoName: $videoName, videoUrl: $videoUrl) {
 			_id
 			name
 			desc
 			videoName
 			videoUrl
-			clientEmail
 			createdBy
 			createdAt
 		}
