@@ -3,7 +3,7 @@
 .note-container {
 	position: relative;
 	margin: 1rem 0;
-	background-color: $background;
+
 	min-height: 15rem;
 
 	&__label {
@@ -24,10 +24,6 @@
 	}
 
 	.note {
-		background-color: $component-background;
-		margin-bottom: 1rem;
-		padding: 1rem;
-
 		&__header {
 			display: flex;
 			align-items: center;

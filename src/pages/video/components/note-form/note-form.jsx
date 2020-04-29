@@ -66,7 +66,7 @@ const NoteForm = ({ addNote }) => {
 	};
 
 	return (
-		<form className="note-form" onSubmit={(e) => handleSubmit(e)}>
+		<form className="note-form component" onSubmit={(e) => handleSubmit(e)}>
 			<label className="note-form__label">Zvolte čas:</label>
 			<div className="note-form__radioboxes">
 				{radioboxes.map(({ id, ...props }) => <CustomRadiobox key={id} option={option} {...props} />)}
