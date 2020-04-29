@@ -24,11 +24,15 @@ const EmailForm = ({ setToggleEmailForm, projectId }) => {
 	const handleSendInvite = () => {
 		sendInvite({ variables: { email, projectId } });
 		setEmail('');
-		setToggleEmailForm(false);
 		alert('Email bol odoslaný');
 	};
 
 	if (loading) return <Spinner />;
+
+	if (data) {
+		console.log(data);
+		setToggleEmailForm(false);
+	}
 
 	return (
 		<div className="email-form">
@@ -46,7 +50,7 @@ const EmailForm = ({ setToggleEmailForm, projectId }) => {
 				value={email}
 				handleChange={(e) => setEmail(e.target.value)}
 			/>
-			<button className="custom-btn" onClick={handleSendInvite}>
+			<button className="custom-btn" onClick={() => handleSendInvite()}>
 				Odoslať
 			</button>
 		</div>
