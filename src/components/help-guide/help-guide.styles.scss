@@ -10,18 +10,21 @@
 	h1 {
 		text-align: center;
 		margin-bottom: 1rem;
+		opacity: .6;
 	}
 
 	h2 {
 		font-weight: lighter;
 		margin-bottom: 1rem;
+		opacity: .83;
 	}
 
 	p {
 		margin-bottom: 1rem;
+		line-height: 1.7;
 	}
 
-	ul {
+	ol {
 		margin-left: 2rem;
 
 		li {

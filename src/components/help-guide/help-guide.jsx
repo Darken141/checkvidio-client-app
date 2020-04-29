@@ -17,14 +17,18 @@ const HelpGuide = () => {
 				Na pravej strane (ak ste na mobilnom zariadeny tak pod videom) sa nachádza panel s poznámkami. Poznámky
 				môžete vkladať v troch variantách.
 			</p>
-			<ul>
-				<li>S aktuálnym časom: poznámka sa odošle s časom v akom sa Vy nachádzate vo video.</li>
-				<li>So žiadnym časom: ku poznámke nebude pridelený žiaden čas</li>
+			<ol>
 				<li>
-					S vlastným časom: ak viete čas v ktorom sa nachádza záber ktorý chcete okomentovať stačí keď čas
-					uvediete do políčka a napísete poznámku
+					<strong>S aktuálnym časom:</strong> poznámka sa odošle s časom v akom sa Vy nachádzate vo video.
 				</li>
-			</ul>
+				<li>
+					<strong>So žiadnym časom:</strong> ku poznámke nebude pridelený žiaden čas
+				</li>
+				<li>
+					<strong>S vlastným časom:</strong> ak viete čas v ktorom sa nachádza záber ktorý chcete okomentovať
+					stačí keď čas uvediete do políčka a napísete poznámku
+				</li>
+			</ol>
 		</div>
 	);
 };

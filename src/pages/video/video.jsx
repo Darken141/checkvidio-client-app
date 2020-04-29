@@ -5,6 +5,7 @@ import { default as Notes } from './components/notes/notes.container';
 import VideoPlayer from './components/video-player/video-player';
 import { FaQuestionCircle, FaFacebookSquare, FaInstagram } from 'react-icons/fa';
 import HelpGuide from '../../components/help-guide/help-guide';
+import { Link } from 'react-router-dom';
 
 import './video.styles.scss';
 
@@ -19,6 +20,7 @@ const VideoPage = ({ project }) => {
 				</div>
 
 				<div className="menu-items">
+					{localStorage.getItem('token') ? <Link to="/">Admin panel</Link> : null}
 					<div className="help_icon" onClick={() => setShowHelp(!showHelp)}>
 						<FaQuestionCircle />
 					</div>
@@ -46,12 +48,12 @@ const VideoPage = ({ project }) => {
 				<div className="row">
 					<div className="col">&copy; CODERKIN</div>
 					<div className="col icons">
-						<div className="facebook-icon">
+						<a href="https://www.facebook.com/CheckVidio-102042618125958" className="facebook-icon">
 							<FaFacebookSquare />
-						</div>
-						<div className="instagram-icon">
+						</a>
+						<a href="https://www.instagram.com/checkvid.io/" className="instagram-icon">
 							<FaInstagram />
-						</div>
+						</a>
 					</div>
 				</div>
 			</footer>

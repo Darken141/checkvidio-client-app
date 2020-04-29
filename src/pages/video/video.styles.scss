@@ -19,12 +19,18 @@
 		justify-content: space-between;
 
 		.menu-items {
+			display: flex;
+			align-items: center;
+			a {
+				margin-right: 2rem;
+			}
+
 			.help_icon {
 				cursor: pointer;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size: 2rem;
+				font-size: 3rem;
 				transition: all 0.2s ease-in;
 
 				&:hover {
@@ -93,8 +99,12 @@
 					justify-content: center;
 					align-items: center;
 					font-size: 3rem;
-					color: $primary;
 					padding: .5rem;
+					transition: all 0.2s ease-in;
+
+					&:hover {
+						color: $primary;
+					}
 				}
 			}
 		}
