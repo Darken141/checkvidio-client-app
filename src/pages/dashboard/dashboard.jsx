@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, useRouteMatch, Switch } from 'react-router-dom';
 import { default as AsideNavBar } from './components/aside-navbar/aside-navbar.container';
 import Projects from './routes/projects';
-import ProjectPage from './routes/project-page/project-page';
+import { default as ProjectPage } from './routes/project-page/project-page.container';
 import { default as CreateProject } from './routes/create-project/create-project.container';
 
 import Header from './components/header/header';

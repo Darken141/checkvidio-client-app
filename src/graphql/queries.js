@@ -13,6 +13,14 @@ export const GET_PROJECT = gql`
 	}
 `;
 
+export const UPDATE_PROJECT = gql`
+	mutation UpdateProject($id: ID, $name: String, $desc: String, $videoName: String, $videoUrl: String) {
+		updateProject(id: $id, name: $name, desc: $desc, videoName: $videoName, videoUrl: $videoUrl) {
+			_id
+		}
+	}
+`;
+
 export const DELETE_PROJECT = gql`
 	mutation DeleteProject($id: ID) {
 		deleteProject(id: $id) {

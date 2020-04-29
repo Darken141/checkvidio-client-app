@@ -15,7 +15,7 @@ import Spinner from '../../../../components/spinner/spinner.component';
 
 import './project-page.styles.scss';
 
-const ProjectPage = () => {
+const ProjectPage = ({ updateProject }) => {
 	const history = useHistory();
 	const { id } = useParams();
 	const { data, loading, error } = useQuery(GET_PROJECT, { variables: { id } });
@@ -129,7 +129,16 @@ const ProjectPage = () => {
 						onChange={(e) => setDesc(e.target.value)}
 						// handlePressKey={handlePressKey}
 					/>
-					<button className="custom-btn">Uložiť zmeny</button>
+					<button
+						className="custom-btn"
+						onClick={() =>
+							updateProject({
+								variables: { id, name, desc, videoName, videoUrl },
+								refetchQueries: [ 'GetProject', 'GetUserProjects' ]
+							})}
+					>
+						Uložiť zmeny
+					</button>
 				</div>
 
 				{toggleEmailForm ? <EmailForm setToggleEmailForm={setToggleEmailForm} projectId={id} /> : null}

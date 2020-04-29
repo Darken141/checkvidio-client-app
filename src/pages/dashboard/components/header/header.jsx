@@ -47,7 +47,7 @@ const Header = () => {
 				</div>
 			</nav>
 
-			<div className={dropdownHidden ? 'user-dropdown' : 'user-dropdown active'}>
+			<div className={dropdownHidden ? 'user-dropdown component' : 'user-dropdown component active'}>
 				<ul>
 					<li>
 						<Link to="/dashboard/profile">Profil</Link>
