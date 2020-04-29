@@ -2,6 +2,10 @@
 
 #dashboard {
 	display: grid;
+
+	max-width: 134rem;
+	margin: 0 auto;
+
 	grid-template-columns: 1fr;
 	grid-template-rows: 50px 1fr 50px;
 	min-height: 100vh;
@@ -16,6 +20,7 @@
 		padding: 1rem;
 
 		#projects {
+			padding: 1rem;
 			h1 {
 				font-weight: lighter;
 				text-transform: uppercase;
@@ -30,8 +35,6 @@
 		}
 
 		#create-project {
-			background-color: $component-background;
-			padding: 2rem 3rem;
 			max-width: 60rem;
 			margin: 0 auto;
 
@@ -46,14 +49,15 @@
 
 	&__aside {
 		grid-area: aside;
-		position: fixed;
 		background-color: $component-background;
+
+		position: fixed;
 		transform: translateX(-245px);
 		width: 245px;
 		height: 100%;
 		z-index: 10;
 		transition: all .8s ease-out;
-		padding: 1.5rem 2rem;
+		padding: 1rem;
 
 		&.active {
 			transform: translateX(0);
@@ -64,18 +68,20 @@
 	&__footer {
 		grid-area: footer;
 
-		background-color: $component-background;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding: 1rem;
+		font-size: 1.6rem;
 	}
 }
 
 @media only screen and (min-width: 46.875em) {
 	#dashboard {
 		grid-template-columns: 245px 1fr;
-		grid-template-areas: "header header" "aside main" "aside footer";
+		grid-template-rows: 80px 1fr auto;
+
+		grid-template-areas: "header header" "aside main" "footer footer";
 
 		&__header {
 			z-index: 11;
@@ -86,10 +92,14 @@
 			}
 		}
 
+		&__main {
+			padding: unset;
+		}
+
 		&__aside {
 			position: relative;
 			transform: translateX(0);
-			box-shadow: 10px 0 10px rgba(0, 0, 0, .35);
+			background-color: unset;
 
 			.close-icon {
 				display: none;

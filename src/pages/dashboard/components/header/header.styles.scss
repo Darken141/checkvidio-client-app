@@ -2,7 +2,7 @@
 
 #dashboard__header {
 	position: relative;
-	background-color: $component-background;
+	// background-color: $component-background;
 
 	display: flex;
 	align-items: center;
@@ -10,8 +10,6 @@
 	padding: 0 1rem;
 
 	position: relative;
-	z-index: 9;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, .35);
 
 	.menu-icons {
 		display: flex;
@@ -30,6 +28,14 @@
 				span {
 					display: block;
 					margin-right: .5rem;
+				}
+				@media only screen and (min-width: 46.875em) {
+					margin-right: 1rem;
+					padding: .7rem 2.2rem;
+
+					span {
+						margin-right: 1rem;
+					}
 				}
 			}
 
@@ -77,5 +83,10 @@
 
 	.active {
 		display: block;
+	}
+}
+@media only screen and (min-width: 46.875em) {
+	#dashboard__header {
+		font-size: 1.6rem;
 	}
 }

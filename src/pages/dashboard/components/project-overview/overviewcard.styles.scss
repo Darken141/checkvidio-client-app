@@ -8,11 +8,10 @@
 	margin-bottom: 4rem;
 
 	&__body {
-		padding: 1.5rem 1rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		background-color: $component-background;
+		padding: 1rem 0 0;
 
 		h2 {
 			font-weight: lighter;

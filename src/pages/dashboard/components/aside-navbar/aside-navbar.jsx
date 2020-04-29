@@ -1,19 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { handleNameLength } from '../../../../utils/handleNameLength';
 
 import { FaTimes } from 'react-icons/fa';
 
 import './aside-navbar.styles.scss';
 
 const AsideNavBar = ({ projects, hideAside, asideHidden }) => {
-	const handleNameLength = (string) => {
-		if (string.length >= 25) {
-			const shortString = string.slice(0, 22);
-			return `${shortString}...`;
-		}
-		return string;
-	};
-
 	return (
 		<aside id="dashboard__aside" className={asideHidden ? '' : 'active'}>
 			<h2>

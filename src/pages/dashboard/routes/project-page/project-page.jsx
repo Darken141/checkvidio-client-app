@@ -62,7 +62,7 @@ const ProjectPage = () => {
 	if (data) {
 		return (
 			<section id="project-page">
-				<div className="project-header">
+				<div className="project-header component">
 					<CustomInput
 						id="name"
 						label="Názov projektu:"
@@ -86,7 +86,7 @@ const ProjectPage = () => {
 					</div>
 				</div>
 
-				<div className="project-url">
+				<div className="project-url component">
 					<CustomInput
 						id="url"
 						label="Video odkaz"
@@ -101,7 +101,7 @@ const ProjectPage = () => {
 					</CopyToClipboard>
 				</div>
 
-				<div className="project-body">
+				<div className="project-body component">
 					<CustomInput
 						id="video-url"
 						label="Video URL:"

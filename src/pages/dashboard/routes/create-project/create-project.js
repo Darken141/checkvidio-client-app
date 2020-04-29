@@ -19,7 +19,7 @@ const CreateProject = ({ addProject }) => {
 
 	return (
 		<section id="create-project">
-			<form onSubmit={(e) => handleSubmit(e)}>
+			<form onSubmit={(e) => handleSubmit(e)} className="component">
 				<h1>Vytvoriť project</h1>
 				<CustomInput
 					id="name"
