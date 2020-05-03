@@ -69,6 +69,19 @@ a {
 	margin-bottom: 2rem;
 }
 
+.icon {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.heading {
+	font-weight: lighter;
+	text-transform: uppercase;
+	opacity: .83;
+}
+
 /* width */
 ::-webkit-scrollbar {
 	width: 10px;

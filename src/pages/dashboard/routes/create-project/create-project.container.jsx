@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 import CreateProject from './create-project';
+import SuccessCreated from '../../components/success-created/success-created';
 import Spinner from '../../../../components/spinner/spinner.component';
 
 const ADD_PROJECT = gql`
@@ -27,7 +28,7 @@ const CreateProjectContainer = () => {
 	if (error) return <div>Nieco sa pokazilo</div>;
 
 	if (data) {
-		return <div>Tvoj projekt bol vytvoreny</div>;
+		return <SuccessCreated />;
 	}
 
 	return <CreateProject addProject={addProject} />;

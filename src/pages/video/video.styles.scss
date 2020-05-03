@@ -79,36 +79,6 @@
 		grid-area: aside;
 		padding: 1rem 2rem;
 	}
-
-	&__footer {
-		grid-area: footer;
-		// background-color: $component-background;
-		padding: 1rem 2rem;
-
-		.row {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-
-			.icons {
-				display: flex;
-
-				.facebook-icon,
-				.instagram-icon {
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					font-size: 3rem;
-					padding: .5rem;
-					transition: all 0.2s ease-in;
-
-					&:hover {
-						color: $primary;
-					}
-				}
-			}
-		}
-	}
 }
 
 @media only screen and (min-width: 40em) {

@@ -16,26 +16,44 @@
 		h2 {
 			font-weight: lighter;
 			opacity: .83;
+			text-transform: capitalize;
+
+			a {
+				color: $primary;
+
+				&:hover {
+					color: lighten($primary, 15);
+				}
+			}
 		}
 
 		.overviewcard-icons {
 			display: flex;
 
-			.mail-icon,
-			.edit-icon,
-			.delete-icon {
-				cursor: pointer;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-
+			.delete {
 				border-radius: 50%;
 				padding: .5rem;
 				font-size: 2rem;
 				transition: all 0.2s ease-in;
 
 				&:hover {
-					color: $primary;
+					color: $red;
+				}
+			}
+
+			.settings {
+				border-radius: 50%;
+				padding: .5rem;
+				font-size: 2rem;
+				transition: all 0.2s ease-in;
+				a {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+
+					&:hover {
+						color: $primary;
+					}
 				}
 			}
 		}

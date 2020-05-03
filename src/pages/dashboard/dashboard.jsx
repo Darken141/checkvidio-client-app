@@ -5,8 +5,11 @@ import { default as AsideNavBar } from './components/aside-navbar/aside-navbar.c
 import Projects from './routes/projects';
 import { default as ProjectPage } from './routes/project-page/project-page.container';
 import { default as CreateProject } from './routes/create-project/create-project.container';
+import UserProfile from './routes/user-profile/user-profile';
+import EmailForm from '../../components/email-form/email-form';
 
 import Header from './components/header/header';
+import Footer from '../../components/footer/footer';
 
 import './dashboard.styles.scss';
 
@@ -21,22 +24,25 @@ const Dashboard = ({ projects }) => {
 
 			<main id="dashboard__main">
 				<Switch>
+					<Route path={`${match.path}/profile`}>
+						<UserProfile />
+					</Route>
 					<Route path={`${match.path}/create-project`}>
 						<CreateProject />
+					</Route>
+					<Route path={`${match.path}/project/:id/send-email`}>
+						<EmailForm />
 					</Route>
 					<Route path={`${match.path}/project/:id`}>
 						<ProjectPage />
 					</Route>
+
 					<Route path={`${match.path}`}>
 						<Projects projects={projects} />
 					</Route>
 				</Switch>
 			</main>
-			<footer id="dashboard__footer">
-				<div>CODERKIN</div>
-
-				<div>SOCIAL MEDIA</div>
-			</footer>
+			<Footer />
 		</div>
 	);
 };

@@ -7,6 +7,8 @@ import { FaQuestionCircle, FaFacebookSquare, FaInstagram } from 'react-icons/fa'
 import HelpGuide from '../../components/help-guide/help-guide';
 import { Link } from 'react-router-dom';
 
+import Footer from '../../components/footer/footer';
+
 import './video.styles.scss';
 
 const VideoPage = ({ project }) => {
@@ -44,19 +46,7 @@ const VideoPage = ({ project }) => {
 				<Notes />
 			</aside>
 
-			<footer id="video-page__footer">
-				<div className="row">
-					<div className="col">&copy; CODERKIN</div>
-					<div className="col icons">
-						<a href="https://www.facebook.com/CheckVidio-102042618125958" className="facebook-icon">
-							<FaFacebookSquare />
-						</a>
-						<a href="https://www.instagram.com/checkvid.io/" className="instagram-icon">
-							<FaInstagram />
-						</a>
-					</div>
-				</div>
-			</footer>
+			<Footer />
 		</div>
 	);
 };

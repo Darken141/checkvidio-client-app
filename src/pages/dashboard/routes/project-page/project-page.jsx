@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { GET_PROJECT, DELETE_PROJECT } from '../../../../graphql/queries';
-import { useParams, useHistory } from 'react-router-dom';
-import { FaEnvelope, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { GET_PROJECT, DELETE_PROJECT, DELETE_PROJECT_NOTES } from '../../../../graphql/queries';
+import { useParams, useHistory, Link } from 'react-router-dom';
+import { FaRegTrashAlt } from 'react-icons/fa';
 import { IoIosMail } from 'react-icons/io';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
@@ -20,17 +20,19 @@ const ProjectPage = ({ updateProject }) => {
 	const { id } = useParams();
 	const { data, loading, error } = useQuery(GET_PROJECT, { variables: { id } });
 	const [ deleteProject ] = useMutation(DELETE_PROJECT);
-	const url = `https://www.app.checkvid.io/video/${id}`;
+	const [ deleteProjectNotes ] = useMutation(DELETE_PROJECT_NOTES);
 	const [ name, setName ] = useState('');
 	const [ desc, setDesc ] = useState('');
 	const [ videoName, setVideoName ] = useState('');
 	const [ videoUrl, setVideoUrl ] = useState('');
 	const [ toggleEmailForm, setToggleEmailForm ] = useState(false);
+	const url = `https://www.app.checkvid.io/video/${id}`;
 
 	const handleDeleteProject = () => {
 		let r = window.confirm('Chcete odstranit tento projekt?');
 		if (r) {
 			deleteProject({ variables: { id }, refetchQueries: [ 'GetUserProjects' ] });
+			deleteProjectNotes({ variables: { id } });
 			history.push('/');
 		}
 	};
@@ -75,12 +77,9 @@ const ProjectPage = ({ updateProject }) => {
 				</div>
 
 				<div className="project-options">
-					<div className="send-email icon" onClick={() => setToggleEmailForm(!toggleEmailForm)}>
+					<Link to={`${id}/send-email`} className="send-email icon">
 						<IoIosMail />
-					</div>
-					{/*<div className="edit-project icon">
-						<FaRegEdit />
-		</div>*/}
+					</Link>
 					<div className="delete-project icon" onClick={handleDeleteProject}>
 						<FaRegTrashAlt />
 					</div>

@@ -35,6 +35,14 @@ export const DELETE_PROJECT = gql`
 	}
 `;
 
+export const DELETE_PROJECT_NOTES = gql`
+	mutation DeleteProjectNotes($id: ID) {
+		deleteProjectNotes(id: $id) {
+			_id
+		}
+	}
+`;
+
 export const GET_PLAYED_SECONDS = gql`
 	{
 		playedSeconds @client
