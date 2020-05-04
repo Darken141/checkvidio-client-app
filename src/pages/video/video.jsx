@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { default as NoteForm } from './components/note-form/note-form.container';
 import { default as Notes } from './components/notes/notes.container';
 import VideoPlayer from './components/video-player/video-player';
-import { FaQuestionCircle, FaFacebookSquare, FaInstagram } from 'react-icons/fa';
+import { FaQuestionCircle } from 'react-icons/fa';
 import HelpGuide from '../../components/help-guide/help-guide';
 import { Link } from 'react-router-dom';
 

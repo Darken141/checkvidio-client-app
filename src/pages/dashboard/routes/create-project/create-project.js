@@ -19,8 +19,8 @@ const CreateProject = ({ addProject }) => {
 
 	return (
 		<section id="create-project">
+			<h1 className="heading">Vytvoriť project</h1>
 			<form onSubmit={(e) => handleSubmit(e)} className="component">
-				<h1>Vytvoriť project</h1>
 				<CustomInput
 					id="name"
 					label="Názov projektu:"

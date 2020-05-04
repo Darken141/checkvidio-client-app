@@ -7,7 +7,6 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import { IoIosMail } from 'react-icons/io';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import EmailForm from '../../../../components/email-form/email-form';
 import CustomInput from '../../../../components/input/input';
 import CustomTextarea from '../../../../components/textarea/textarea';
 
@@ -25,7 +24,6 @@ const ProjectPage = ({ updateProject }) => {
 	const [ desc, setDesc ] = useState('');
 	const [ videoName, setVideoName ] = useState('');
 	const [ videoUrl, setVideoUrl ] = useState('');
-	const [ toggleEmailForm, setToggleEmailForm ] = useState(false);
 	const url = `https://www.app.checkvid.io/video/${id}`;
 
 	const handleDeleteProject = () => {
@@ -139,8 +137,6 @@ const ProjectPage = ({ updateProject }) => {
 						Uložiť zmeny
 					</button>
 				</div>
-
-				{toggleEmailForm ? <EmailForm setToggleEmailForm={setToggleEmailForm} projectId={id} /> : null}
 			</section>
 		);
 	}

@@ -28,7 +28,7 @@ const CreateProjectContainer = () => {
 	if (error) return <div>Nieco sa pokazilo</div>;
 
 	if (data) {
-		return <SuccessCreated />;
+		return <SuccessCreated data={data} />;
 	}
 
 	return <CreateProject addProject={addProject} />;

@@ -48,3 +48,34 @@ export const GET_PLAYED_SECONDS = gql`
 		playedSeconds @client
 	}
 `;
+
+export const GET_PROJECT_NOTES = gql`
+	query GetProjectNotes($id: ID) {
+		getProjectNotes(id: $id) {
+			_id
+			time
+			note
+			isDone
+		}
+	}
+`;
+
+export const DELETE_NOTE = gql`
+	mutation DeleteNote($id: ID) {
+		deleteNote(id: $id) {
+			_id
+			time
+			note
+			isDone
+			projectId
+		}
+	}
+`;
+
+export const TOGGLE_IS_DONE = gql`
+	mutation ToggleIsDone($id: ID) {
+		toggleIsDone(id: $id) {
+			isDone
+		}
+	}
+`;

@@ -6,14 +6,14 @@ import { useParams } from 'react-router-dom';
 
 import VideoPage from './video';
 import Spinner from '../../components/spinner/spinner.component';
+import ErrorMessage from '../../components/error-message/error-message';
 
 const VideoPageContainer = () => {
 	const { id } = useParams();
-	// console.log(params);
 	const { data, loading, error } = useQuery(GET_PROJECT, { variables: { id } });
 
 	if (loading) return <Spinner />;
-	if (error) return <div>Nieco sa pokazilo</div>;
+	if (error) return <ErrorMessage error={error} />;
 
 	if (data) {
 		return <VideoPage project={data.getProject} />;

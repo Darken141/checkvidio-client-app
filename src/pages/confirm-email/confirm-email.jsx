@@ -15,7 +15,7 @@ const ACTIVATE = gql`
 
 const ConfirmEmail = () => {
 	const { id } = useParams();
-	const data = useQuery(ACTIVATE, { variables: { id } });
+	useQuery(ACTIVATE, { variables: { id } });
 
 	return (
 		<div id="confirm-email">

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { UPDATE_PROJECT } from '../../../../graphql/queries';
 

@@ -20,14 +20,6 @@
 		padding: 1rem;
 
 		#projects {
-			padding: 1rem;
-			h1 {
-				font-weight: lighter;
-				text-transform: uppercase;
-				opacity: .6;
-				margin-bottom: 1rem;
-			}
-
 			.projects-container {
 				display: flex;
 				flex-wrap: wrap;
@@ -36,14 +28,6 @@
 
 		#create-project {
 			max-width: 60rem;
-			margin: 0 auto;
-
-			h1 {
-				font-weight: lighter;
-				text-transform: uppercase;
-				opacity: .6;
-				margin-bottom: .5rem;
-			}
 		}
 	}
 
@@ -93,7 +77,7 @@
 		}
 
 		&__main {
-			padding: unset;
+			padding: 1rem 4rem;
 		}
 
 		&__aside {

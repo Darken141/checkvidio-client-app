@@ -4,7 +4,6 @@ import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 import AsideNavBar from './aside-navbar';
-import Spinner from '../../../../components/spinner/spinner.component';
 
 const GET_ASIDE_HIDDEN = gql`
 	{

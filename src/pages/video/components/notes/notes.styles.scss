@@ -28,7 +28,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			// margin-bottom: 1rem;
+			margin-bottom: 1rem;
 
 			p {
 				color: rgba($font-white, .6);
@@ -38,13 +38,16 @@
 				}
 			}
 
-			.delete-icon {
-				cursor: pointer;
+			.icon-container {
+				position: relative;
+				z-index: 15;
 				display: flex;
-				justify-content: center;
-				align-items: center;
-				padding: 12px;
-				color: $red;
+				.check {
+					color: $green;
+				}
+				.delete {
+					color: $red;
+				}
 			}
 		}
 
@@ -56,12 +59,12 @@
 			}
 		}
 	}
-	.fade {
+	.complete {
 		position: relative;
 		&::after {
 			content: " ";
 			position: absolute;
-			background-color: $background;
+			background-color: rgba($green, .25);
 			left: 0;
 			top: 0;
 			width: 100%;

@@ -1,17 +1,17 @@
 import React from 'react';
 import Duration from '../../../../utils/duration';
 
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaCheck } from 'react-icons/fa';
 
 import './notes.styles.scss';
 
-const Notes = ({ notes, deleteNote, loading }) => {
+const Notes = ({ notes, deleteNote, loading, toggleIsDone }) => {
 	return (
 		<div className="note-container">
 			<label className="note-container__label">Vaše poznámky:</label>
 			{notes.length === 0 ? <span className="no-notes">Ziadne poznámky</span> : null}
-			{notes.map(({ _id, time, note }) => (
-				<div key={_id} className={loading ? 'note loading component' : 'note component'}>
+			{notes.map(({ _id, time, note, isDone }) => (
+				<div key={_id} className={isDone ? 'note complete component' : 'note component'}>
 					<div className="note__header">
 						<p>
 							Čas:{' '}
@@ -22,12 +22,21 @@ const Notes = ({ notes, deleteNote, loading }) => {
 							)}
 						</p>
 						{localStorage.getItem('token') ? (
-							<div
-								className="delete-icon"
-								onClick={() =>
-									deleteNote({ variables: { id: _id }, refetchQueries: [ 'GetProjectNotes' ] })}
-							>
-								<FaTrashAlt />
+							<div className="icon-container">
+								<div
+									className="check icon"
+									onClick={() =>
+										toggleIsDone({ variables: { id: _id }, refetchQueries: [ 'GetProjectNotes' ] })}
+								>
+									<FaCheck />
+								</div>
+								<div
+									className="delete icon"
+									onClick={() =>
+										deleteNote({ variables: { id: _id }, refetchQueries: [ 'GetProjectNotes' ] })}
+								>
+									<FaTrashAlt />
+								</div>
 							</div>
 						) : null}
 					</div>

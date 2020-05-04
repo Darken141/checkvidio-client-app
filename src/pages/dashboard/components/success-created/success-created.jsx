@@ -1,14 +1,19 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import './success-created.styles.scss';
 
-const SuccessCreated = () => {
+const SuccessCreated = ({ data: { addProject: { _id } } }) => {
 	return (
-		<div className="component">
-			<h1>Projekt bol uspesne vytvoreny</h1>
-			<h2>Co dalej?</h2>
-
-			<p>...</p>
+		<div className="success-created">
+			<h1 className="heading">Projekt bol úspesne vytvorený</h1>
+			<div className="component">
+				<h2 className="sub-heading">Co dalej?</h2>
+				<Link to={`/dashboard/project/${_id}/send-email`}>Odoslať klientovy</Link>
+				<p>alebo</p>
+				<Link to={`/video/${_id}`}>Prezrieť projekt</Link>
+			</div>
 		</div>
 	);
 };

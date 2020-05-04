@@ -7,6 +7,7 @@ import { gql } from 'apollo-boost';
 import { useParams } from 'react-router-dom';
 
 import Spinner from '../spinner/spinner.component';
+import ErrorMessage from '../error-message/error-message';
 
 import './email-form.styles.scss';
 
@@ -29,6 +30,7 @@ const EmailForm = () => {
 	};
 
 	if (loading) return <Spinner />;
+	if (error) return <ErrorMessage error={error} />;
 
 	if (data) {
 		console.log(data);
