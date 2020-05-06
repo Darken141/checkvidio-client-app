@@ -1,5 +1,5 @@
 import React from 'react';
-import { default as Overviewcard } from '../components/project-overview/overviewcard.container';
+import Overviewcard from '../components/project-overview/overviewcard';
 
 const Projects = ({ projects }) => {
 	return (

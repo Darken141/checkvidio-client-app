@@ -7,12 +7,10 @@ import { handleNameLength } from '../../../../utils/handleNameLength';
 
 import './overviewcard.styles.scss';
 
-const Overviewcard = ({ name, videoUrl, deleteProject, deleteProjectNotes, id }) => {
+const Overviewcard = ({ name, videoUrl, id }) => {
 	const handleDeleteProject = () => {
 		let r = window.confirm('Chcete odstranit tento projekt?');
 		if (r) {
-			deleteProject({ variables: { id }, refetchQueries: [ 'GetUserProjects' ] });
-			deleteProjectNotes({ variables: { id } });
 		}
 	};
 
