@@ -2,39 +2,10 @@ import React, { useState } from 'react';
 
 import CustomInput from '../input/input';
 
-import { useLazyQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-import { useParams } from 'react-router-dom';
-
-import Spinner from '../spinner/spinner.component';
-import ErrorMessage from '../error-message/error-message';
-
 import './email-form.styles.scss';
 
-const INVITE = gql`
-	query Invite($email: String, $projectId: String) {
-		invite(email: $email, projectId: $projectId) {
-			msg
-		}
-	}
-`;
-
 const EmailForm = () => {
-	const { id } = useParams();
 	const [ email, setEmail ] = useState('');
-	const [ sendInvite, { data, loading, error } ] = useLazyQuery(INVITE);
-
-	const handleSendInvite = () => {
-		sendInvite({ variables: { email, projectId: id } });
-		setEmail('');
-	};
-
-	if (loading) return <Spinner />;
-	if (error) return <ErrorMessage error={error} />;
-
-	if (data) {
-		console.log(data);
-	}
 
 	return (
 		<section className="email-container">
@@ -70,9 +41,7 @@ const EmailForm = () => {
 					value={email}
 					handleChange={(e) => setEmail(e.target.value)}
 				/>
-				<button className="custom-btn" onClick={() => handleSendInvite()}>
-					Odoslať
-				</button>
+				<button className="custom-btn">Odoslať</button>
 			</div>
 		</section>
 	);

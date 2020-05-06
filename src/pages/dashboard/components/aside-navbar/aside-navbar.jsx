@@ -6,9 +6,9 @@ import { FaTimes } from 'react-icons/fa';
 
 import './aside-navbar.styles.scss';
 
-const AsideNavBar = ({ projects, hideAside, asideHidden }) => {
+const AsideNavBar = ({ projects }) => {
 	return (
-		<aside id="dashboard__aside" className={asideHidden ? '' : 'active'}>
+		<aside id="dashboard__aside" className={''}>
 			<h2>
 				<Link to="/">Projekty</Link>
 			</h2>
@@ -26,7 +26,7 @@ const AsideNavBar = ({ projects, hideAside, asideHidden }) => {
 				) : null}
 			</ul>
 
-			<div className="close-icon" onClick={hideAside}>
+			<div className="close-icon">
 				<FaTimes />
 			</div>
 		</aside>

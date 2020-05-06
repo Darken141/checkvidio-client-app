@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Navbar from '../../components/navbar/navbar';
-import { default as SignUpForm } from '../../components/sign-up-form/sign-up-form.container';
+import SignUpForm from '../../components/sign-up-form/sign-up-form';
 
 import './sign-up.styles.scss';
 

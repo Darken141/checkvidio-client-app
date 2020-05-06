@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
-import { useApolloClient, useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import { FaBars, FaUserCircle, FaPlus } from 'react-icons/fa';
 
 import './header.styles.scss';
 
-const GET_ASIDE_HIDDEN = gql`
-	{
-		asideHidden @client
-	}
-`;
-
 const Header = () => {
-	const client = useApolloClient();
-	const { data: { asideHidden } } = useQuery(GET_ASIDE_HIDDEN);
-
 	const [ dropdownHidden, setDropdownHidden ] = useState(true);
 
 	return (
@@ -38,7 +27,7 @@ const Header = () => {
 					</Link>
 				</div>
 
-				<div className="menu-icon" onClick={() => client.writeData({ data: { asideHidden: !asideHidden } })}>
+				<div className="menu-icon">
 					<FaBars />
 				</div>
 
@@ -52,14 +41,7 @@ const Header = () => {
 					<li>
 						<Link to="/dashboard/profile">Profil</Link>
 					</li>
-					<li
-						onClick={() => {
-							localStorage.removeItem('token');
-							client.writeData({ data: { user: null } });
-						}}
-					>
-						Odhlásiť sa
-					</li>
+					<li>Odhlásiť sa</li>
 				</ul>
 			</div>
 		</header>

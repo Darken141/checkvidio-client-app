@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { Route, useRouteMatch, Switch } from 'react-router-dom';
-import { default as AsideNavBar } from './components/aside-navbar/aside-navbar.container';
+import AsideNavBar from './components/aside-navbar/aside-navbar';
 import Projects from './routes/projects';
-import { default as ProjectPage } from './routes/project-page/project-page.container';
-import { default as CreateProject } from './routes/create-project/create-project.container';
+import ProjectPage from './routes/project-page/project-page';
+import CreateProject from './routes/create-project/create-project';
 import UserProfile from './routes/user-profile/user-profile';
 import EmailForm from '../../components/email-form/email-form';
 
@@ -13,14 +13,14 @@ import Footer from '../../components/footer/footer';
 
 import './dashboard.styles.scss';
 
-const Dashboard = ({ projects }) => {
+const Dashboard = () => {
 	const match = useRouteMatch();
 
 	return (
 		<div id="dashboard">
 			<Header />
 
-			<AsideNavBar projects={projects} />
+			<AsideNavBar projects={[]} />
 
 			<main id="dashboard__main">
 				<Switch>
@@ -30,15 +30,17 @@ const Dashboard = ({ projects }) => {
 					<Route path={`${match.path}/create-project`}>
 						<CreateProject />
 					</Route>
-					<Route path={`${match.path}/project/:id/send-email`}>
-						<EmailForm />
-					</Route>
+
 					<Route path={`${match.path}/project/:id`}>
 						<ProjectPage />
 					</Route>
 
+					<Route path={`${match.path}/project/:id/send-email`}>
+						<EmailForm />
+					</Route>
+
 					<Route path={`${match.path}`}>
-						<Projects projects={projects} />
+						<Projects projects={[]} />
 					</Route>
 				</Switch>
 			</main>

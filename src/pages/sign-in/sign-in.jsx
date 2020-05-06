@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/navbar/navbar';
-import { default as LogInForm } from '../../components/log-in-form/log-in-form.container';
+import LogInForm from '../../components/log-in-form/log-in-form';
 
 import './sign-in.styles.scss';
 

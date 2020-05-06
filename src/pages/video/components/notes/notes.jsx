@@ -5,7 +5,8 @@ import { FaTrashAlt, FaCheck } from 'react-icons/fa';
 
 import './notes.styles.scss';
 
-const Notes = ({ notes, deleteNote, setSeekValue, toggleIsDone }) => {
+const Notes = () => {
+	const notes = [];
 	return (
 		<div className="note-container">
 			<label className="note-container__label">Vaše poznámky:</label>
@@ -13,7 +14,7 @@ const Notes = ({ notes, deleteNote, setSeekValue, toggleIsDone }) => {
 			{notes.map(({ _id, time, note, isDone }) => (
 				<div key={_id} className={isDone ? 'note complete component' : 'note component'}>
 					<div className="note__header">
-						<p onClick={() => setSeekValue(time)}>
+						<p>
 							Čas:{' '}
 							{time === 0 ? (
 								<span className="time">žiadny</span>
@@ -23,18 +24,10 @@ const Notes = ({ notes, deleteNote, setSeekValue, toggleIsDone }) => {
 						</p>
 						{localStorage.getItem('token') ? (
 							<div className="icon-container">
-								<div
-									className="check icon"
-									onClick={() =>
-										toggleIsDone({ variables: { id: _id }, refetchQueries: [ 'GetProjectNotes' ] })}
-								>
+								<div className="check icon">
 									<FaCheck />
 								</div>
-								<div
-									className="delete icon"
-									onClick={() =>
-										deleteNote({ variables: { id: _id }, refetchQueries: [ 'GetProjectNotes' ] })}
-								>
+								<div className="delete icon">
 									<FaTrashAlt />
 								</div>
 							</div>

@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { default as NoteForm } from './components/note-form/note-form.container';
-import { default as Notes } from './components/notes/notes.container';
+import NoteForm from './components/note-form/note-form';
+import Notes from './components/notes/notes';
 import VideoPlayer from './components/video-player/video-player';
 import { FaQuestionCircle } from 'react-icons/fa';
-import HelpGuide from '../../components/help-guide/help-guide';
-import { Link } from 'react-router-dom';
 
 import Footer from '../../components/footer/footer';
 
 import './video.styles.scss';
 
 const VideoPage = ({ project }) => {
-	const [ showHelp, setShowHelp ] = useState(false);
-
 	return (
 		<div id="video-page">
 			<header id="video-page__header">
@@ -22,21 +18,19 @@ const VideoPage = ({ project }) => {
 				</div>
 
 				<div className="menu-items">
-					{localStorage.getItem('token') ? <Link to="/">Admin panel</Link> : null}
-					<div className="help_icon" onClick={() => setShowHelp(!showHelp)}>
+					<div className="help_icon">
 						<FaQuestionCircle />
 					</div>
 				</div>
 			</header>
-			{showHelp ? <HelpGuide /> : null}
 			<main id="video-page__main">
 				<div className="video-container">
-					<VideoPlayer url={project.videoUrl} />
-					<h2>{project.name}</h2>
+					<VideoPlayer />
+					<h2>Project Name</h2>
 					<div className="video-description component">
 						<details>
 							<summary>Popis</summary>
-							<p className="desc">{project.desc}</p>
+							<p className="desc">Project Desc</p>
 						</details>
 					</div>
 				</div>

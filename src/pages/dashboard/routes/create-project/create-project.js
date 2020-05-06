@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import CustomInput from '../../../../components/input/input';
 import CustomTextarea from '../../../../components/textarea/textarea';
 
-const CreateProject = ({ addProject }) => {
+const CreateProject = () => {
 	const [ name, setName ] = useState('');
 	const [ desc, setDesc ] = useState('');
 	const [ videoName, setVideoName ] = useState('');
@@ -11,10 +11,6 @@ const CreateProject = ({ addProject }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		addProject({
-			variables: { name, desc, videoName, videoUrl },
-			refetchQueries: [ 'GetUserProjects' ]
-		});
 	};
 
 	return (

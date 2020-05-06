@@ -1,29 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
-
-import { useApolloClient, useQuery } from '@apollo/react-hooks';
-import { GET_SEEK_VALUE } from '../../../../graphql/queries';
 
 import './video-player.styles.scss';
 
-const VideoPlayer = ({ url }) => {
+const VideoPlayer = () => {
 	const player = useRef();
-	const client = useApolloClient();
 	const [ togglePlaying, setTogglePlaying ] = useState(false);
-	const { data: { seekValue } } = useQuery(GET_SEEK_VALUE);
-
-	const handleProgress = (state) => {
-		client.writeData({ data: { playedSeconds: state.playedSeconds } });
-	};
-
-	useEffect(
-		() => {
-			if (player) {
-				player.current.seekTo(seekValue);
-			}
-		},
-		[ seekValue ]
-	);
+	const url = 'https://www.youtube.com/watch?v=rSgbYCdc4G0';
 
 	return (
 		<div className="player-wrapper">
@@ -37,7 +20,7 @@ const VideoPlayer = ({ url }) => {
 				playing={togglePlaying}
 				controls={true}
 				onStart={() => console.log('onStart')}
-				onProgress={(state) => handleProgress(state)}
+				// onProgress={(state) => handleProgress(state)}
 				config={{
 					youtube: {
 						playerVars: {
