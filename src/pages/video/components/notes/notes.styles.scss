@@ -25,12 +25,15 @@
 
 	.note {
 		&__header {
+			position: relative;
+			z-index: 15;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			margin-bottom: 1rem;
 
 			p {
+				cursor: pointer;
 				color: rgba($font-white, .6);
 
 				.time {
@@ -39,8 +42,6 @@
 			}
 
 			.icon-container {
-				position: relative;
-				z-index: 15;
 				display: flex;
 				.check {
 					color: $green;

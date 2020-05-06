@@ -1,5 +1,11 @@
 import { gql } from 'apollo-boost';
 
+export const GET_SEEK_VALUE = gql`
+	{
+		seekValue @client
+	}
+`;
+
 export const GET_PROJECT = gql`
 	query GetProject($id: ID) {
 		getProject(id: $id) {

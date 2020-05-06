@@ -1,22 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 
-import { useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient, useQuery } from '@apollo/react-hooks';
+import { GET_SEEK_VALUE } from '../../../../graphql/queries';
 
 import './video-player.styles.scss';
 
 const VideoPlayer = ({ url }) => {
+	const player = useRef();
 	const client = useApolloClient();
 	const [ togglePlaying, setTogglePlaying ] = useState(false);
+	const { data: { seekValue } } = useQuery(GET_SEEK_VALUE);
 
 	const handleProgress = (state) => {
 		client.writeData({ data: { playedSeconds: state.playedSeconds } });
 	};
 
+	useEffect(
+		() => {
+			if (player) {
+				player.current.seekTo(seekValue);
+			}
+		},
+		[ seekValue ]
+	);
+
 	return (
 		<div className="player-wrapper">
 			<div className="video-glass" onClick={() => setTogglePlaying(!togglePlaying)} />
 			<ReactPlayer
+				ref={player}
 				className="react-player"
 				width="100%"
 				height="100%"

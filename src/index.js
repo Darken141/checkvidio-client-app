@@ -42,7 +42,8 @@ client.writeData({
 		asideHidden: true,
 		userMenuHidden: true,
 		playedSeconds: 0,
-		initialNotes: 0
+		initialNotes: 0,
+		seekValue: 0
 	}
 });
 
