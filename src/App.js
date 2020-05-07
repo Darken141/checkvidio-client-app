@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // PAGES
 import SignIn from './pages/sign-in/sign-in';
@@ -7,7 +7,8 @@ import Dashboard from './pages/dashboard/dashboard';
 import VideoPage from './pages/video/video';
 import ConfirmEmail from './pages/confirm-email/confirm-email';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { UserContext } from './context/Auth';
 
 import './App.scss';
 
@@ -22,15 +23,22 @@ const App = () => {
 				<Route exact path="/sign-up">
 					<SignUp />
 				</Route>
-				<Route path="/dashboard">
+				<PrivateRoute path="/dashboard">
 					<Dashboard />
-				</Route>
+				</PrivateRoute>
 				<Route path="/email/:id">
 					<ConfirmEmail />
 				</Route>
+				<Redirect to="/login" />
 			</Switch>
 		</BrowserRouter>
 	);
+};
+
+const PrivateRoute = ({ children, ...rest }) => {
+	const currentUser = useContext(UserContext);
+	console.log(currentUser);
+	return <Route {...rest} render={() => (currentUser ? children : <Redirect to="/login" />)} />;
 };
 
 export default App;

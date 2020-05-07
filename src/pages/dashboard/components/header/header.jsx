@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-
 import { Link } from 'react-router-dom';
 
+import { auth } from '../../../../firebase/firebase.utils';
 import { FaBars, FaUserCircle, FaPlus } from 'react-icons/fa';
 
 import './header.styles.scss';
@@ -41,7 +41,11 @@ const Header = () => {
 					<li>
 						<Link to="/dashboard/profile">Profil</Link>
 					</li>
-					<li>Odhlásiť sa</li>
+					<li>
+						<a href="/login" onClick={() => auth.signOut()}>
+							Odhlásiť sa
+						</a>
+					</li>
 				</ul>
 			</div>
 		</header>

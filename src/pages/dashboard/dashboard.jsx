@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Route, useRouteMatch, Switch, Redirect } from 'react-router-dom';
 
-import { Route, useRouteMatch, Switch } from 'react-router-dom';
 import AsideNavBar from './components/aside-navbar/aside-navbar';
 import Projects from './routes/projects';
 import ProjectPage from './routes/project-page/project-page';
