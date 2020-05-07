@@ -7,7 +7,7 @@
 	margin: 0 auto;
 
 	grid-template-columns: 1fr;
-	grid-template-rows: 50px 1fr 50px;
+	grid-template-rows: auto 1fr auto;
 	min-height: 100vh;
 	grid-template-areas: "header" "main" "footer";
 
@@ -31,24 +31,6 @@
 		}
 	}
 
-	&__aside {
-		grid-area: aside;
-		background-color: $component-background;
-
-		position: fixed;
-		transform: translateX(-245px);
-		width: 245px;
-		height: 100%;
-		z-index: 10;
-		transition: all .8s ease-out;
-		padding: 1rem;
-
-		&.active {
-			transform: translateX(0);
-			box-shadow: 10px 0 10px rgba(0, 0, 0, .35);
-		}
-	}
-
 	&__footer {
 		grid-area: footer;
 
@@ -57,37 +39,5 @@
 		justify-content: space-between;
 		padding: 1rem;
 		font-size: 1.6rem;
-	}
-}
-
-@media only screen and (min-width: 46.875em) {
-	#dashboard {
-		grid-template-columns: 245px 1fr;
-		grid-template-rows: 80px 1fr auto;
-
-		grid-template-areas: "header header" "aside main" "footer footer";
-
-		&__header {
-			z-index: 11;
-			.menu-items {
-				.menu-icon {
-					display: none;
-				}
-			}
-		}
-
-		&__main {
-			padding: 1rem 4rem;
-		}
-
-		&__aside {
-			position: relative;
-			transform: translateX(0);
-			background-color: unset;
-
-			.close-icon {
-				display: none;
-			}
-		}
 	}
 }

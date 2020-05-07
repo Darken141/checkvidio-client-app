@@ -23,6 +23,7 @@ export const UserProvider = ({ children }) => {
 					});
 				});
 			}
+			setCurrentUser(setCurrentUser);
 			setPending(false);
 		});
 

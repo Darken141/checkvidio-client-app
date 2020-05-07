@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
-import { Route, useRouteMatch, Switch, Redirect } from 'react-router-dom';
+import React from 'react';
+import { Route, useRouteMatch, Switch } from 'react-router-dom';
 
-import AsideNavBar from './components/aside-navbar/aside-navbar';
 import Projects from './routes/projects';
 import ProjectPage from './routes/project-page/project-page';
 import CreateProject from './routes/create-project/create-project';
@@ -19,8 +18,6 @@ const Dashboard = () => {
 	return (
 		<div id="dashboard">
 			<Header />
-
-			<AsideNavBar projects={[]} />
 
 			<main id="dashboard__main">
 				<Switch>
