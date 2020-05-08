@@ -14,7 +14,7 @@ const CreateProject = () => {
 	};
 
 	return (
-		<section id="create-project">
+		<main id="create-project">
 			<h1 className="heading">Vytvoriť project</h1>
 			<form onSubmit={(e) => handleSubmit(e)} className="component">
 				<CustomInput
@@ -58,7 +58,7 @@ const CreateProject = () => {
 					Pridať
 				</button>
 			</form>
-		</section>
+		</main>
 	);
 };
 

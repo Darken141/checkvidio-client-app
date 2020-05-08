@@ -2,23 +2,32 @@ import React from 'react';
 import { Route, useRouteMatch, Switch } from 'react-router-dom';
 
 import Projects from './routes/projects';
-import ProjectPage from './routes/project-page/project-page';
 import CreateProject from './routes/create-project/create-project';
-import UserProfile from './routes/user-profile/user-profile';
-import EmailForm from '../../components/email-form/email-form';
+// import ProjectPage from './routes/project-page/project-page';
+// import UserProfile from './routes/user-profile/user-profile';
+// import EmailForm from '../../components/email-form/email-form';
 
-import Header from './components/header/header';
-import Footer from '../../components/footer/footer';
+// import Header from './components/header/header';
+// import Footer from '../../components/footer/footer';
+
+import { Header } from './components/navbar/navbar';
 
 import './dashboard.styles.scss';
 
 const Dashboard = () => {
 	const match = useRouteMatch();
+	console.log(match);
 
 	return (
 		<div id="dashboard">
 			<Header />
-
+			<div className="container">
+				<Switch>
+					<Route exact path={`${match.path}/`} component={Projects} />
+					<Route exact path={`${match.path}/create-project`} component={CreateProject} />
+				</Switch>
+			</div>
+			{/*
 			<main id="dashboard__main">
 				<Switch>
 					<Route path={`${match.path}/profile`}>
@@ -41,7 +50,7 @@ const Dashboard = () => {
 					</Route>
 				</Switch>
 			</main>
-			<Footer />
+			<Footer />*/}
 		</div>
 	);
 };
