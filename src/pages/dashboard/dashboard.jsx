@@ -16,7 +16,6 @@ import './dashboard.styles.scss';
 
 const Dashboard = () => {
 	const match = useRouteMatch();
-	console.log(match);
 
 	return (
 		<div id="dashboard">

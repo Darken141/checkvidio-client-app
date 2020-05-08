@@ -3,10 +3,10 @@ import ReactPlayer from 'react-player';
 
 import './video-player.styles.scss';
 
-const VideoPlayer = () => {
+const VideoPlayer = ({ url }) => {
 	const player = useRef();
 	const [ togglePlaying, setTogglePlaying ] = useState(false);
-	const url = 'https://www.youtube.com/watch?v=rSgbYCdc4G0';
+	// const url = 'https://www.youtube.com/watch?v=rSgbYCdc4G0';
 
 	return (
 		<div className="player-wrapper">

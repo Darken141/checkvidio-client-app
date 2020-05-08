@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-
+import React, { useState, useContext } from 'react';
+import { ProjectsContext } from '../../../../context/Projects';
+import { createVideoProject } from '../../../../firebase/firebase.utils';
+import { useHistory } from 'react-router-dom';
 import CustomInput from '../../../../components/input/input';
 import CustomTextarea from '../../../../components/textarea/textarea';
 
 const CreateProject = () => {
+	const history = useHistory();
+	const { id } = useContext(ProjectsContext);
 	const [ name, setName ] = useState('');
 	const [ desc, setDesc ] = useState('');
 	const [ videoName, setVideoName ] = useState('');
@@ -11,6 +15,8 @@ const CreateProject = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		createVideoProject(id, { name, desc, videoName, videoUrl });
+		history.push('/dashboard');
 	};
 
 	return (

@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
 
+// CONTEXT
+import { ProjectsProvider } from './context/Projects';
+
 // PAGES
 import SignIn from './pages/sign-in/sign-in';
 import SignUp from './pages/sign-up/sign-up';
@@ -24,7 +27,9 @@ const App = () => {
 					<SignUp />
 				</Route>
 				<PrivateRoute path="/dashboard">
-					<Dashboard />
+					<ProjectsProvider>
+						<Dashboard />
+					</ProjectsProvider>
 				</PrivateRoute>
 				<Route path="/email/:id">
 					<ConfirmEmail />

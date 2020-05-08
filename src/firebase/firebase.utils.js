@@ -39,6 +39,78 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 	return userRef;
 };
 
+export const createUserProduction = async (productionName, userId, additionalData) => {
+	if (!productionName) return;
+	if (!userId) return;
+
+	const userRef = firestore.doc(`/users/${userId}`);
+	const userSnapShot = await userRef.get();
+
+	if (!userSnapShot.exists) return;
+
+	const productionRef = firestore.collection('productions');
+	const newProdRef = productionRef.doc();
+
+	try {
+		await userRef.set({
+			...userSnapShot.data(),
+			production: newProdRef.id
+		});
+		await newProdRef.set({
+			productionName,
+			creator: userSnapShot.id,
+			createAt: new Date(),
+			...additionalData
+		});
+	} catch (error) {
+		console.log(error);
+	}
+
+	return newProdRef;
+};
+
+export const getUserProduction = async (userId) => {
+	if (!userId) return;
+	const userRef = firestore.doc(`users/${userId}`);
+	const userSnapshot = await userRef.get();
+	if (!userSnapshot.exists) return;
+	const { production } = userSnapshot.data();
+	const productionRef = firestore.doc(`productions/${production}`);
+	const prodSnapShot = await productionRef.get();
+	if (!prodSnapShot.exists) return;
+	return productionRef;
+};
+
+export const createVideoProject = async (productionId, videoProject) => {
+	if (!productionId) return;
+	if (!videoProject) return;
+
+	const productionRef = firestore.doc(`productions/${productionId}`);
+	const prodSnapShot = await productionRef.get();
+
+	if (!prodSnapShot.exists) return;
+
+	const projectRef = firestore.collection(`productions/${productionId}/projects`);
+	const newProjectRef = projectRef.doc();
+
+	try {
+		newProjectRef.set(videoProject);
+	} catch (error) {
+		console.log(error);
+	}
+	return newProjectRef;
+};
+
+export const getVideoProjects = async (productionId) => {
+	if (!productionId) return;
+
+	const projectsRef = firestore.collection(`productions/${productionId}/projects`);
+	const projectsSnapShot = await projectsRef.get();
+	if (projectsSnapShot.empty) return;
+
+	return projectsSnapShot;
+};
+
 // Initialize Firebase
 firebase.initializeApp(config);
 firebase.analytics();

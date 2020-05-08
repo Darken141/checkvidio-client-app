@@ -1,15 +1,14 @@
-import React, { useContext, useState } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import React, { useContext } from 'react';
 import { UserContext } from '../../../context/Auth';
+import { ProjectsContext } from '../../../context/Projects';
 
-import { DropdownItem } from '../components/navbar/navbar';
-import VideoPlayer from '../../video/components/video-player/video-player';
-import { FaEnvelope, FaEllipsisV, FaEdit, FaTrash } from 'react-icons/fa';
+import OverviewCard from '../components/project-overview/overviewcard';
 
 const Projects = () => {
 	const currentUser = useContext(UserContext);
-	const match = useRouteMatch();
-	const [ open, setOpen ] = useState(false);
+	const { projects } = useContext(ProjectsContext);
+
+	console.log(projects);
 
 	return (
 		<main id="projects">
@@ -24,40 +23,9 @@ const Projects = () => {
 					<div className="project-overview__head-col ">Možnosti</div>
 				</div>
 
-				<div className="project-overview__project component">
-					<div className="project-overview__project-col">1.</div>
-					<div className="project-overview__project-col">
-						<VideoPlayer />
-					</div>
-					<div className="project-overview__project-col">
-						<h3 className="title">Video name</h3>
-						<p className="desc">
-							Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth
-							tatsoi tomatillo melon azuki bean garlic.
-						</p>
-					</div>
-					<div className="project-overview__project-col">
-						<div className="icon-container">
-							<Link to={`${match.url}/send-email/:id`} className="icon">
-								<FaEnvelope />
-							</Link>
-							<div className="icon more-menu" onClick={() => setOpen(!open)}>
-								<FaEllipsisV />
-
-								{open && (
-									<div className="more-options">
-										<DropdownItem to="edit/:id" leftIcon={<FaEdit />}>
-											Upravit
-										</DropdownItem>
-										<DropdownItem to="edit/:id" leftIcon={<FaTrash />}>
-											Odstranit
-										</DropdownItem>
-									</div>
-								)}
-							</div>
-						</div>
-					</div>
-				</div>
+				{projects.map(({ id, desc, videoName, videoUrl, name }) => (
+					<OverviewCard key={id} desc={desc} videoName={videoName} videoUrl={videoUrl} name={name} />
+				))}
 			</div>
 		</main>
 	);
