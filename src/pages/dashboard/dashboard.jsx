@@ -3,9 +3,9 @@ import { Route, useRouteMatch, Switch } from 'react-router-dom';
 
 import Projects from './routes/projects';
 import CreateProject from './routes/create-project/create-project';
-// import ProjectPage from './routes/project-page/project-page';
+import ProjectPage from './routes/project-page/project-page';
 // import UserProfile from './routes/user-profile/user-profile';
-// import EmailForm from '../../components/email-form/email-form';
+import EmailForm from '../../components/email-form/email-form';
 
 // import Header from './components/header/header';
 // import Footer from '../../components/footer/footer';
@@ -25,6 +25,8 @@ const Dashboard = () => {
 				<Switch>
 					<Route exact path={`${match.path}/`} component={Projects} />
 					<Route exact path={`${match.path}/create-project`} component={CreateProject} />
+					<Route path={`${match.path}/edit/:id`} component={ProjectPage} />
+					<Route path={`${match.path}/send-email/:id`} component={EmailForm} />
 				</Switch>
 			</div>
 			{/*

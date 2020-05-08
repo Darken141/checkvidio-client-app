@@ -77,3 +77,20 @@
 		}
 	}
 }
+
+#projects {
+	.more-menu {
+		position: relative;
+	}
+
+	.more-options {
+		position: absolute;
+		top: 3rem;
+		right: 0;
+		background-color: var(--component-bg);
+		border: var(--border);
+		border-radius: var(--border-radius);
+		padding: 2rem;
+		z-index: 99;
+	}
+}

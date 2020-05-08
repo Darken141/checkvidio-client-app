@@ -1,11 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { UserContext } from '../../../context/Auth';
 
+import { DropdownItem } from '../components/navbar/navbar';
 import VideoPlayer from '../../video/components/video-player/video-player';
-import { FaEnvelope, FaEllipsisV } from 'react-icons/fa';
+import { FaEnvelope, FaEllipsisV, FaEdit, FaTrash } from 'react-icons/fa';
 
 const Projects = () => {
 	const currentUser = useContext(UserContext);
+	const match = useRouteMatch();
+	const [ open, setOpen ] = useState(false);
 
 	return (
 		<main id="projects">
@@ -34,11 +38,22 @@ const Projects = () => {
 					</div>
 					<div className="project-overview__project-col">
 						<div className="icon-container">
-							<div className="icon">
+							<Link to={`${match.url}/send-email/:id`} className="icon">
 								<FaEnvelope />
-							</div>
-							<div className="icon">
+							</Link>
+							<div className="icon more-menu" onClick={() => setOpen(!open)}>
 								<FaEllipsisV />
+
+								{open && (
+									<div className="more-options">
+										<DropdownItem to="edit/:id" leftIcon={<FaEdit />}>
+											Upravit
+										</DropdownItem>
+										<DropdownItem to="edit/:id" leftIcon={<FaTrash />}>
+											Odstranit
+										</DropdownItem>
+									</div>
+								)}
 							</div>
 						</div>
 					</div>

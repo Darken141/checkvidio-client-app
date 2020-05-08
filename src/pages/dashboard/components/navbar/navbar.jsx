@@ -59,6 +59,17 @@ export const DropdownNavItem = (props) => {
 	);
 };
 
+export const DropdownItem = (props) => {
+	const match = useRouteMatch();
+	return (
+		<Link to={props.to ? `${match.url}/${props.to}` : '#'} className="menu-item" onClick={props.handleClick}>
+			<span className="icon-button">{props.leftIcon}</span>
+			{props.children}
+			<span className="icon-right">{props.rightIcon}</span>
+		</Link>
+	);
+};
+
 const DropdownMenu = () => {
 	const [ activeMenu, setActiveMenu ] = useState('main');
 	const [ menuHeight, setMenuHeight ] = useState(null);
@@ -71,17 +82,6 @@ const DropdownMenu = () => {
 	const calcHeight = (el) => {
 		const height = el.offsetHeight + 30;
 		setMenuHeight(height);
-	};
-
-	const DropdownItem = (props) => {
-		const match = useRouteMatch();
-		return (
-			<Link to={props.to ? `${match.url}/${props.to}` : '#'} className="menu-item" onClick={props.handleClick}>
-				<span className="icon-button">{props.leftIcon}</span>
-				{props.children}
-				<span className="icon-right">{props.rightIcon}</span>
-			</Link>
-		);
 	};
 
 	const LogOutButton = (props) => {
