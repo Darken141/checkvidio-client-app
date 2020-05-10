@@ -5,18 +5,21 @@ import { getUserProduction, getVideoProjects } from '../firebase/firebase.utils'
 
 export const ProjectsContext = createContext({
 	production: null,
-	projects: []
+	projects: [],
+	loading: true
 });
 
 export const ProjectsProvider = ({ children }) => {
 	const currentUser = useContext(UserContext);
 	const [ projects, setProjects ] = useState([]);
 	const [ production, setProduction ] = useState(null);
+	const [ loading, setLoading ] = useState(true);
 
 	useEffect(
 		() => {
 			// createUserProduction('Darken studio', currentUser.id);
 			const getProductionAndProjects = async () => {
+				setLoading(true);
 				const productionRef = await getUserProduction(currentUser.id);
 				productionRef.onSnapshot(async (snapshot) => {
 					setProduction({
@@ -24,8 +27,8 @@ export const ProjectsProvider = ({ children }) => {
 						...snapshot.data()
 					});
 					const projectsRef = await getVideoProjects(snapshot.id);
-					const projectsArr = projectsRef.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-					setProjects(projectsArr);
+					setProjects(projectsRef);
+					setLoading(false);
 				});
 			};
 			getProductionAndProjects();
@@ -33,5 +36,5 @@ export const ProjectsProvider = ({ children }) => {
 		[ currentUser ]
 	);
 
-	return <ProjectsContext.Provider value={{ projects, production }}>{children}</ProjectsContext.Provider>;
+	return <ProjectsContext.Provider value={{ projects, production, loading }}>{children}</ProjectsContext.Provider>;
 };

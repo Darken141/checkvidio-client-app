@@ -1,4 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+// CONTEXT
+import { NotesProvider } from '../../context/Notes';
+import { ProjectContext } from '../../context/Project';
+import { UserContext } from '../../context/Auth';
 
 import NoteForm from './components/note-form/note-form';
 import Notes from './components/notes/notes';
@@ -9,7 +15,11 @@ import Footer from '../../components/footer/footer';
 
 import './video.styles.scss';
 
-const VideoPage = ({ project }) => {
+const VideoPage = () => {
+	const currentUser = useContext(UserContext);
+	const { project } = useContext(ProjectContext);
+	if (!project) return <div>Loading...</div>;
+
 	return (
 		<div id="video-page">
 			<header id="video-page__header">
@@ -18,6 +28,7 @@ const VideoPage = ({ project }) => {
 				</div>
 
 				<div className="menu-items">
+					{currentUser && <Link to="/dashboard">Admin panel</Link>}
 					<div className="help_icon">
 						<FaQuestionCircle />
 					</div>
@@ -25,19 +36,21 @@ const VideoPage = ({ project }) => {
 			</header>
 			<main id="video-page__main">
 				<div className="video-container">
-					<VideoPlayer />
-					<h2>Project Name</h2>
+					<VideoPlayer url={project.videoUrl} />
+					<h2>{project.name}</h2>
 					<div className="video-description component">
 						<details>
 							<summary>Popis</summary>
-							<p className="desc">Project Desc</p>
+							<p className="desc">{project.desc}</p>
 						</details>
 					</div>
 				</div>
 			</main>
 			<aside id="video-page__aside">
-				<NoteForm />
-				<Notes />
+				<NotesProvider>
+					<NoteForm />
+					<Notes />
+				</NotesProvider>
 			</aside>
 
 			<Footer />

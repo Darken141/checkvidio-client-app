@@ -81,16 +81,14 @@ export const getUserProduction = async (userId) => {
 	return productionRef;
 };
 
-export const createVideoProject = async (productionId, videoProject) => {
-	if (!productionId) return;
+export const createVideoProject = async (videoProject) => {
 	if (!videoProject) return;
 
-	const productionRef = firestore.doc(`productions/${productionId}`);
+	const productionRef = firestore.doc(`productions/${videoProject.production}`);
 	const prodSnapShot = await productionRef.get();
-
 	if (!prodSnapShot.exists) return;
 
-	const projectRef = firestore.collection(`productions/${productionId}/projects`);
+	const projectRef = firestore.collection(`/projects`);
 	const newProjectRef = projectRef.doc();
 
 	try {
@@ -104,11 +102,69 @@ export const createVideoProject = async (productionId, videoProject) => {
 export const getVideoProjects = async (productionId) => {
 	if (!productionId) return;
 
-	const projectsRef = firestore.collection(`productions/${productionId}/projects`);
+	const projectsRef = firestore.collection(`/projects`).where('production', '==', productionId);
 	const projectsSnapShot = await projectsRef.get();
 	if (projectsSnapShot.empty) return;
 
-	return projectsSnapShot;
+	return projectsSnapShot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+};
+
+export const getVideoProject = async (projectId) => {
+	if (!projectId) return;
+
+	const projectRef = firestore.doc(`projects/${projectId}`);
+	// console.log(projectRef);
+	// const projectSnapShot = await projectRef.get();
+	// if (!projectSnapShot.exists) return;
+
+	return projectRef;
+};
+
+export const getProjectNotes = async (projectId) => {
+	if (!projectId) return;
+
+	const notesRef = firestore.collection(`projects/${projectId}/notes`).orderBy('time');
+	return notesRef;
+};
+
+export const createProjectNote = async (projectId, note) => {
+	if (!projectId && note) return;
+
+	const noteRef = firestore.collection(`projects/${projectId}/notes`);
+	const newNoteRef = noteRef.doc();
+	try {
+		await newNoteRef.set(note);
+	} catch (error) {
+		console.log(error);
+	}
+
+	return noteRef;
+};
+
+export const deleteProjectNote = async (projectId, noteId) => {
+	if (!projectId && noteId) return;
+	const noteRef = firestore.doc(`projects/${projectId}/notes/${noteId}`);
+	const noteSnapShot = await noteRef.get();
+	if (!noteSnapShot.exists) return;
+	try {
+		await noteRef.delete();
+	} catch (error) {
+		console.log(error);
+	}
+	return noteRef;
+};
+
+export const toggleNoteIsDone = async (projectId, noteId) => {
+	if (!projectId && noteId) return;
+	const noteRef = firestore.doc(`projects/${projectId}/notes/${noteId}`);
+	const noteSnapShot = await noteRef.get();
+	if (!noteSnapShot.exists) return;
+	try {
+		const { isDone } = noteSnapShot.data();
+		await noteRef.update({ isDone: !isDone });
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 // Initialize Firebase

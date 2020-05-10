@@ -3,10 +3,12 @@ import { UserContext } from '../../../context/Auth';
 import { ProjectsContext } from '../../../context/Projects';
 
 import OverviewCard from '../components/project-overview/overviewcard';
+import Spinner from '../../../components/spinner/spinner.component';
 
 const Projects = () => {
 	const currentUser = useContext(UserContext);
-	const { projects } = useContext(ProjectsContext);
+	const { projects, loading } = useContext(ProjectsContext);
+	console.log(loading);
 
 	console.log(projects);
 
@@ -22,7 +24,7 @@ const Projects = () => {
 					<div className="project-overview__head-col ">Popis</div>
 					<div className="project-overview__head-col ">Možnosti</div>
 				</div>
-
+				{loading && <Spinner />}
 				{projects.map(({ id, desc, videoName, videoUrl, name }) => (
 					<OverviewCard key={id} desc={desc} videoName={videoName} videoUrl={videoUrl} name={name} />
 				))}

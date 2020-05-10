@@ -7,15 +7,17 @@ import CustomTextarea from '../../../../components/textarea/textarea';
 
 const CreateProject = () => {
 	const history = useHistory();
-	const { id } = useContext(ProjectsContext);
+	const { production: { id } } = useContext(ProjectsContext);
 	const [ name, setName ] = useState('');
 	const [ desc, setDesc ] = useState('');
 	const [ videoName, setVideoName ] = useState('');
 	const [ videoUrl, setVideoUrl ] = useState('');
 
+	// console.log(id);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		createVideoProject(id, { name, desc, videoName, videoUrl });
+		createVideoProject({ name, desc, videoName, videoUrl, production: id });
 		history.push('/dashboard');
 	};
 

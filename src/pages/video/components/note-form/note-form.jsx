@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+
+// CONTEXT
+
+import { ProjectContext } from '../../../../context/Project';
+import { NotesContext } from '../../../../context/Notes';
+import { handleCustomTime } from '../../../../utils/utils';
 
 import CustomRadiobox from '../../../../components/radiobox/radiobox';
 import CustomTextarea from '../../../../components/textarea/textarea';
 import TimeInput from '../time-input/time-input';
 import Duration from '../../../../utils/duration';
 import { IoMdSend } from 'react-icons/io';
+import Spinner from '../../../../components/spinner/spinner.component';
 
 import './note-form.styles.scss';
 
 const NoteForm = () => {
+	const { videoState } = useContext(ProjectContext);
+	const { createNote } = useContext(NotesContext);
 	const [ option, setOption ] = useState('actual');
 	const [ note, setNote ] = useState('');
 	const [ min, setMin ] = useState('');
 	const [ sec, setSec ] = useState('');
-	const playedSeconds = 0;
 
 	const radioboxes = [
 		{
@@ -39,15 +47,25 @@ const NoteForm = () => {
 		}
 	];
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (option === 'actual') {
+			createNote({ note, time: videoState.playedSeconds, isDone: false, createAt: new Date() });
+			setNote('');
 		}
 		if (option === 'notime') {
+			createNote({ note, time: 0, isDone: false, createAt: new Date() });
+			setNote('');
 		}
 		if (option === 'custom') {
+			createNote({ note, time: handleCustomTime(min, sec), isDone: false, createAt: new Date() });
+			setNote('');
+			setMin('');
+			setSec('');
 		}
 	};
+
+	if (!videoState) return <Spinner />;
 
 	return (
 		<form className="note-form component" onSubmit={(e) => handleSubmit(e)}>
@@ -60,7 +78,7 @@ const NoteForm = () => {
 					<div className="actual-time">
 						Čas:{' '}
 						<span>
-							<Duration seconds={playedSeconds} />
+							<Duration seconds={videoState.playedSeconds} />
 						</span>
 					</div>
 				) : (

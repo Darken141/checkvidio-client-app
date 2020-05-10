@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 // CONTEXT
 import { ProjectsProvider } from './context/Projects';
+import { ProjectProvider } from './context/Project';
 
 // PAGES
 import SignIn from './pages/sign-in/sign-in';
@@ -19,12 +20,16 @@ const App = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route path="/video/:id" component={VideoPage} />
 				<Route exact path="/login">
 					<SignIn />
 				</Route>
 				<Route exact path="/sign-up">
 					<SignUp />
+				</Route>
+				<Route path="/video/:id">
+					<ProjectProvider>
+						<VideoPage />
+					</ProjectProvider>
 				</Route>
 				<PrivateRoute path="/dashboard">
 					<ProjectsProvider>

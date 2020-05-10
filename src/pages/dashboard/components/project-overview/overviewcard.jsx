@@ -12,11 +12,11 @@ const Overviewcard = ({ desc, videoUrl, name }) => {
 	const match = useRouteMatch();
 	const [ open, setOpen ] = useState(false);
 
-	const handleDeleteProject = () => {
-		let r = window.confirm('Chcete odstranit tento projekt?');
-		if (r) {
-		}
-	};
+	// const handleDeleteProject = () => {
+	// 	let r = window.confirm('Chcete odstranit tento projekt?');
+	// 	if (r) {
+	// 	}
+	// };
 
 	return (
 		<div className="project-overview__project component">
