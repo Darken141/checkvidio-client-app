@@ -124,3 +124,7 @@
 	transform: translateX(110%);
 	transition: all var(--speed) ease;
 }
+
+.open-dropdown {
+	filter: brightness(1.2);
+}

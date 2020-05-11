@@ -8,9 +8,6 @@ import Spinner from '../../../components/spinner/spinner.component';
 const Projects = () => {
 	const currentUser = useContext(UserContext);
 	const { projects, loading } = useContext(ProjectsContext);
-	console.log(loading);
-
-	console.log(projects);
 
 	return (
 		<main id="projects">
@@ -25,8 +22,16 @@ const Projects = () => {
 					<div className="project-overview__head-col ">Možnosti</div>
 				</div>
 				{loading && <Spinner />}
-				{projects.map(({ id, desc, videoName, videoUrl, name }) => (
-					<OverviewCard key={id} desc={desc} videoName={videoName} videoUrl={videoUrl} name={name} />
+				{projects.map(({ id, desc, videoName, videoUrl, name }, idx) => (
+					<OverviewCard
+						key={id}
+						id={id}
+						idx={idx}
+						desc={desc}
+						videoName={videoName}
+						videoUrl={videoUrl}
+						name={name}
+					/>
 				))}
 			</div>
 		</main>

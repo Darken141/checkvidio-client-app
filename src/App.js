@@ -47,7 +47,6 @@ const App = () => {
 
 const PrivateRoute = ({ children, ...rest }) => {
 	const currentUser = useContext(UserContext);
-	console.log(currentUser);
 	return <Route {...rest} render={() => (currentUser ? children : <Redirect to="/login" />)} />;
 };
 

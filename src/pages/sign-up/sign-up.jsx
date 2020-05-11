@@ -52,11 +52,11 @@ const SignUp = () => {
 					Registruj sa, je to <strong>ZDARMA!</strong>
 				</h3>
 				<CustomInput
-					id="production-name"
-					label="Názov produkcie:"
+					id="display-name"
+					label="Vaše meno:"
 					name={displayName}
 					type="text"
-					placeholder="EpiQ-Video studio"
+					placeholder="Meno priezvisko"
 					value={displayName}
 					handleChange={(e) => setDisplayName(e.target.value)}
 				/>

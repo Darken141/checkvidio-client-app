@@ -75,10 +75,37 @@ export const getUserProduction = async (userId) => {
 	const userSnapshot = await userRef.get();
 	if (!userSnapshot.exists) return;
 	const { production } = userSnapshot.data();
+	if (!production) {
+		createUserProduction('Checkvid.io production', userRef.id);
+	}
+
 	const productionRef = firestore.doc(`productions/${production}`);
-	const prodSnapShot = await productionRef.get();
-	if (!prodSnapShot.exists) return;
 	return productionRef;
+};
+
+export const deleteVideoProject = async (projectId) => {
+	if (!projectId) return;
+	const projectRef = firestore.doc(`projects/${projectId}`);
+	const projectSnapShot = await projectRef.get();
+	if (!projectSnapShot.exists) return;
+	try {
+		await projectRef.delete();
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const updateVideoProject = async (projectId, projectData) => {
+	if (!projectId && !projectData) return;
+
+	const projectRef = firestore.doc(`projects/${projectId}`);
+	const projectSnapShot = await projectRef.get();
+	if (!projectSnapShot.exists) return;
+	try {
+		await projectRef.update(projectData);
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const createVideoProject = async (videoProject) => {
@@ -103,10 +130,8 @@ export const getVideoProjects = async (productionId) => {
 	if (!productionId) return;
 
 	const projectsRef = firestore.collection(`/projects`).where('production', '==', productionId);
-	const projectsSnapShot = await projectsRef.get();
-	if (projectsSnapShot.empty) return;
 
-	return projectsSnapShot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+	return projectsRef;
 };
 
 export const getVideoProject = async (projectId) => {

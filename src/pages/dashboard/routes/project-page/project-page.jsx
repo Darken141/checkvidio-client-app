@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ProjectsContext } from '../../../../context/Projects';
+import { useParams, Link, useHistory } from 'react-router-dom';
 
-import { useParams, Link } from 'react-router-dom';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { IoIosMail } from 'react-icons/io';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -10,13 +11,21 @@ import CustomTextarea from '../../../../components/textarea/textarea';
 
 import './project-page.styles.scss';
 
-const ProjectPage = ({ updateProject }) => {
+const ProjectPage = () => {
 	const { id } = useParams();
+	const history = useHistory();
+	const { updateProject } = useContext(ProjectsContext);
 	const [ name, setName ] = useState('');
 	const [ desc, setDesc ] = useState('');
 	const [ videoName, setVideoName ] = useState('');
 	const [ videoUrl, setVideoUrl ] = useState('');
 	const url = `https://www.app.checkvid.io/video/${id}`;
+
+	const handleUpdateProject = (e) => {
+		e.preventDefault();
+		updateProject(id, { name, desc, videoName, videoUrl });
+		history.push('/dashboard');
+	};
 
 	return (
 		<section id="project-page">
@@ -30,15 +39,6 @@ const ProjectPage = ({ updateProject }) => {
 					value={name}
 					handleChange={(e) => setName(e.target.value)}
 				/>
-			</div>
-
-			<div className="project-options">
-				<Link to={`${id}/send-email`} className="send-email icon">
-					<IoIosMail />
-				</Link>
-				<div className="delete-project icon">
-					<FaRegTrashAlt />
-				</div>
 			</div>
 
 			<div className="project-url component">
@@ -84,7 +84,9 @@ const ProjectPage = ({ updateProject }) => {
 					onChange={(e) => setDesc(e.target.value)}
 					// handlePressKey={handlePressKey}
 				/>
-				<button className="custom-btn">Uložiť zmeny</button>
+				<button onClick={(e) => handleUpdateProject(e)} className="custom-btn">
+					Uložiť zmeny
+				</button>
 			</div>
 		</section>
 	);

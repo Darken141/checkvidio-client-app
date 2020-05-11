@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ProjectsContext } from '../../../../context/Projects';
 
 import { DropdownItem } from '../navbar/navbar';
 import VideoPlayer from '../../../video/components/video-player/video-player';
@@ -8,19 +9,14 @@ import { FaEnvelope, FaEllipsisV, FaEdit, FaTrash } from 'react-icons/fa';
 
 import './overviewcard.styles.scss';
 
-const Overviewcard = ({ desc, videoUrl, name }) => {
+const Overviewcard = ({ id, idx, desc, videoUrl, name }) => {
 	const match = useRouteMatch();
+	const { deleteProject } = useContext(ProjectsContext);
 	const [ open, setOpen ] = useState(false);
-
-	// const handleDeleteProject = () => {
-	// 	let r = window.confirm('Chcete odstranit tento projekt?');
-	// 	if (r) {
-	// 	}
-	// };
 
 	return (
 		<div className="project-overview__project component">
-			<div className="project-overview__project-col">1.</div>
+			<div className="project-overview__project-col">{idx + 1}.</div>
 			<div className="project-overview__project-col">
 				<VideoPlayer url={videoUrl} />
 			</div>
@@ -38,10 +34,10 @@ const Overviewcard = ({ desc, videoUrl, name }) => {
 
 						{open && (
 							<div className="more-options">
-								<DropdownItem to="edit/:id" leftIcon={<FaEdit />}>
+								<DropdownItem to={`edit/${id}`} leftIcon={<FaEdit />}>
 									Upravit
 								</DropdownItem>
-								<DropdownItem to="edit/:id" leftIcon={<FaTrash />}>
+								<DropdownItem handleClick={() => deleteProject(id)} leftIcon={<FaTrash />}>
 									Odstranit
 								</DropdownItem>
 							</div>

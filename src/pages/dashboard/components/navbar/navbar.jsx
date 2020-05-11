@@ -50,7 +50,7 @@ export const DropdownNavItem = (props) => {
 
 	return (
 		<li className="nav-item">
-			<span className="icon-button" onClick={() => setOpen(!open)}>
+			<span className={open ? 'icon-button open-dropdown' : 'icon-button'} onClick={() => setOpen(!open)}>
 				{props.icon}
 			</span>
 
@@ -105,14 +105,14 @@ const DropdownMenu = () => {
 			>
 				<div className="menu">
 					<DropdownItem to="profile" leftIcon={<FaPlus />}>
-						My Profile
+						Môj profil
 					</DropdownItem>
 					<DropdownItem
 						leftIcon={<FaPlus />}
 						rightIcon={<FaChevronRight />}
 						handleClick={() => setActiveMenu('settings')}
 					>
-						Settings
+						Nastavenia
 					</DropdownItem>
 					<LogOutButton leftIcon={<FaSignOutAlt />} handleClick={() => auth.signOut()}>
 						Odhlásiť sa
