@@ -11,7 +11,6 @@ import './notes.styles.scss';
 const Notes = () => {
 	const currentUser = useContext(UserContext);
 	const { notes, loading, deleteNote, toggleIsDone } = useContext(NotesContext);
-
 	if (loading) return <Spinner />;
 	return (
 		<div className="note-container">

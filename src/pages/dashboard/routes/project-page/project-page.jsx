@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { ProjectsContext } from '../../../../context/Projects';
-import { useParams, Link, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
-import { FaRegTrashAlt } from 'react-icons/fa';
-import { IoIosMail } from 'react-icons/io';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import CustomInput from '../../../../components/input/input';

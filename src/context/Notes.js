@@ -35,7 +35,7 @@ export const NotesProvider = ({ children }) => {
 			const getProjectNotesData = async () => {
 				const notesRef = await getProjectNotes(id);
 				notesRef.onSnapshot((snapShot) => {
-					if (snapShot.empty) return;
+					if (snapShot.empty) return setNotes([]);
 					const noteArr = snapShot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 					setNotes(noteArr);
 				});

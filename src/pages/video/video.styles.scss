@@ -18,6 +18,10 @@
 		align-items: center;
 		justify-content: space-between;
 
+		.logo-container {
+			padding: 0;
+		}
+
 		.menu-items {
 			display: flex;
 			align-items: center;
@@ -50,7 +54,7 @@
 		.video-container {
 			h2 {
 				margin: 1rem 0;
-				font-weight: lighter;
+				font-weight: normal;
 				opacity: .83;
 			}
 
