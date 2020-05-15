@@ -2,25 +2,31 @@
 
 #sign-up {
 	display: grid;
-	grid-template-rows: 50px 1fr;
+	grid-template-rows: 1fr;
 	min-height: 100vh;
 	align-items: center;
 	padding: 0 1rem;
-}
 
-.form {
-	width: 100%;
-	max-width: 30rem;
-	// margin: 0 auto;
-	padding: 4rem;
-	background-color: $component-background;
-	box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 1);
+	.form {
+		width: 100%;
+		max-width: 45rem;
+		margin: 0 auto;
+		padding: 3rem 4rem;
+		background-color: $component-background;
+		box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 1);
 
-	h3 {
-		font-weight: normal;
-		text-align: center;
-		margin-bottom: .5rem;
-		opacity: .83;
+		h3 {
+			font-weight: normal;
+			text-align: center;
+			margin-bottom: .5rem;
+			opacity: .83;
+		}
+
+		.link {
+			display: block;
+			text-align: center;
+			margin-top: 2rem;
+		}
 	}
 }
 

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { UserContext } from '../../context/Auth';
-import Navbar from '../../components/navbar/navbar';
 import CustomInput from '../../components/input/input';
 import Spinner from '../../components/spinner/spinner.component';
 
@@ -36,12 +35,6 @@ const SignIn = () => {
 
 	return (
 		<div id="sign-in">
-			<Navbar>
-				<Link className="nav__item-link" to="/sign-up">
-					Registrovať
-				</Link>
-			</Navbar>
-
 			<form className="form" onSubmit={(e) => handleSubmit(e)}>
 				<h3>Prihlásiť sa</h3>
 				<CustomInput
@@ -69,6 +62,10 @@ const SignIn = () => {
 				<button className="custom-btn" onClick={signInWithGoogle}>
 					Prihlásiť sa cez účet GOOGLE
 				</button>
+
+				<Link className="link" to="sign-up">
+					Založiť nový účet
+				</Link>
 			</form>
 		</div>
 	);

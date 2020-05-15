@@ -3,7 +3,6 @@ import { UserContext } from '../../context/Auth';
 import { Link, Redirect } from 'react-router-dom';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
-import Navbar from '../../components/navbar/navbar';
 import CustomInput from '../../components/input/input';
 import Spinner from '../../components/spinner/spinner.component';
 
@@ -41,12 +40,6 @@ const SignUp = () => {
 
 	return (
 		<div id="sign-up">
-			<Navbar>
-				<Link className="nav__item-link" to="/login">
-					Prihlásiť sa
-				</Link>
-			</Navbar>
-
 			<form className="form" onSubmit={(e) => handleFormSubmit(e)}>
 				<h3>
 					Registruj sa, je to <strong>ZDARMA!</strong>
@@ -81,6 +74,10 @@ const SignUp = () => {
 				<button className="custom-btn" type="submit">
 					Vytvoriť účet
 				</button>
+
+				<Link className="link" to="/login">
+					Mám účet, chcem sa prihlásiť.
+				</Link>
 			</form>
 		</div>
 	);
