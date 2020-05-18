@@ -5,14 +5,15 @@ import './pop-up.styles.scss';
 
 const PopUp = ({ children }) => {
 	const wrapperRef = useRef(null);
-	const { toggleEmailPopUp } = useContext(ProjectsContext);
+	const { closeProductionPopUp, closeEmailPopUp } = useContext(ProjectsContext);
 
 	const useOutsideAlerter = (ref) => {
 		useEffect(
 			() => {
 				const handleClickOutside = (e) => {
 					if (ref.current && !ref.current.contains(e.target)) {
-						toggleEmailPopUp();
+						closeEmailPopUp();
+						closeProductionPopUp();
 					}
 				};
 

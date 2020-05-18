@@ -83,6 +83,19 @@ export const getUserProduction = async (userId) => {
 	return productionRef;
 };
 
+export const updateUserProductionName = async (productionId, productionName) => {
+	if (!productionId) return;
+
+	const productionRef = firestore.doc(`productions/${productionId}`);
+	const productionSnapshot = await productionRef.get();
+	if (!productionSnapshot.exists) return;
+	try {
+		await productionRef.update({ productionName });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const deleteVideoProject = async (projectId) => {
 	if (!projectId) return;
 	const projectRef = firestore.doc(`projects/${projectId}`);

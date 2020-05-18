@@ -6,7 +6,8 @@ import {
 	getVideoProjects,
 	createVideoProject,
 	deleteVideoProject,
-	updateVideoProject
+	updateVideoProject,
+	updateUserProductionName
 } from '../firebase/firebase.utils';
 
 export const ProjectsContext = createContext({
@@ -16,11 +17,16 @@ export const ProjectsContext = createContext({
 	showEmailPopUp: false,
 	selectedProjectUrl: '',
 	sendingEmail: false,
+	showProductionPopUp: false,
 	toggleEmailPopUp: () => {},
+	toggleProductionPopUp: () => {},
+	closeEmailPopUp: () => {},
+	closeProductionPopUp: () => {},
 	createProject: () => {},
 	updateProject: () => {},
 	deleteProject: () => {},
-	sendInviteEmail: () => {}
+	sendInviteEmail: () => {},
+	updateProductionName: () => {}
 });
 
 export const ProjectsProvider = ({ children }) => {
@@ -32,6 +38,12 @@ export const ProjectsProvider = ({ children }) => {
 	const [ selectedProjectId, setSelectedProjectId ] = useState('');
 	const [ selectedProjectUrl, setSelectedProjectUrl ] = useState('');
 	const [ sendingEmail, setSendingEmail ] = useState(false);
+	const [ showProductionPopUp, setShowProductionPopUp ] = useState(false);
+
+	const updateProductionName = (productionName) => {
+		updateUserProductionName(production.id, productionName);
+		setShowProductionPopUp(false);
+	};
 
 	const sendInviteEmail = async (email) => {
 		setSendingEmail(true);
@@ -60,6 +72,18 @@ export const ProjectsProvider = ({ children }) => {
 		setShowEmailPopUp(!showEmailPopUp);
 		setSelectedProjectUrl(`https://www.app.checkvid.io/video/${id}`);
 		setSelectedProjectId(id);
+	};
+
+	const toggleProductionPopUp = () => {
+		setShowProductionPopUp(!showProductionPopUp);
+	};
+
+	const closeEmailPopUp = () => {
+		setShowEmailPopUp(false);
+	};
+
+	const closeProductionPopUp = () => {
+		setShowProductionPopUp(false);
 	};
 
 	const createProject = (projectData) => {
@@ -110,11 +134,16 @@ export const ProjectsProvider = ({ children }) => {
 				showEmailPopUp,
 				selectedProjectUrl,
 				sendingEmail,
+				showProductionPopUp,
 				toggleEmailPopUp,
+				toggleProductionPopUp,
+				closeEmailPopUp,
+				closeProductionPopUp,
 				createProject,
 				deleteProject,
 				updateProject,
-				sendInviteEmail
+				sendInviteEmail,
+				updateProductionName
 			}}
 		>
 			{children}
