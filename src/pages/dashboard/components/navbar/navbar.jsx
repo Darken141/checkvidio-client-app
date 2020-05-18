@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaBell, FaPlus, FaCaretDown, FaChevronRight, FaArrowLeft, FaSignOutAlt } from 'react-icons/fa';
+import { FaBell, FaPlus, FaCaretDown, FaUserAlt, FaArrowLeft, FaSignOutAlt } from 'react-icons/fa';
 import { auth } from '../../../../firebase/firebase.utils';
 import { CSSTransition } from 'react-transition-group';
 import { Link, useRouteMatch } from 'react-router-dom';
@@ -104,16 +104,16 @@ const DropdownMenu = () => {
 				onEnter={calcHeight}
 			>
 				<div className="menu">
-					<DropdownItem to="profile" leftIcon={<FaPlus />}>
+					<DropdownItem to="profile" leftIcon={<FaUserAlt />}>
 						Môj profil
 					</DropdownItem>
-					<DropdownItem
+					{/*<DropdownItem
 						leftIcon={<FaPlus />}
 						rightIcon={<FaChevronRight />}
 						handleClick={() => setActiveMenu('settings')}
 					>
 						Nastavenia
-					</DropdownItem>
+					</DropdownItem>*/}
 					<LogOutButton leftIcon={<FaSignOutAlt />} handleClick={() => auth.signOut()}>
 						Odhlásiť sa
 					</LogOutButton>

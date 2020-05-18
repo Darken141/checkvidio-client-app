@@ -3,15 +3,13 @@ import { ProjectsContext } from '../../../../context/Projects';
 
 import { DropdownItem } from '../navbar/navbar';
 import VideoPlayer from '../../../video/components/video-player/video-player';
-import { Link, useRouteMatch } from 'react-router-dom';
 
 import { FaEnvelope, FaEllipsisV, FaEdit, FaTrash } from 'react-icons/fa';
 
 import './overviewcard.styles.scss';
 
 const Overviewcard = ({ id, idx, desc, videoUrl, name }) => {
-	const match = useRouteMatch();
-	const { deleteProject } = useContext(ProjectsContext);
+	const { deleteProject, toggleEmailPopUp } = useContext(ProjectsContext);
 	const [ open, setOpen ] = useState(false);
 
 	return (
@@ -26,9 +24,9 @@ const Overviewcard = ({ id, idx, desc, videoUrl, name }) => {
 			</div>
 			<div className="project-overview__project-col">
 				<div className="icon-container">
-					<Link to={`${match.url}/send-email/:id`} className="icon">
+					<div onClick={() => toggleEmailPopUp(id)} className="icon">
 						<FaEnvelope />
-					</Link>
+					</div>
 					<div className="icon more-menu" onClick={() => setOpen(!open)}>
 						<FaEllipsisV />
 

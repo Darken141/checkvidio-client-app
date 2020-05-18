@@ -1,21 +1,22 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../../../context/Auth';
+import React, { useContext, useState } from 'react';
 import { ProjectsContext } from '../../../context/Projects';
+import { Link } from 'react-router-dom';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import OverviewCard from '../components/project-overview/overviewcard';
 import Spinner from '../../../components/spinner/spinner.component';
+import PopUp from '../../../components/pop-up/pop-up';
+import CustomInput from '../../../components/input/input';
 
 const Projects = () => {
-	const currentUser = useContext(UserContext);
-	const { projects, loading } = useContext(ProjectsContext);
+	const { projects, loading, showEmailPopUp, selectedProjectUrl, sendInviteEmail } = useContext(ProjectsContext);
+	const [ email, setEmail ] = useState('');
 
 	return (
 		<main id="projects">
-			<div className="component">Ahoj {currentUser.displayName}</div>
-
-			<h2 className="heading">Moje projekty</h2>
+			<h1 className="heading">Moje projekty</h1>
 			<div className="projects-list">
-				<div className="project-overview__head component">
+				<div className="project-overview__head ">
 					<div className="project-overview__head-col ">#</div>
 					<div className="project-overview__head-col ">Video</div>
 					<div className="project-overview__head-col ">Popis</div>
@@ -33,6 +34,44 @@ const Projects = () => {
 						name={name}
 					/>
 				))}
+
+				{showEmailPopUp && (
+					<PopUp>
+						<CustomInput
+							id="Email"
+							label="E-mail klienta:"
+							name={email}
+							type="email"
+							placeholder="client@email.com"
+							value={email}
+							handleChange={(e) => setEmail(e.target.value)}
+						/>
+						<button onClick={() => sendInviteEmail(email)} className="custom-btn">
+							Odoslať
+						</button>
+
+						<div className="project-url ">
+							<CustomInput
+								id="url"
+								label="Video odkaz"
+								name="url"
+								type="text"
+								placeholder=""
+								value={selectedProjectUrl}
+								handleChange={() => {}}
+							/>
+							<CopyToClipboard text={selectedProjectUrl} onCopy={() => alert('Odkaz skopirovany')}>
+								<button className="custom-btn">Kopirovat odkaz</button>
+							</CopyToClipboard>
+						</div>
+					</PopUp>
+				)}
+
+				{projects.length === 0 && (
+					<div className="cta">
+						<Link to="/dashboard/create-project">Pridať prvy projekt</Link>
+					</div>
+				)}
 			</div>
 		</main>
 	);

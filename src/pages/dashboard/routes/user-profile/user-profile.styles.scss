@@ -1,1 +1,28 @@
+#user-profile {
+	h2 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
 
+	.card {
+		div {
+			&:not(:last-child) {
+				margin-bottom: 2rem;
+			}
+
+			.title {
+				opacity: .6;
+			}
+		}
+
+		.production {
+			position: relative;
+
+			.edit-icon {
+				position: absolute;
+				right: 2rem;
+				top: 2rem;
+			}
+		}
+	}
+}

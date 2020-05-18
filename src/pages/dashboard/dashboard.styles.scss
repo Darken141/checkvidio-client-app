@@ -9,6 +9,7 @@
 
 	.project-overview__head {
 		display: flex;
+		margin-bottom: 3rem;
 
 		&-col {
 			width: 35%;
@@ -92,5 +93,21 @@
 		border-radius: var(--border-radius);
 		padding: 2rem;
 		z-index: 99;
+	}
+
+	.cta {
+		a {
+			position: absolute;
+			// max-width: 20rem;
+			background-color: var(--primary);
+			padding: 1rem 3rem;
+			margin: 5rem auto;
+			border-radius: 3px;
+			font-weight: bolder;
+			color: var(--bg);
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
 	}
 }

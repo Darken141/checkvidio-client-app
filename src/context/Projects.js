@@ -13,9 +13,13 @@ export const ProjectsContext = createContext({
 	production: null,
 	projects: [],
 	loading: true,
+	showEmailPopUp: false,
+	selectedProjectUrl: '',
+	toggleEmailPopUp: () => {},
 	createProject: () => {},
 	updateProject: () => {},
-	deleteProject: () => {}
+	deleteProject: () => {},
+	sendInviteEmail: () => {}
 });
 
 export const ProjectsProvider = ({ children }) => {
@@ -23,6 +27,36 @@ export const ProjectsProvider = ({ children }) => {
 	const [ projects, setProjects ] = useState([]);
 	const [ production, setProduction ] = useState(null);
 	const [ loading, setLoading ] = useState(true);
+	const [ showEmailPopUp, setShowEmailPopUp ] = useState(false);
+	const [ selectedProjectId, setSelectedProjectId ] = useState('');
+	const [ selectedProjectUrl, setSelectedProjectUrl ] = useState('');
+
+	const sendInviteEmail = async (email) => {
+		console.log(process.env.REACT_APP_EMAIL_ENDPOINT);
+
+		const response = await fetch(
+			`${process.env
+				.REACT_APP_EMAIL_ENDPOINT}?email=${email}&prodName=${production.productionName}&projectId=${selectedProjectId}`
+		);
+
+		const data = await response.json();
+
+		if (data.success) {
+			setShowEmailPopUp(false);
+			return alert(data.success);
+		}
+
+		if (data.error) {
+			setShowEmailPopUp(false);
+			return alert(data.error);
+		}
+	};
+
+	const toggleEmailPopUp = (id) => {
+		setShowEmailPopUp(!showEmailPopUp);
+		setSelectedProjectUrl(`https://www.app.checkvid.io/video/${id}`);
+		setSelectedProjectId(id);
+	};
 
 	const createProject = (projectData) => {
 		createVideoProject(projectData);
@@ -62,7 +96,18 @@ export const ProjectsProvider = ({ children }) => {
 
 	return (
 		<ProjectsContext.Provider
-			value={{ projects, production, loading, createProject, deleteProject, updateProject }}
+			value={{
+				projects,
+				production,
+				loading,
+				showEmailPopUp,
+				selectedProjectUrl,
+				toggleEmailPopUp,
+				createProject,
+				deleteProject,
+				updateProject,
+				sendInviteEmail
+			}}
 		>
 			{children}
 		</ProjectsContext.Provider>
