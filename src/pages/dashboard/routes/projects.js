@@ -9,8 +9,12 @@ import PopUp from '../../../components/pop-up/pop-up';
 import CustomInput from '../../../components/input/input';
 
 const Projects = () => {
-	const { projects, loading, showEmailPopUp, selectedProjectUrl, sendInviteEmail } = useContext(ProjectsContext);
+	const { projects, loading, showEmailPopUp, selectedProjectUrl, sendingEmail, sendInviteEmail } = useContext(
+		ProjectsContext
+	);
 	const [ email, setEmail ] = useState('');
+
+	console.log(sendingEmail);
 
 	return (
 		<main id="projects">
@@ -64,6 +68,8 @@ const Projects = () => {
 								<button className="custom-btn">Kopirovat odkaz</button>
 							</CopyToClipboard>
 						</div>
+
+						{sendingEmail && <Spinner />}
 					</PopUp>
 				)}
 

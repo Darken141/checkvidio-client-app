@@ -15,6 +15,7 @@ export const ProjectsContext = createContext({
 	loading: true,
 	showEmailPopUp: false,
 	selectedProjectUrl: '',
+	sendingEmail: false,
 	toggleEmailPopUp: () => {},
 	createProject: () => {},
 	updateProject: () => {},
@@ -30,9 +31,10 @@ export const ProjectsProvider = ({ children }) => {
 	const [ showEmailPopUp, setShowEmailPopUp ] = useState(false);
 	const [ selectedProjectId, setSelectedProjectId ] = useState('');
 	const [ selectedProjectUrl, setSelectedProjectUrl ] = useState('');
+	const [ sendingEmail, setSendingEmail ] = useState(false);
 
 	const sendInviteEmail = async (email) => {
-		console.log(process.env.REACT_APP_EMAIL_ENDPOINT);
+		setSendingEmail(true);
 
 		const response = await fetch(
 			`${process.env
@@ -42,11 +44,13 @@ export const ProjectsProvider = ({ children }) => {
 		const data = await response.json();
 
 		if (data.success) {
+			setSendingEmail(false);
 			setShowEmailPopUp(false);
 			return alert(data.success);
 		}
 
 		if (data.error) {
+			setSendingEmail(false);
 			setShowEmailPopUp(false);
 			return alert(data.error);
 		}
@@ -102,6 +106,7 @@ export const ProjectsProvider = ({ children }) => {
 				loading,
 				showEmailPopUp,
 				selectedProjectUrl,
+				sendingEmail,
 				toggleEmailPopUp,
 				createProject,
 				deleteProject,
