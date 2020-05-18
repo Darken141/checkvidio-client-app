@@ -13,9 +13,6 @@ const Projects = () => {
 		ProjectsContext
 	);
 	const [ email, setEmail ] = useState('');
-
-	console.log(sendingEmail);
-
 	return (
 		<main id="projects">
 			<h1 className="heading">Moje projekty</h1>
@@ -27,7 +24,7 @@ const Projects = () => {
 					<div className="project-overview__head-col ">Možnosti</div>
 				</div>
 				{loading && <Spinner />}
-				{projects.map(({ id, desc, videoName, videoUrl, name }, idx) => (
+				{projects.map(({ id, desc, videoName, videoUrl, name, showDropdownMenu }, idx) => (
 					<OverviewCard
 						key={id}
 						id={id}
@@ -36,6 +33,7 @@ const Projects = () => {
 						videoName={videoName}
 						videoUrl={videoUrl}
 						name={name}
+						showDropdownMenu={showDropdownMenu}
 					/>
 				))}
 

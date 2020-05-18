@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { HeaderContext } from '../../../../context/Header';
 import { FaBell, FaPlus, FaCaretDown, FaUserAlt, FaArrowLeft, FaSignOutAlt } from 'react-icons/fa';
 import { auth } from '../../../../firebase/firebase.utils';
 import { CSSTransition } from 'react-transition-group';
@@ -8,6 +9,9 @@ import './navbar.styles.scss';
 
 export const Header = () => {
 	const match = useRouteMatch();
+	const { showDropdownMenu, showNotificationMenu, toggleNotificationMenu, toggleDropdownMenu } = useContext(
+		HeaderContext
+	);
 
 	return (
 		<header className="dashboard-header">
@@ -18,8 +22,8 @@ export const Header = () => {
 			</div>
 			<Navbar>
 				<NavItem to={`${match.url}/create-project`} icon={<FaPlus />} />
-				<DropdownNavItem icon={<FaBell />} />
-				<DropdownNavItem icon={<FaCaretDown />}>
+				<DropdownNavItem open={showNotificationMenu} setOpen={toggleNotificationMenu} icon={<FaBell />} />
+				<DropdownNavItem open={showDropdownMenu} setOpen={toggleDropdownMenu} icon={<FaCaretDown />}>
 					<DropdownMenu />
 				</DropdownNavItem>
 			</Navbar>
@@ -46,15 +50,13 @@ export const NavItem = (props) => {
 };
 
 export const DropdownNavItem = (props) => {
-	const [ open, setOpen ] = useState(false);
-
 	return (
 		<li className="nav-item">
-			<span className={open ? 'icon-button open-dropdown' : 'icon-button'} onClick={() => setOpen(!open)}>
+			<span className={props.open ? 'icon-button open-dropdown' : 'icon-button'} onClick={() => props.setOpen()}>
 				{props.icon}
 			</span>
 
-			{open && props.children}
+			{props.open && props.children}
 		</li>
 	);
 };
@@ -71,18 +73,11 @@ export const DropdownItem = (props) => {
 };
 
 const DropdownMenu = () => {
-	const [ activeMenu, setActiveMenu ] = useState('main');
-	const [ menuHeight, setMenuHeight ] = useState(null);
-	const dropdownRef = useRef(null);
+	const { useOutsideAlerter, handleActiveMenu, menuHeight, activeMenu, calcHeight, dropdownMenuRef } = useContext(
+		HeaderContext
+	);
 
-	useEffect(() => {
-		setMenuHeight(dropdownRef.current.firstChild.offsetHeight + 30);
-	}, []);
-
-	const calcHeight = (el) => {
-		const height = el.offsetHeight + 30;
-		setMenuHeight(height);
-	};
+	useOutsideAlerter(dropdownMenuRef);
 
 	const LogOutButton = (props) => {
 		return (
@@ -95,7 +90,7 @@ const DropdownMenu = () => {
 	};
 
 	return (
-		<div className="dropdown" style={{ height: menuHeight }} ref={dropdownRef}>
+		<div className="dropdown" style={{ height: menuHeight }} ref={dropdownMenuRef}>
 			<CSSTransition
 				in={activeMenu === 'main'}
 				unmountOnExit
@@ -110,7 +105,7 @@ const DropdownMenu = () => {
 					{/*<DropdownItem
 						leftIcon={<FaPlus />}
 						rightIcon={<FaChevronRight />}
-						handleClick={() => setActiveMenu('settings')}
+						handleClick={() => handleActiveMenu('settings')}
 					>
 						Nastavenia
 					</DropdownItem>*/}
@@ -128,7 +123,7 @@ const DropdownMenu = () => {
 				classNames="menu-secondary"
 			>
 				<div className="menu">
-					<DropdownItem leftIcon={<FaArrowLeft />} handleClick={() => setActiveMenu('main')} />
+					<DropdownItem leftIcon={<FaArrowLeft />} handleClick={() => handleActiveMenu('main')} />
 					<DropdownItem>Settings</DropdownItem>
 					<DropdownItem>Settings</DropdownItem>
 					<DropdownItem>Settings</DropdownItem>

@@ -87,7 +87,10 @@ export const ProjectsProvider = ({ children }) => {
 					});
 					const projectsRef = await getVideoProjects(snapshot.id);
 					projectsRef.onSnapshot((snapshot) => {
-						const projectsArr = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+						const projectsArr = snapshot.docs.map((doc) => ({
+							id: doc.id,
+							...doc.data()
+						}));
 						setProjects(projectsArr);
 					});
 					setLoading(false);

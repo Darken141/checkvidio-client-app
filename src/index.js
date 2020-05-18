@@ -2,13 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { UserProvider } from './context/Auth';
+import { HeaderProvider } from './context/Header';
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 	<UserProvider>
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>
+		<HeaderProvider>
+			<React.StrictMode>
+				<App />
+			</React.StrictMode>
+		</HeaderProvider>
 	</UserProvider>,
 	document.getElementById('root')
 );
