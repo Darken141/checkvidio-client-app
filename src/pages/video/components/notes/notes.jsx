@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../../../context/Auth';
 import { NotesContext } from '../../../../context/Notes';
+import { ProjectContext } from '../../../../context/Project';
 import Duration from '../../../../utils/duration';
 
 import Spinner from '../../../../components/spinner/spinner.component';
@@ -11,6 +12,8 @@ import './notes.styles.scss';
 const Notes = () => {
 	const currentUser = useContext(UserContext);
 	const { notes, loading, deleteNote, toggleIsDone } = useContext(NotesContext);
+	const { seekToNoteTime } = useContext(ProjectContext);
+
 	if (loading) return <Spinner />;
 	return (
 		<div className="note-container">
@@ -19,7 +22,7 @@ const Notes = () => {
 			{notes.map(({ id, time, note, isDone }) => (
 				<div key={id} className={isDone ? 'note complete component' : 'note component'}>
 					<div className="note__header">
-						<p>
+						<p onClick={() => seekToNoteTime(time)}>
 							Čas:{' '}
 							{time === 0 ? (
 								<span className="time">žiadny</span>

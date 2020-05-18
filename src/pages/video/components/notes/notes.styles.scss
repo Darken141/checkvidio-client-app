@@ -37,6 +37,10 @@
 
 				.time {
 					color: $font-white;
+					transition: color 0.3s ease;
+					&:hover {
+						color: var(--primary);
+					}
 				}
 			}
 
