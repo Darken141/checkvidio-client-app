@@ -9,7 +9,7 @@ import { UserContext } from '../../context/Auth';
 import NoteForm from './components/note-form/note-form';
 import Notes from './components/notes/notes';
 import VideoPlayer from './components/video-player/video-player';
-import { FaQuestionCircle } from 'react-icons/fa';
+// import { FaQuestionCircle } from 'react-icons/fa';
 
 import Footer from '../../components/footer/footer';
 
@@ -29,9 +29,9 @@ const VideoPage = () => {
 
 				<div className="menu-items">
 					{currentUser && <Link to="/dashboard">Admin panel</Link>}
-					<div className="help_icon">
+					{/*<div className="help_icon">
 						<FaQuestionCircle />
-					</div>
+	</div>*/}
 				</div>
 			</header>
 			<main id="video-page__main">

@@ -7,6 +7,13 @@
 	align-items: center;
 	padding: 0 1rem;
 
+	.logo {
+		left: 50%;
+		transform: translateX(-50%);
+		position: absolute;
+		font-size: 5rem;
+	}
+
 	.form {
 		width: 100%;
 		max-width: 45rem;
@@ -14,11 +21,12 @@
 		padding: 3rem 4rem;
 		background-color: $component-background;
 		box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 1);
+		border-radius: 10px;
 
 		h3 {
 			font-weight: normal;
 			text-align: center;
-			margin-bottom: .5rem;
+			margin-bottom: 4rem;
 			opacity: .83;
 		}
 
@@ -26,6 +34,27 @@
 			display: block;
 			text-align: center;
 			margin-top: 2rem;
+		}
+
+		.sign-up__btn {
+			cursor: pointer;
+			font-size: inherit;
+			font-weight: inherit;
+			border-radius: 15px;
+			width: 100%;
+			padding: 1.2rem 2rem;
+			display: block;
+			text-transform: uppercase;
+			transition: all 0.3s ease;
+			margin-top: 4rem;
+			background-color: var(--primary);
+			border: 1px solid var(--component-bg);
+
+			&:hover {
+				border: 1px solid var(--primary);
+				background-color: unset;
+				color: var(--primary);
+			}
 		}
 	}
 }

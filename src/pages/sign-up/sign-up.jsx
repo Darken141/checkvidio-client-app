@@ -40,6 +40,7 @@ const SignUp = () => {
 
 	return (
 		<div id="sign-up">
+			<h1 className="logo">CheckVid.io</h1>
 			<form className="form" onSubmit={(e) => handleFormSubmit(e)}>
 				<h3>
 					Registruj sa, je to <strong>ZDARMA!</strong>
@@ -71,7 +72,7 @@ const SignUp = () => {
 					value={pwd}
 					handleChange={(e) => setPwd(e.target.value)}
 				/>
-				<button className="custom-btn" type="submit">
+				<button className="sign-up__btn" type="submit">
 					Vytvoriť účet
 				</button>
 
