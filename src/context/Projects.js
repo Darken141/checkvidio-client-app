@@ -99,12 +99,6 @@ export const ProjectsProvider = ({ children }) => {
 		if (r) deleteVideoProject(projectId);
 	};
 
-	console.log({
-		projects,
-		production,
-		currentUser
-	});
-
 	useEffect(
 		() => {
 			const getProductionAndProjects = async () => {
@@ -117,7 +111,6 @@ export const ProjectsProvider = ({ children }) => {
 				});
 				const projectsRef = await getVideoProjects(productionSnapshot.id);
 				projectsRef.onSnapshot((projectsSnapshot) => {
-					console.log(projectsSnapshot);
 					if (projectsSnapshot.empty) {
 						setProjects([]);
 						return setLoading(false);
