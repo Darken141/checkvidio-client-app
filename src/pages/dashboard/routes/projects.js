@@ -63,7 +63,7 @@ const Projects = () => {
 								handleChange={() => {}}
 							/>
 							<CopyToClipboard text={selectedProjectUrl} onCopy={() => alert('Odkaz skopirovany')}>
-								<button className="custom-btn">Kopirovat odkaz</button>
+								<button className="custom-btn">Kopírovať odkaz</button>
 							</CopyToClipboard>
 						</div>
 
@@ -73,7 +73,7 @@ const Projects = () => {
 
 				{projects.length === 0 && (
 					<div className="cta">
-						<Link to="/dashboard/create-project">Pridať prvy projekt</Link>
+						<Link to="/dashboard/create-project">Pridať prvý projekt</Link>
 					</div>
 				)}
 			</div>

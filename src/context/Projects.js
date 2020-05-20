@@ -99,24 +99,35 @@ export const ProjectsProvider = ({ children }) => {
 		if (r) deleteVideoProject(projectId);
 	};
 
+	console.log({
+		projects,
+		production,
+		currentUser
+	});
+
 	useEffect(
 		() => {
 			const getProductionAndProjects = async () => {
 				setLoading(true);
 				const productionRef = await getUserProduction(currentUser.id);
-				productionRef.onSnapshot(async (snapshot) => {
-					setProduction({
-						id: snapshot.id,
-						...snapshot.data()
-					});
-					const projectsRef = await getVideoProjects(snapshot.id);
-					projectsRef.onSnapshot((snapshot) => {
-						const projectsArr = snapshot.docs.map((doc) => ({
+				const productionSnapshot = await productionRef.get();
+				setProduction({
+					id: productionSnapshot.id,
+					...productionSnapshot.data()
+				});
+				const projectsRef = await getVideoProjects(productionSnapshot.id);
+				projectsRef.onSnapshot((projectsSnapshot) => {
+					console.log(projectsSnapshot);
+					if (projectsSnapshot.empty) {
+						setProjects([]);
+						return setLoading(false);
+					}
+					setProjects(
+						projectsSnapshot.docs.map((doc) => ({
 							id: doc.id,
 							...doc.data()
-						}));
-						setProjects(projectsArr);
-					});
+						}))
+					);
 					setLoading(false);
 				});
 			};

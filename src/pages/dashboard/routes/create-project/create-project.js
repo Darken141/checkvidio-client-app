@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { ProjectsContext } from '../../../../context/Projects';
+import { UserContext } from '../../../../context/Auth';
 import { useHistory } from 'react-router-dom';
 import CustomInput from '../../../../components/input/input';
 import CustomTextarea from '../../../../components/textarea/textarea';
 
 const CreateProject = () => {
 	const history = useHistory();
-	const { production, createProject } = useContext(ProjectsContext);
+	const { createProject } = useContext(ProjectsContext);
+	const currentUser = useContext(UserContext);
 	const [ name, setName ] = useState('');
 	const [ desc, setDesc ] = useState('');
 	const [ videoName, setVideoName ] = useState('');
@@ -16,7 +18,7 @@ const CreateProject = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		createProject({ name, desc, videoName, videoUrl, production: production.id });
+		createProject({ name, desc, videoName, videoUrl, production: currentUser.production, author: currentUser.id });
 		history.push('/dashboard');
 	};
 

@@ -123,14 +123,11 @@ export const updateVideoProject = async (projectId, projectData) => {
 
 export const createVideoProject = async (videoProject) => {
 	if (!videoProject) return;
-
 	const productionRef = firestore.doc(`productions/${videoProject.production}`);
 	const prodSnapShot = await productionRef.get();
 	if (!prodSnapShot.exists) return;
-
 	const projectRef = firestore.collection(`/projects`);
 	const newProjectRef = projectRef.doc();
-
 	try {
 		newProjectRef.set(videoProject);
 	} catch (error) {
@@ -141,20 +138,13 @@ export const createVideoProject = async (videoProject) => {
 
 export const getVideoProjects = async (productionId) => {
 	if (!productionId) return;
-
 	const projectsRef = firestore.collection(`/projects`).where('production', '==', productionId);
-
 	return projectsRef;
 };
 
 export const getVideoProject = async (projectId) => {
 	if (!projectId) return;
-
 	const projectRef = firestore.doc(`projects/${projectId}`);
-	// console.log(projectRef);
-	// const projectSnapShot = await projectRef.get();
-	// if (!projectSnapShot.exists) return;
-
 	return projectRef;
 };
 
