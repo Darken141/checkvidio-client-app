@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ProjectsContext } from '../../../../context/Projects';
 import { useParams, useHistory } from 'react-router-dom';
 
@@ -12,18 +12,29 @@ import './project-page.styles.scss';
 const ProjectPage = () => {
 	const { id } = useParams();
 	const history = useHistory();
-	const { updateProject } = useContext(ProjectsContext);
+	const { updateProject, projects } = useContext(ProjectsContext);
 	const [ name, setName ] = useState('');
 	const [ desc, setDesc ] = useState('');
 	const [ videoName, setVideoName ] = useState('');
 	const [ videoUrl, setVideoUrl ] = useState('');
 	const url = `https://www.app.checkvid.io/video/${id}`;
+	const project = projects.filter((prct) => prct.id === id);
 
 	const handleUpdateProject = (e) => {
 		e.preventDefault();
 		updateProject(id, { name, desc, videoName, videoUrl });
 		history.push('/dashboard');
 	};
+
+	useEffect(
+		() => {
+			setName(project[0].name);
+			setDesc(project[0].desc);
+			setVideoName(project[0].videoName);
+			setVideoUrl(project[0].videoUrl);
+		},
+		[ project ]
+	);
 
 	return (
 		<section id="project-page">
