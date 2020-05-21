@@ -104,12 +104,13 @@ export const ProjectsProvider = ({ children }) => {
 			const getProductionAndProjects = async () => {
 				setLoading(true);
 				const productionRef = await getUserProduction(currentUser.id);
-				const productionSnapshot = await productionRef.get();
-				setProduction({
-					id: productionSnapshot.id,
-					...productionSnapshot.data()
+				productionRef.onSnapshot((productionSnapshot) => {
+					setProduction({
+						id: productionSnapshot.id,
+						...productionSnapshot.data()
+					});
 				});
-				const projectsRef = await getVideoProjects(productionSnapshot.id);
+				const projectsRef = await getVideoProjects(currentUser.production);
 				projectsRef.onSnapshot((projectsSnapshot) => {
 					if (projectsSnapshot.empty) {
 						setProjects([]);
