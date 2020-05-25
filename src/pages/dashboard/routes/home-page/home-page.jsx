@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../../../context/Auth';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { AiOutlineUser, AiOutlineUnorderedList, AiOutlineFolderAdd } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineUnorderedList, AiOutlineFolderAdd, AiOutlineLogout } from 'react-icons/ai';
+import { auth } from '../../../../firebase/firebase.utils';
 
 import './home-page.styles.scss';
 
@@ -53,6 +54,12 @@ const HomePage = () => {
 					</div>
 					<h2>Profil</h2>
 				</Link>
+				<a href="/login" onClick={() => auth.signOut()} className="card-button">
+					<div className="log-out-icon">
+						<AiOutlineLogout />
+					</div>
+					<h2>Odhlásiť sa</h2>
+				</a>
 			</div>
 		</section>
 	);
