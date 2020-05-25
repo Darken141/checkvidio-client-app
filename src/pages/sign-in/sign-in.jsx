@@ -36,7 +36,7 @@ const SignIn = () => {
 	return (
 		<div id="sign-in">
 			<h1 className="logo">CheckVid.io</h1>
-			<form className="form" onSubmit={(e) => handleSubmit(e)}>
+			<form className="form component" onSubmit={(e) => handleSubmit(e)}>
 				<h3>Prihlásiť sa</h3>
 				<CustomInput
 					id="email"

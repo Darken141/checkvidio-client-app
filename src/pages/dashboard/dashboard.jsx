@@ -27,11 +27,11 @@ const Dashboard = () => {
 			<div className="container">
 				<Switch>
 					<Suspense fallback={<Spinner />}>
+						<Route exact path={`${match.path}/`} component={HomePage} />
 						<Route exact path={`${match.path}/projects`} component={Projects} />
 						<Route exact path={`${match.path}/create-project`} component={CreateProject} />
 						<Route exact path={`${match.path}/profile`} component={UserProfile} />
-						<Route exact path={`${match.path}/`} component={HomePage} />
-						<Route path={`${match.path}/edit/:id`} component={ProjectPage} />
+						<Route path={`${match.path}/projects/edit/:id`} component={ProjectPage} />
 						<Route path={`${match.path}/send-email/:id`} component={EmailForm} />
 					</Suspense>
 				</Switch>

@@ -2,8 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ProjectsContext } from '../../../../context/Projects';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-
 import CustomInput from '../../../../components/input/input';
 import CustomTextarea from '../../../../components/textarea/textarea';
 
@@ -17,7 +15,6 @@ const ProjectPage = () => {
 	const [ desc, setDesc ] = useState('');
 	const [ videoName, setVideoName ] = useState('');
 	const [ videoUrl, setVideoUrl ] = useState('');
-	const url = `https://www.app.checkvid.io/video/${id}`;
 	const project = projects.filter((prct) => prct.id === id);
 
 	const handleUpdateProject = (e) => {
@@ -38,7 +35,7 @@ const ProjectPage = () => {
 
 	return (
 		<section id="project-page">
-			<div className="project-header component">
+			<div className="project-container component">
 				<CustomInput
 					id="name"
 					label="Názov projektu:"
@@ -49,32 +46,7 @@ const ProjectPage = () => {
 					handleChange={(e) => setName(e.target.value)}
 				/>
 			</div>
-
-			<div className="project-url component">
-				<CustomInput
-					id="url"
-					label="Video odkaz"
-					name="url"
-					type="text"
-					placeholder=""
-					value={url}
-					handleChange={() => {}}
-				/>
-				<CopyToClipboard text={url} onCopy={() => alert('Odkaz skopirovany')}>
-					<span>Kopirovat odkaz</span>
-				</CopyToClipboard>
-			</div>
-
-			<div className="project-body component">
-				<CustomInput
-					id="video-url"
-					label="Video URL:"
-					name={videoUrl}
-					type="text"
-					placeholder="https://youtu.be/Hg77Rp-ykHE"
-					value={videoUrl}
-					handleChange={(e) => setVideoUrl(e.target.value)}
-				/>
+			<div className="project-container component">
 				<CustomInput
 					id="video-name"
 					label="Názov videa:"
@@ -84,6 +56,21 @@ const ProjectPage = () => {
 					value={videoName}
 					handleChange={(e) => setVideoName(e.target.value)}
 				/>
+			</div>
+
+			<div className="project-container component">
+				<CustomInput
+					id="video-url"
+					label="Video URL:"
+					name={videoUrl}
+					type="text"
+					placeholder="https://youtu.be/Hg77Rp-ykHE"
+					value={videoUrl}
+					handleChange={(e) => setVideoUrl(e.target.value)}
+				/>
+			</div>
+
+			<div className="project-container component">
 				<CustomTextarea
 					label="Popis videa:"
 					name="desc"

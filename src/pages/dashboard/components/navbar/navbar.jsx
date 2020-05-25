@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { HeaderContext } from '../../../../context/Header';
 import { FaBell, FaPlus, FaCaretDown, FaUserAlt, FaArrowLeft, FaSignOutAlt } from 'react-icons/fa';
+import { AiOutlineUnorderedList } from 'react-icons/ai';
 import { auth } from '../../../../firebase/firebase.utils';
 import { CSSTransition } from 'react-transition-group';
 import { Link, useRouteMatch } from 'react-router-dom';
@@ -99,7 +100,7 @@ const DropdownMenu = () => {
 				onEnter={calcHeight}
 			>
 				<div className="menu">
-					<DropdownItem to="projects" leftIcon={<FaUserAlt />}>
+					<DropdownItem to="projects" leftIcon={<AiOutlineUnorderedList />}>
 						Projekty
 					</DropdownItem>
 					<DropdownItem to="profile" leftIcon={<FaUserAlt />}>

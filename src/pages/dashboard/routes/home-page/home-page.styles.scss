@@ -1,7 +1,7 @@
 #home-page {
 	.welcome-container {
 		display: flex;
-		justify-content: space-between;
+		justify-content: space-evenly;
 		align-items: flex-start;
 		flex-wrap: wrap;
 
@@ -13,6 +13,7 @@
 			border-radius: 15px;
 			box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.3), -10px -10px 3rem 0 rgba(#fff, 0.05);
 			margin-bottom: 3rem;
+			margin: 5rem 0;
 
 			@media screen and (max-width: 600px) {
 				padding: 1rem 2rem;
@@ -31,12 +32,19 @@
 		}
 
 		.news {
-			width: 60rem;
+			margin: 5rem 0;
+
+			width: 50rem;
 			margin-bottom: 5rem;
-			text-align: start;
 			box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.3), -10px -10px 3rem 0 rgba(#fff, 0.05);
 			border-radius: 15px;
 			padding: 4rem 6rem;
+
+			h2 {
+				text-align: center;
+				margin-bottom: 2rem;
+			}
+
 			.new {
 				&__heading {
 					display: flex;
@@ -62,7 +70,7 @@
 	}
 	.home-page {
 		&__header {
-			padding: 5rem;
+			padding: 5rem 0rem;
 			display: flex;
 			justify-content: space-evenly;
 			flex-wrap: wrap;
@@ -78,6 +86,7 @@
 				position: relative;
 				transition: all 0.3s ease;
 				margin: 4rem;
+				border: 1px solid rgba(#3fb2ff, 0.05);
 
 				box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.3), -10px -10px 3rem 0 rgba(#3fb2ff, 0.05);
 

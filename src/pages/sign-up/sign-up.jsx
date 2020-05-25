@@ -41,7 +41,7 @@ const SignUp = () => {
 	return (
 		<div id="sign-up">
 			<h1 className="logo">CheckVid.io</h1>
-			<form className="form" onSubmit={(e) => handleFormSubmit(e)}>
+			<form className="form component" onSubmit={(e) => handleFormSubmit(e)}>
 				<h3>
 					Registruj sa, je to <strong>ZDARMA!</strong>
 				</h3>

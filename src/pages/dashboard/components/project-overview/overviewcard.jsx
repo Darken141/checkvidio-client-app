@@ -1,6 +1,5 @@
 import React, { useContext, useState, useRef } from 'react';
 import { ProjectsContext } from '../../../../context/Projects';
-
 import { DropdownItem } from '../navbar/navbar';
 import VideoPlayer from '../../../video/components/video-player/video-player';
 
@@ -13,27 +12,6 @@ const Overviewcard = ({ id, idx, desc, videoUrl, name, notesCount }) => {
 	const { deleteProject, toggleEmailPopUp } = useContext(ProjectsContext);
 	const [ open, setOpen ] = useState(false);
 	const dropdownMenuRef = useRef(null);
-
-	// console.log(open);
-
-	// const useOutsideAlerter = (ref) => {
-	// 	useEffect(
-	// 		() => {
-	// 			const handleClickOutside = (e) => {
-	// 				if (ref.current && !ref.current.contains(e.target)) {
-	// 					setOpen(false);
-	// 				}
-	// 			};
-	// 			document.addEventListener('click', handleClickOutside);
-	// 			return () => {
-	// 				document.removeEventListener('click', handleClickOutside);
-	// 			};
-	// 		},
-	// 		[ ref ]
-	// 	);
-	// };
-
-	// useOutsideAlerter(dropdownMenuRef);
 
 	return (
 		<div className="project-overview__project component">
