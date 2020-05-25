@@ -15,7 +15,9 @@ const Projects = () => {
 	const [ email, setEmail ] = useState('');
 	return (
 		<main id="projects">
-			<h1 className="heading">Moje projekty</h1>
+			<div className="heading__contianer">
+				<h1 className="heading">Moje projekty</h1>
+			</div>
 			<div className="projects-list">
 				<div className="project-overview__head ">
 					<div className="project-overview__head-col ">#</div>

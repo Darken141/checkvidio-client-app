@@ -1,15 +1,20 @@
 #dashboard {
 	font-size: 1.6rem;
+	overflow: hidden;
+
 	.projects-list {
 		display: flex;
 		flex-direction: column;
 		// max-width: 74rem;
 		margin: 0 auto;
+		width: 100%;
+		overflow-x: scroll;
 	}
 
 	.project-overview__head {
 		display: flex;
 		margin-bottom: 3rem;
+		min-width: 80rem;
 
 		&-col {
 			width: 35%;
@@ -31,6 +36,7 @@
 
 	.project-overview__project {
 		display: flex;
+		min-width: 80rem;
 
 		&-col {
 			width: 35%;
@@ -52,6 +58,8 @@
 				justify-content: flex-end;
 				align-items: center;
 				font-size: 2rem;
+				position: relative;
+				z-index: 999;
 			}
 
 			&:first-child {
@@ -80,6 +88,16 @@
 }
 
 #projects {
+	.heading__contianer {
+		.heading {
+			display: inline-block;
+			padding: 4rem 6rem;
+			border-radius: 15px;
+			box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.3), -10px -10px 3rem 0 rgba(#fff, 0.05);
+			margin-bottom: 5rem;
+		}
+	}
+
 	.more-menu {
 		position: relative;
 	}

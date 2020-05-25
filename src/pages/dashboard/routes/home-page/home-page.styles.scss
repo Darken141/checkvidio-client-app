@@ -14,6 +14,10 @@
 			box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.3), -10px -10px 3rem 0 rgba(#fff, 0.05);
 			margin-bottom: 3rem;
 
+			@media screen and (max-width: 600px) {
+				padding: 1rem 2rem;
+			}
+
 			h1 {
 				text-align: center;
 				// font-size: 6rem;
@@ -44,6 +48,10 @@
 						opacity: 0.6;
 					}
 				}
+			}
+
+			@media screen and (max-width: 600px) {
+				padding: 4rem 4rem;
 			}
 		}
 	}
@@ -81,12 +89,6 @@
 					position: absolute;
 					border-radius: 15px;
 					border: 1px solid rgba(#fff, 0.05);
-				}
-
-				.link {
-					// background-color: #3fb2ff;
-					position: relative;
-					z-index: 99;
 				}
 
 				.profile-icon,
