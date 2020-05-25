@@ -34,7 +34,7 @@ const HomePage = () => {
 				</div>
 			</div>
 
-			<h2 className="heading">Navigácia</h2>
+			<h2 className="heading label-heading">Navigácia</h2>
 			<div className="home-page__header">
 				<Link to={`${match.url}/create-project`} className="card-button">
 					<div className="profile-icon">

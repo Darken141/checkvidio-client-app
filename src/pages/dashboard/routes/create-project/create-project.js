@@ -27,7 +27,7 @@ const CreateProject = () => {
 			author: currentUser.id,
 			notesCount: 0
 		});
-		history.push('/dashboard');
+		history.push('/dashboard/projects');
 	};
 
 	return (
