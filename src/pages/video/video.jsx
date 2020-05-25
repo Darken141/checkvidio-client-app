@@ -36,7 +36,9 @@ const VideoPage = () => {
 			</header>
 			<main id="video-page__main">
 				<div className="video-container">
-					<VideoPlayer url={project.videoUrl} />
+					<div className="compontent">
+						<VideoPlayer url={project.videoUrl} />
+					</div>
 					<h2>{project.name}</h2>
 					<div className="video-description component">
 						<details>

@@ -36,6 +36,7 @@ export const NotesProvider = ({ children }) => {
 				const notesRef = await getProjectNotes(id);
 				notesRef.onSnapshot((snapShot) => {
 					if (snapShot.empty) return setNotes([]);
+
 					const noteArr = snapShot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 					setNotes(noteArr);
 				});
@@ -47,7 +48,15 @@ export const NotesProvider = ({ children }) => {
 	);
 
 	return (
-		<NotesContext.Provider value={{ notes, loading, deleteNote, createNote, toggleIsDone }}>
+		<NotesContext.Provider
+			value={{
+				notes,
+				loading,
+				deleteNote,
+				createNote,
+				toggleIsDone
+			}}
+		>
 			{children}
 		</NotesContext.Provider>
 	);

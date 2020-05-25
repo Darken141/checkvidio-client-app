@@ -15,7 +15,7 @@ const Projects = () => {
 	const [ email, setEmail ] = useState('');
 	return (
 		<main id="projects">
-			<div className="heading__contianer">
+			<div className="heading__container">
 				<h1 className="heading">Moje projekty</h1>
 			</div>
 			<div className="projects-list">
@@ -26,7 +26,7 @@ const Projects = () => {
 					<div className="project-overview__head-col ">Možnosti</div>
 				</div>
 				{loading && <Spinner />}
-				{projects.map(({ id, desc, videoName, videoUrl, name, showDropdownMenu }, idx) => (
+				{projects.map(({ id, desc, videoName, videoUrl, name, showDropdownMenu, notesCount }, idx) => (
 					<OverviewCard
 						key={id}
 						id={id}
@@ -36,6 +36,7 @@ const Projects = () => {
 						videoUrl={videoUrl}
 						name={name}
 						showDropdownMenu={showDropdownMenu}
+						notesCount={notesCount}
 					/>
 				))}
 

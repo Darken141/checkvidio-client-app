@@ -159,6 +159,10 @@ export const createProjectNote = async (projectId, note) => {
 	if (!projectId && note) return;
 
 	const noteRef = firestore.collection(`projects/${projectId}/notes`);
+	// const projectRef = firestore.collection(`projects/${projectId}`);
+	// const projectSnapShot = projectRef.get();
+	// console.log(projectRef);
+
 	const newNoteRef = noteRef.doc();
 	try {
 		await newNoteRef.set(note);

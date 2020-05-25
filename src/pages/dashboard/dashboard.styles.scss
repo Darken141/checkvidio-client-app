@@ -9,10 +9,12 @@
 		margin: 0 auto;
 		width: 100%;
 		overflow-x: scroll;
+		height: auto;
 	}
 
 	.project-overview__head {
 		display: flex;
+		margin: 0 10rem 3rem;
 		margin-bottom: 3rem;
 		min-width: 80rem;
 
@@ -37,6 +39,9 @@
 	.project-overview__project {
 		display: flex;
 		min-width: 80rem;
+		margin: 4rem;
+
+		margin-bottom: 5rem;
 
 		&-col {
 			width: 35%;
@@ -60,6 +65,15 @@
 				font-size: 2rem;
 				position: relative;
 				z-index: 999;
+
+				.notes-count {
+					opacity: 0.6;
+					margin-right: auto;
+
+					svg {
+						margin-right: .5rem;
+					}
+				}
 			}
 
 			&:first-child {
@@ -88,16 +102,6 @@
 }
 
 #projects {
-	.heading__contianer {
-		.heading {
-			display: inline-block;
-			padding: 4rem 6rem;
-			border-radius: 15px;
-			box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.3), -10px -10px 3rem 0 rgba(#fff, 0.05);
-			margin-bottom: 5rem;
-		}
-	}
-
 	.more-menu {
 		position: relative;
 	}

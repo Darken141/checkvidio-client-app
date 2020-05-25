@@ -13,7 +13,9 @@
 		padding: .8rem 1rem;
 		width: 100%;
 		display: block;
-		background-color: $background;
+		// background-color: $background;
+		background-color: var(--component-bg);
+
 		border: none;
 		font-family: inherit;
 		font-size: 1.6rem;

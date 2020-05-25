@@ -16,7 +16,9 @@ const UserProfile = () => {
 
 	return (
 		<section id="user-profile">
-			<h1 className="heading">User Profile</h1>
+			<div className="heading__container">
+				<h1 className="heading">User Profile</h1>
+			</div>
 			<div className=" card">
 				<h2>Osobné informácie</h2>
 				<div className="component">

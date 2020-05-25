@@ -31,7 +31,7 @@ const PopUp = ({ children }) => {
 
 	return (
 		<div className="background">
-			<div ref={wrapperRef} className="pop-up component">
+			<div ref={wrapperRef} className="pop-up">
 				{children}
 			</div>
 		</div>

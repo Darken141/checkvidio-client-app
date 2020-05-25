@@ -18,13 +18,23 @@ const CreateProject = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		createProject({ name, desc, videoName, videoUrl, production: currentUser.production, author: currentUser.id });
+		createProject({
+			name,
+			desc,
+			videoName,
+			videoUrl,
+			production: currentUser.production,
+			author: currentUser.id,
+			notesCount: 0
+		});
 		history.push('/dashboard');
 	};
 
 	return (
 		<main id="create-project">
-			<h1 className="heading">Vytvoriť project</h1>
+			<div className="heading__container">
+				<h1 className="heading">Vytvoriť project</h1>
+			</div>
 			<form onSubmit={(e) => handleSubmit(e)} className="component">
 				<CustomInput
 					id="name"
