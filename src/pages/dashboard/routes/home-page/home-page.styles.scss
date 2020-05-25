@@ -1,0 +1,127 @@
+#home-page {
+	.welcome-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-wrap: wrap;
+
+		.greetings {
+			padding: 4rem 6rem;
+			width: 30rem;
+			// max-width: 30rem;
+			// justify-content: center
+			border-radius: 15px;
+			box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.3), -10px -10px 3rem 0 rgba(#fff, 0.05);
+			margin-bottom: 3rem;
+
+			h1 {
+				text-align: center;
+				// font-size: 6rem;
+			}
+
+			h2 {
+				text-align: start;
+				// margin-bottom: 0;
+				opacity: .6;
+			}
+		}
+
+		.news {
+			width: 60rem;
+			margin-bottom: 5rem;
+			text-align: start;
+			box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.3), -10px -10px 3rem 0 rgba(#fff, 0.05);
+			border-radius: 15px;
+			padding: 4rem 6rem;
+			.new {
+				&__heading {
+					display: flex;
+					justify-content: space-between;
+					border-bottom: 1px solid rgba(#fff, 0.15);
+					margin-bottom: 2rem;
+
+					&--time {
+						opacity: 0.6;
+					}
+				}
+			}
+		}
+	}
+
+	h2 {
+		text-align: center;
+	}
+	.home-page {
+		&__header {
+			padding: 5rem;
+			display: flex;
+			justify-content: space-evenly;
+
+			.card-button {
+				cursor: pointer;
+				padding: 4rem 6rem;
+				// background-color: var(--component-bg);
+				border-radius: 15px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				position: relative;
+				transition: all 0.3s ease;
+
+				box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.3), -10px -10px 3rem 0 rgba(#3fb2ff, 0.05);
+
+				&::after {
+					content: ' ';
+					top: 10px;
+					left: 10px;
+					right: 10px;
+					bottom: 10px;
+					position: absolute;
+					border-radius: 15px;
+					border: 1px solid rgba(#fff, 0.05);
+				}
+
+				.link {
+					// background-color: #3fb2ff;
+					position: relative;
+					z-index: 99;
+				}
+
+				.profile-icon,
+				.projects-icon {
+					color: var(--primary);
+
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size: 8rem;
+					margin-bottom: 1rem;
+
+					transition: all 0.3s ease;
+				}
+
+				h2 {
+					color: var(--primary);
+
+					text-transform: uppercase;
+					font-weight: lighter;
+					transition: all 0.3s ease;
+				}
+
+				&:hover {
+					box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.3), -10px -10px 3rem 0 rgba(#fff, 0.05);
+					border: 1px solid rgba(#fff, 0.15);
+
+					.profile-icon,
+					.projects-icon {
+						color: var(--text-color);
+					}
+
+					h2 {
+						color: var(--text-color);
+					}
+				}
+			}
+		}
+	}
+}

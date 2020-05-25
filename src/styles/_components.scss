@@ -40,11 +40,23 @@ a {
 }
 
 .component {
-	padding: 2rem;
+	padding: 4rem;
 	background-color: var(--component-bg);
 	box-shadow: 0 5px 15px 0px rgba(0, 0, 0, .35);
 	border-radius: 10px;
 	margin-bottom: 2rem;
+	position: relative;
+
+	&::after {
+		content: ' ';
+		top: 10px;
+		left: 10px;
+		right: 10px;
+		bottom: 10px;
+		position: absolute;
+		border-radius: 15px;
+		border: 1px solid rgba(#fff, 0.05);
+	}
 }
 
 .icon {

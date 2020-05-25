@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Route, useRouteMatch, Switch } from 'react-router-dom';
 
-import Projects from './routes/projects';
-import CreateProject from './routes/create-project/create-project';
-import ProjectPage from './routes/project-page/project-page';
-import UserProfile from './routes/user-profile/user-profile';
-import EmailForm from '../../components/email-form/email-form';
+// import Projects from './routes/projects';
+import Spinner from '../../components/spinner/spinner.component';
 
 // import Header from './components/header/header';
 // import Footer from '../../components/footer/footer';
@@ -13,6 +10,13 @@ import EmailForm from '../../components/email-form/email-form';
 import { Header } from './components/navbar/navbar';
 
 import './dashboard.styles.scss';
+
+const Projects = lazy(() => import('./routes/projects'));
+const HomePage = lazy(() => import('./routes/home-page/home-page'));
+const CreateProject = lazy(() => import('./routes/create-project/create-project'));
+const ProjectPage = lazy(() => import('./routes/project-page/project-page'));
+const UserProfile = lazy(() => import('./routes/user-profile/user-profile'));
+const EmailForm = lazy(() => import('../../components/email-form/email-form'));
 
 const Dashboard = () => {
 	const match = useRouteMatch();
@@ -22,11 +26,14 @@ const Dashboard = () => {
 			<Header />
 			<div className="container">
 				<Switch>
-					<Route exact path={`${match.path}/`} component={Projects} />
-					<Route exact path={`${match.path}/create-project`} component={CreateProject} />
-					<Route exact path={`${match.path}/profile`} component={UserProfile} />
-					<Route path={`${match.path}/edit/:id`} component={ProjectPage} />
-					<Route path={`${match.path}/send-email/:id`} component={EmailForm} />
+					<Suspense fallback={<Spinner />}>
+						<Route exact path={`${match.path}/projects`} component={Projects} />
+						<Route exact path={`${match.path}/create-project`} component={CreateProject} />
+						<Route exact path={`${match.path}/profile`} component={UserProfile} />
+						<Route exact path={`${match.path}/`} component={HomePage} />
+						<Route path={`${match.path}/edit/:id`} component={ProjectPage} />
+						<Route path={`${match.path}/send-email/:id`} component={EmailForm} />
+					</Suspense>
 				</Switch>
 			</div>
 			{/*

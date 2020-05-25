@@ -99,6 +99,9 @@ const DropdownMenu = () => {
 				onEnter={calcHeight}
 			>
 				<div className="menu">
+					<DropdownItem to="projects" leftIcon={<FaUserAlt />}>
+						Projekty
+					</DropdownItem>
 					<DropdownItem to="profile" leftIcon={<FaUserAlt />}>
 						Môj profil
 					</DropdownItem>
