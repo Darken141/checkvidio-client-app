@@ -1,7 +1,13 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../../../context/Auth';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { AiOutlineUser, AiOutlineUnorderedList, AiOutlineFolderAdd, AiOutlineLogout } from 'react-icons/ai';
+import {
+	AiOutlineUser,
+	AiOutlineUnorderedList,
+	AiOutlineFolderAdd,
+	AiOutlineLogout,
+	AiOutlineWarning
+} from 'react-icons/ai';
 import { auth } from '../../../../firebase/firebase.utils';
 
 import './home-page.styles.scss';
@@ -23,12 +29,12 @@ const HomePage = () => {
 					<h2 className="heading">Novinky</h2>
 					<div className="new">
 						<div className="new__heading">
-							<h3 className="sub-heading">Vitajte v Alfe!</h3>
+							<h3 className="sub-heading">Vitajte na CheckVid.eu</h3>
 							<p className="new__heading--time">{date.toDateString()}</p>
 						</div>
 						<p>
-							Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth
-							tatsoi tomatillo melon azuki bean garlic.
+							Prosím porozhlianite sa a zanechajte nám Váš feedback ako sa Vám platforma CheckVid.io páči
+							a čo by ste zmenily.
 						</p>
 					</div>
 				</div>
@@ -54,6 +60,12 @@ const HomePage = () => {
 					</div>
 					<h2>Profil</h2>
 				</Link>
+				<a href="https://checkvid.io/contact" target="_blank" rel="noopener noreferrer" className="card-button">
+					<div className="log-out-icon">
+						<AiOutlineWarning />
+					</div>
+					<h2>Nahlásiť chybu</h2>
+				</a>
 				<a href="/login" onClick={() => auth.signOut()} className="card-button">
 					<div className="log-out-icon">
 						<AiOutlineLogout />
