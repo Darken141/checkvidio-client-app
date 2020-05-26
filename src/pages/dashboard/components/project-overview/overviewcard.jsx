@@ -2,6 +2,7 @@ import React, { useContext, useState, useRef, useEffect } from 'react';
 import { ProjectsContext } from '../../../../context/Projects';
 import { DropdownItem } from '../navbar/navbar';
 import VideoPlayer from '../../../video/components/video-player/video-player';
+import { Link } from 'react-router-dom';
 
 import { FaEnvelope, FaEllipsisV, FaEdit, FaTrash } from 'react-icons/fa';
 import { AiOutlineProfile } from 'react-icons/ai';
@@ -34,9 +35,9 @@ const Overviewcard = ({ id, idx, desc, videoUrl, name }) => {
 			</div>
 			<div className="project-overview__project-col">
 				<div className="icon-container">
-					<div className="notes-count icon">
+					<Link to={`/video/${id}`} className="notes-count icon">
 						<AiOutlineProfile /> {count}
-					</div>
+					</Link>
 					<div onClick={() => toggleEmailPopUp(id)} className="icon">
 						<FaEnvelope />
 					</div>
