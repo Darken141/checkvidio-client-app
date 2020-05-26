@@ -26,7 +26,7 @@ const Projects = () => {
 					<div className="project-overview__head-col ">Možnosti</div>
 				</div>
 				{loading && <Spinner />}
-				{projects.map(({ id, desc, videoName, videoUrl, name, showDropdownMenu, notesCount }, idx) => (
+				{projects.map(({ id, desc, videoName, videoUrl, name, showDropdownMenu }, idx) => (
 					<OverviewCard
 						key={id}
 						id={id}
@@ -36,7 +36,6 @@ const Projects = () => {
 						videoUrl={videoUrl}
 						name={name}
 						showDropdownMenu={showDropdownMenu}
-						notesCount={notesCount}
 					/>
 				))}
 

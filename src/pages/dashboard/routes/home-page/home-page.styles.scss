@@ -60,6 +60,21 @@
 						opacity: 0.6;
 					}
 				}
+
+				a {
+					color: var(--primary);
+				}
+
+				p {
+					margin-bottom: 2rem;
+				}
+				ul {
+					list-style: outside;
+					margin-left: 2rem;
+					li {
+						margin-bottom: 1rem;
+					}
+				}
 			}
 
 			@media screen and (max-width: 600px) {

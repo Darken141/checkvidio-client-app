@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { ProjectsContext } from '../../../../context/Projects';
 import { DropdownItem } from '../navbar/navbar';
 import VideoPlayer from '../../../video/components/video-player/video-player';
@@ -8,10 +8,19 @@ import { AiOutlineProfile } from 'react-icons/ai';
 
 import './overviewcard.styles.scss';
 
-const Overviewcard = ({ id, idx, desc, videoUrl, name, notesCount }) => {
-	const { deleteProject, toggleEmailPopUp } = useContext(ProjectsContext);
+const Overviewcard = ({ id, idx, desc, videoUrl, name }) => {
+	const { deleteProject, toggleEmailPopUp, getNotesCount } = useContext(ProjectsContext);
 	const [ open, setOpen ] = useState(false);
 	const dropdownMenuRef = useRef(null);
+	const [ count, setCount ] = useState(0);
+
+	useEffect(() => {
+		const getCount = async () => {
+			let count = await getNotesCount(id);
+			return setCount(count);
+		};
+		getCount();
+	});
 
 	return (
 		<div className="project-overview__project component">
@@ -26,7 +35,7 @@ const Overviewcard = ({ id, idx, desc, videoUrl, name, notesCount }) => {
 			<div className="project-overview__project-col">
 				<div className="icon-container">
 					<div className="notes-count icon">
-						<AiOutlineProfile /> {notesCount || 0}
+						<AiOutlineProfile /> {count}
 					</div>
 					<div onClick={() => toggleEmailPopUp(id)} className="icon">
 						<FaEnvelope />

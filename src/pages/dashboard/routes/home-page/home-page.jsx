@@ -14,7 +14,6 @@ import './home-page.styles.scss';
 
 const HomePage = () => {
 	const { displayName } = useContext(UserContext);
-	let date = new Date();
 	const match = useRouteMatch();
 
 	return (
@@ -29,13 +28,27 @@ const HomePage = () => {
 					<h2 className="heading">Novinky</h2>
 					<div className="new">
 						<div className="new__heading">
-							<h3 className="sub-heading">Vitajte na CheckVid.eu</h3>
-							<p className="new__heading--time">{date.toDateString()}</p>
+							<h3 className="sub-heading">Vitajte na CheckVid.io</h3>
+							<p className="new__heading--time">26. máj 2020</p>
 						</div>
 						<p>
-							Prosím porozhlianite sa a zanechajte nám Váš feedback ako sa Vám platforma CheckVid.io páči
-							a čo by ste zmenily.
+							Práve sa nachádzame predbežnom prístupe našej platformy pre kameramanov a freelancerov. Naša
+							platforma vám umožní efektívne zberať feedback od vašich klientov.
 						</p>
+						<ul>
+							<li>
+								<Link to={`${match.url}/create-project`}>Vytvárajte</Link> video projekty
+							</li>
+							<li>
+								<Link to={`${match.url}/projects`}>Posielajte</Link> emaily klientom
+							</li>
+							<li>
+								Zberajte feedback a podeľte sa s nami o jeden tiež a{' '}
+								<a href="https://checkvid.io/contact" target="_blank" rel="noopener noreferrer">
+									Napište nám
+								</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>

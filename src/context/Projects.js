@@ -7,7 +7,8 @@ import {
 	createVideoProject,
 	deleteVideoProject,
 	updateVideoProject,
-	updateUserProductionName
+	updateUserProductionName,
+	getProjectNotes
 } from '../firebase/firebase.utils';
 
 export const ProjectsContext = createContext({
@@ -26,7 +27,8 @@ export const ProjectsContext = createContext({
 	updateProject: () => {},
 	deleteProject: () => {},
 	sendInviteEmail: () => {},
-	updateProductionName: () => {}
+	updateProductionName: () => {},
+	getNotesCount: () => {}
 });
 
 export const ProjectsProvider = ({ children }) => {
@@ -39,6 +41,12 @@ export const ProjectsProvider = ({ children }) => {
 	const [ selectedProjectUrl, setSelectedProjectUrl ] = useState('');
 	const [ sendingEmail, setSendingEmail ] = useState(false);
 	const [ showProductionPopUp, setShowProductionPopUp ] = useState(false);
+
+	const getNotesCount = async (projectId) => {
+		const noteRef = await getProjectNotes(projectId);
+		const noteSnapshot = await noteRef.get();
+		return noteSnapshot.docs.length;
+	};
 
 	const updateProductionName = (productionName) => {
 		updateUserProductionName(production.id, productionName);
@@ -111,11 +119,12 @@ export const ProjectsProvider = ({ children }) => {
 					});
 				});
 				const projectsRef = await getVideoProjects(currentUser.production);
-				projectsRef.onSnapshot((projectsSnapshot) => {
+				projectsRef.onSnapshot(async (projectsSnapshot) => {
 					if (projectsSnapshot.empty) {
 						setProjects([]);
 						return setLoading(false);
 					}
+
 					setProjects(
 						projectsSnapshot.docs.map((doc) => ({
 							id: doc.id,
@@ -148,7 +157,8 @@ export const ProjectsProvider = ({ children }) => {
 				deleteProject,
 				updateProject,
 				sendInviteEmail,
-				updateProductionName
+				updateProductionName,
+				getNotesCount
 			}}
 		>
 			{children}
