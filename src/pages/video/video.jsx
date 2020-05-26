@@ -24,7 +24,9 @@ const VideoPage = () => {
 		<div id="video-page">
 			<header id="video-page__header">
 				<div className="logo-container">
-					<h1 className="logo">CheckVid.io</h1>
+					<Link to="/login" className="logo">
+						CheckVid.io
+					</Link>
 				</div>
 
 				<div className="menu-items">
