@@ -5,8 +5,9 @@ import ReactPlayer from 'react-player';
 import './video-player.styles.scss';
 
 const VideoPlayer = ({ url }) => {
-	const { handleVideoState, playerRef, isPlaying } = useContext(ProjectContext);
+	const { handleVideoState, playerRef, isPlaying, getVideoDuration } = useContext(ProjectContext);
 	// const url = 'https://www.youtube.com/watch?v=rSgbYCdc4G0';
+
 	const handleProgress = (state) => {
 		handleVideoState(state);
 	};
@@ -24,6 +25,7 @@ const VideoPlayer = ({ url }) => {
 				controls={true}
 				onStart={() => console.log('onStart')}
 				onProgress={(state) => handleProgress(state)}
+				onReady={(e) => getVideoDuration(e.getDuration())}
 				config={{
 					youtube: {
 						playerVars: {

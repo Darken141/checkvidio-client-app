@@ -9,10 +9,12 @@ export const ProjectContext = createContext({
 	playerRef: null,
 	project: null,
 	videoState: null,
+	videoDuration: 0,
 	startPlayVideo: () => {},
 	stopPlayVideo: () => {},
 	seekToNoteTime: () => {},
-	handleVideoState: () => {}
+	handleVideoState: () => {},
+	getVideoDuration: () => {}
 });
 
 export const ProjectProvider = ({ children }) => {
@@ -21,8 +23,13 @@ export const ProjectProvider = ({ children }) => {
 	const [ project, setProject ] = useState(null);
 	const [ loading, setLoading ] = useState(true);
 	const [ isPlaying, setIsPlaying ] = useState(false);
+	const [ videoDuration, setVideoDuration ] = useState(0);
 
 	const [ videoState, setVideoState ] = useState(null);
+
+	const getVideoDuration = (dur) => {
+		setVideoDuration(dur);
+	};
 
 	const startPlayVideo = () => {
 		setIsPlaying(true);
@@ -61,6 +68,7 @@ export const ProjectProvider = ({ children }) => {
 	return (
 		<ProjectContext.Provider
 			value={{
+				videoDuration,
 				isPlaying,
 				playerRef,
 				project,
@@ -68,7 +76,8 @@ export const ProjectProvider = ({ children }) => {
 				handleVideoState,
 				seekToNoteTime,
 				startPlayVideo,
-				stopPlayVideo
+				stopPlayVideo,
+				getVideoDuration
 			}}
 		>
 			{children}
