@@ -77,6 +77,12 @@
 					}
 				}
 			}
+
+			@media screen and (max-width: 550px) {
+				.component {
+					padding: 1rem;
+				}
+			}
 		}
 	}
 
