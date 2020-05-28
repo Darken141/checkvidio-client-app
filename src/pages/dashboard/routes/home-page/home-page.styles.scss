@@ -25,7 +25,7 @@
 			}
 
 			h2 {
-				text-align: start;
+				text-align: center;
 				// margin-bottom: 0;
 				opacity: .6;
 			}
@@ -96,6 +96,8 @@
 
 			.card-button {
 				cursor: pointer;
+				width: 25rem;
+				text-align: center;
 				padding: 4rem 6rem;
 				// background-color: var(--component-bg);
 				border-radius: 15px;

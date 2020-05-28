@@ -18,7 +18,7 @@
 
 .navbar {
 	height: var(--nav-size);
-	background-color: var(--bg);
+	// background-color: var(--bg);
 	padding: 0 1rem;
 
 	&-nav {
@@ -65,7 +65,7 @@
 	top: 58px;
 	width: 300px;
 	transform: translateX(-45%);
-	background-color: var(--component-bg);
+	background-color: var(--bg);
 	border: var(--border);
 	border-radius: var(--border-radius);
 	padding: 1.6rem;
